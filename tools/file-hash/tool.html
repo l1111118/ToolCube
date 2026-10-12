@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>文件哈希</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="fh-container">
+  <div class="fh-dropzone" id="fh-dropzone">
+    <div class="fh-drop-icon">📁</div>
+    <div class="fh-drop-text">拖放文件到此处或点击选择</div>
+    <div class="fh-drop-sub">支持大文件 · 本地计算 · 不上传</div>
+    <input type="file" id="fh-file" style="display:none">
+  </div>
+  <div class="fh-info" id="fh-info" style="display:none">
+    <div class="fh-filename" id="fh-filename"></div>
+    <div class="fh-filesize" id="fh-filesize"></div>
+  </div>
+  <div class="fh-progress" id="fh-progress" style="display:none">
+    <div class="fh-progress-bar"><div class="fh-progress-fill" id="fh-progress-fill"></div></div>
+    <div class="fh-progress-text" id="fh-progress-text">0%</div>
+  </div>
+  <div class="fh-results" id="fh-results" style="display:none">
+    <div class="fh-result-group">
+      <div class="fh-result-label">MD5</div>
+      <div class="fh-result-row"><input type="text" id="fh-md5" readonly><button class="btn btn--small" data-copy="fh-md5">📋</button></div>
+    </div>
+    <div class="fh-result-group">
+      <div class="fh-result-label">SHA-1</div>
+      <div class="fh-result-row"><input type="text" id="fh-sha1" readonly><button class="btn btn--small" data-copy="fh-sha1">📋</button></div>
+    </div>
+    <div class="fh-result-group">
+      <div class="fh-result-label">SHA-256</div>
+      <div class="fh-result-row"><input type="text" id="fh-sha256" readonly><button class="btn btn--small" data-copy="fh-sha256">📋</button></div>
+    </div>
+    <div class="fh-result-group">
+      <div class="fh-result-label">SHA-512</div>
+      <div class="fh-result-row"><input type="text" id="fh-sha512" readonly><button class="btn btn--small" data-copy="fh-sha512">📋</button></div>
+    </div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

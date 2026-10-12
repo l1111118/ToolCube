@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="app.name">ToolCube</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="../common/terms.css">
+</head>
+<body>
+  <div id="app" class="sidebar-app">
+    <!-- 头部 -->
+    <header class="sidebar-header">
+      <div class="sidebar-header__logo">
+        <span class="logo-icon">🔧</span>
+        <span class="logo-text" data-i18n="app.name">ToolCube</span>
+      </div>
+      <div class="sidebar-header__actions">
+        <button class="toolbox-btn toolbox-btn--icon" id="btn-settings" title="设置" data-i18n-title="sidebar.settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+        <button class="toolbox-btn toolbox-btn--icon" id="btn-close" title="关闭" data-i18n-title="sidebar.close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 搜索栏 -->
+    <div class="sidebar-search">
+      <div class="toolbox-search">
+        <svg class="toolbox-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" class="toolbox-search__input" id="search-input" placeholder="搜索工具（支持拼音）..." data-i18n-placeholder="sidebar.search" aria-label="搜索工具">
+        <button class="toolbox-search__clear" id="search-clear" type="button" title="清除搜索" aria-label="清除搜索" data-i18n-title="sidebar.clearSearch" style="display:none;">×</button>
+      </div>
+    </div>
+
+    <!-- 全局开关 -->
+    <div class="master-switch" id="master-switch">
+      <div class="master-switch__info">
+        <span class="master-switch__icon">⚡</span>
+        <span class="master-switch__label" data-i18n="masterSwitch.label">全局开关</span>
+      </div>
+      <label class="master-switch__toggle">
+        <input type="checkbox" id="master-switch-input" checked>
+        <span class="master-switch__slider"></span>
+      </label>
+    </div>
+
+    <!-- 分类标签 -->
+    <div class="sidebar-tabs">
+      <button class="toolbox-tab toolbox-tab--active" data-category="all" data-i18n="sidebar.all">全部</button>
+      <button class="toolbox-tab" data-category="favorites" data-i18n="sidebar.favorites">收藏</button>
+      <button class="toolbox-tab" data-category="recent" data-i18n="sidebar.recent">最近</button>
+      <button class="toolbox-tab" data-category="enabled" data-i18n="tools.enabled">已启用</button>
+    </div>
+
+    <!-- 工具列表 -->
+    <div class="sidebar-content toolbox-scrollbar" id="tools-container">
+      <!-- 收藏区域 -->
+      <div class="tools-section" id="favorites-section">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">⭐</span>
+          <span class="tools-section__title" data-i18n="sidebar.favorites">收藏工具</span>
+        </div>
+        <div class="tools-grid" id="favorites-grid"></div>
+      </div>
+
+      <!-- 最近使用 -->
+      <div class="tools-section" id="recent-section">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🕐</span>
+          <span class="tools-section__title" data-i18n="sidebar.recent">最近使用</span>
+        </div>
+        <div class="tools-grid" id="recent-grid"></div>
+      </div>
+
+      <!-- 已开启的功能 -->
+      <div class="tools-section tools-section--enabled" id="enabled-section" data-category="enabled">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">✅</span>
+          <span class="tools-section__title" data-i18n="sidebar.enabledSection">已开启的功能</span>
+        </div>
+        <div class="tools-grid" id="enabled-grid"></div>
+      </div>
+
+      <!-- 文本处理 -->
+      <div class="tools-section" data-category="text">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">📝</span>
+          <span class="tools-section__title" data-i18n="category.text">文本处理</span>
+        </div>
+        <div class="tools-grid" id="text-grid"></div>
+      </div>
+
+      <!-- 编码转换 -->
+      <div class="tools-section" data-category="encoding">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🔣</span>
+          <span class="tools-section__title" data-i18n="category.encoding">编码转换</span>
+        </div>
+        <div class="tools-grid" id="encoding-grid"></div>
+      </div>
+
+      <!-- 数据格式化 -->
+      <div class="tools-section" data-category="data">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">📊</span>
+          <span class="tools-section__title" data-i18n="category.data">数据格式化</span>
+        </div>
+        <div class="tools-grid" id="data-grid"></div>
+      </div>
+
+      <!-- 设计工具 -->
+      <div class="tools-section" data-category="design">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🎨</span>
+          <span class="tools-section__title" data-i18n="category.design">设计工具</span>
+        </div>
+        <div class="tools-grid" id="design-grid"></div>
+      </div>
+
+      <!-- 网络工具 -->
+      <div class="tools-section" data-category="network">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🌐</span>
+          <span class="tools-section__title" data-i18n="category.network">网络工具</span>
+        </div>
+        <div class="tools-grid" id="network-grid"></div>
+      </div>
+
+      <!-- 网页开发 -->
+      <div class="tools-section" data-category="devtools">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🔍</span>
+          <span class="tools-section__title" data-i18n="category.devtools">网页开发</span>
+        </div>
+        <div class="tools-grid" id="devtools-grid"></div>
+      </div>
+
+      <!-- 极客工具 -->
+      <div class="tools-section" data-category="geek">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🎭</span>
+          <span class="tools-section__title" data-i18n="category.geek">极客工具</span>
+        </div>
+        <div class="tools-grid" id="geek-grid"></div>
+      </div>
+
+      <!-- 日常效率 -->
+      <div class="tools-section" data-category="daily">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🚀</span>
+          <span class="tools-section__title" data-i18n="category.daily">日常效率</span>
+        </div>
+        <div class="tools-grid" id="daily-grid"></div>
+      </div>
+
+      <!-- 安全工具 -->
+      <div class="tools-section" data-category="security">
+        <div class="tools-section__header">
+          <span class="tools-section__icon">🛡️</span>
+          <span class="tools-section__title" data-i18n="category.security">安全工具</span>
+        </div>
+        <div class="tools-grid" id="security-grid"></div>
+      </div>
+    </div>
+
+    <!-- 工具内容区域 -->
+    <div class="tool-content" id="tool-content">
+      <div class="tool-content__header">
+        <button class="toolbox-btn toolbox-btn--icon" id="btn-back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </button>
+        <span class="tool-content__title" id="current-tool-title" data-i18n="sidebar.toolName">工具名称</span>
+        <div class="tool-content__actions">
+          <button class="toolbox-btn toolbox-btn--icon" id="btn-favorite-tool" title="收藏" data-i18n-title="sidebar.favorite">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </button>
+          <button class="toolbox-btn toolbox-btn--icon" id="btn-history" title="历史记录" data-i18n-title="sidebar.history">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="tool-content__body" id="tool-iframe-container">
+        <!-- 工具iframe将加载在这里 -->
+      </div>
+    </div>
+
+    <!-- 底部状态栏 -->
+    <footer class="sidebar-footer">
+      <span class="sidebar-footer__version" id="sidebar-version"></span>
+      <span class="sidebar-footer__status" id="status-text" data-i18n="sidebar.ready">就绪</span>
+    </footer>
+  </div>
+
+  <!-- 历史记录弹窗 -->
+  <div class="modal" id="history-modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 class="modal__title" data-i18n="sidebar.history">历史记录</h3>
+        <button class="toolbox-btn toolbox-btn--icon modal__close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="history-list" id="history-list"></div>
+      </div>
+      <div class="modal__footer">
+        <button class="toolbox-btn toolbox-btn--secondary" id="btn-clear-history" data-i18n="sidebar.clearHistory">清空历史</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提示消息 -->
+  <div class="toolbox-toast" id="toast"></div>
+
+  <script type="module" src="sidebar.js"></script>
+</body>
+</html>

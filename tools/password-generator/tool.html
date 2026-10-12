@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>密码生成器</title><link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-generate">🎲 生成密码</button>
+      <button class="btn btn--secondary" id="btn-copy">📋 复制</button>
+    </div>
+    <div class="toolbar-group">
+      <label class="switch-label"><span>自动生成</span><label class="switch"><input type="checkbox" id="toggle-auto" checked><span class="switch-slider"></span></label></label>
+    </div>
+  </div>
+  <div class="pw-content">
+    <div class="pw-display">
+      <div class="pw-result" id="pw-display">点击生成密码...</div>
+      <div class="pw-strength" id="pw-strength"><span class="strength-bar" id="strength-bar"></span><span class="strength-text" id="strength-text">--</span></div>
+    </div>
+    <div class="pw-settings">
+      <div class="setting-item"><label>密码长度</label><div class="range-group"><input type="range" id="length-range" min="8" max="64" value="16"><span id="length-value">16</span></div></div>
+      <div class="setting-item"><label>大写字母 (A-Z)</label><label class="switch"><input type="checkbox" id="opt-uppercase" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-item"><label>小写字母 (a-z)</label><label class="switch"><input type="checkbox" id="opt-lowercase" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-item"><label>数字 (0-9)</label><label class="switch"><input type="checkbox" id="opt-numbers" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-item"><label>特殊符号 (!@#$)</label><label class="switch"><input type="checkbox" id="opt-symbols" checked><span class="switch-slider"></span></label></div>
+      <div class="setting-item"><label>排除相似字符</label><label class="switch"><input type="checkbox" id="opt-exclude"><span class="switch-slider"></span></label></div>
+    </div>
+    <div class="pw-history" id="pw-history"><strong>历史记录</strong><div class="history-list" id="history-list"></div></div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

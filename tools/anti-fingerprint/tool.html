@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>反指纹保护</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="af-container">
+  <div class="af-header">
+    <div class="af-header-left">
+      <span class="af-title">🔏 反指纹保护</span>
+      <span class="af-status" id="af-status">未启用</span>
+    </div>
+    <label class="af-toggle"><input type="checkbox" id="af-master"><span class="af-toggle-slider"></span></label>
+  </div>
+
+  <div class="af-stats" id="af-stats">
+    <div class="af-stat-item"><span class="af-stat-indicator" id="af-indicator">⚪</span><span class="af-stat-label">保护状态</span></div>
+    <div class="af-stat-item"><span class="af-stat-num" id="af-blocked-count">0</span><span class="af-stat-label">指纹读取拦截</span></div>
+  </div>
+
+  <div class="af-section">
+    <div class="af-section-title">保护等级</div>
+    <div class="af-level-group">
+      <label class="af-level-item">
+        <input type="radio" name="af-level" value="stealth" checked>
+        <span class="af-level-name">隐形</span>
+        <span class="af-level-desc">仅对画布/WebGL/音频输出加噪声，环境特征保持真实</span>
+      </label>
+      <label class="af-level-item">
+        <input type="radio" name="af-level" value="fake">
+        <span class="af-level-name">伪装</span>
+        <span class="af-level-desc">在隐形基础上，把屏幕/硬件/时区/浏览器特征归一化为常见值</span>
+      </label>
+      <label class="af-level-item">
+        <input type="radio" name="af-level" value="block">
+        <span class="af-level-name">阻断</span>
+        <span class="af-level-desc">在伪装基础上，指纹读取接口返回恒定空值（所有站点结果一致）</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="af-section">
+    <div class="af-section-title">单项保护开关</div>
+    <div class="af-protections" id="af-protections">
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="canvas" checked><span class="af-prot-name">🎨 Canvas 指纹保护</span></label><span class="af-prot-desc">随机噪声干扰画布输出</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="webgl" checked><span class="af-prot-name">🖥️ WebGL 指纹保护</span></label><span class="af-prot-desc">随机化渲染器/供应商字符串</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="audio" checked><span class="af-prot-name">🔊 Audio 指纹保护</span></label><span class="af-prot-desc">AudioContext 输出加噪</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="fonts" checked><span class="af-prot-name">🔤 字体枚举保护</span></label><span class="af-prot-desc">限制字体探测结果</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="hardware" checked><span class="af-prot-name">⚙️ 硬件信息保护</span></label><span class="af-prot-desc">随机化 CPU 核心数/内存</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="screen" checked><span class="af-prot-name">📺 屏幕信息保护</span></label><span class="af-prot-desc">微调屏幕尺寸参数</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="timezone" checked><span class="af-prot-name">🕐 时区保护</span></label><span class="af-prot-desc">标准化时区信息</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="navigator" checked><span class="af-prot-name">🌐 浏览器特征保护</span></label><span class="af-prot-desc">精简 navigator 插件信息</span></div>
+      <div class="af-prot-item"><label class="af-prot-label"><input type="checkbox" class="af-prot-check" data-prot="webrtc" checked><span class="af-prot-name">📡 WebRTC IP 保护</span></label><span class="af-prot-desc">阻止 ICE 候选泄露真实 IP</span></div>
+    </div>
+  </div>
+
+  <!-- 屏幕分辨率伪装 -->
+  <div class="af-section">
+    <div class="af-section-title">屏幕分辨率伪装</div>
+    <select class="af-select" id="af-screen-preset">
+      <option value="default">不伪装（使用真实分辨率）</option>
+      <option value="1920x1080">1920 × 1080（常见桌面）</option>
+      <option value="1366x768">1366 × 768（常见笔记本）</option>
+      <option value="1440x900">1440 × 900（MacBook）</option>
+      <option value="2560x1440">2560 × 1440（2K 显示器）</option>
+      <option value="3840x2160">3840 × 2160（4K 显示器）</option>
+      <option value="random">随机选择（每次会话变化）</option>
+    </select>
+    <div class="af-hint" id="af-screen-hint">选择预设分辨率以伪装屏幕指纹</div>
+  </div>
+
+  <!-- 字体列表伪装 -->
+  <div class="af-section">
+    <div class="af-section-title">字体列表伪装</div>
+    <select class="af-select" id="af-font-preset">
+      <option value="default">不伪装（返回真实字体列表）</option>
+      <option value="minimal">精简模式（仅保留核心字体）</option>
+      <option value="windows">Windows 常见字体集</option>
+      <option value="macos">macOS 常见字体集</option>
+      <option value="linux">Linux 常见字体集</option>
+      <option value="random">随机字体集（每次会话变化）</option>
+    </select>
+    <div class="af-hint" id="af-font-hint">伪装字体枚举探测结果，防止字体指纹追踪</div>
+  </div>
+
+  <div class="af-warning">⚠️ 启用后将持续保护，关闭工具页面后仍生效</div>
+</div>
+<div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

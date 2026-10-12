@@ -1,0 +1,66 @@
+﻿/**
+ * Markdown缂栬緫鍣ㄦ牱寮? */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family:var(--tt-font);
+  font-size: 14px; color: var(--tt-text); background: var(--tt-bg-tertiary);
+  height: 100%; overflow: hidden;
+}
+.tool-container {
+  display: flex; flex-direction: column;
+  height: 100%; background: var(--tt-bg);
+}
+.toolbar {
+  display: flex; gap: 4px;
+  padding: 8px 12px; background: var(--tt-bg-secondary);
+  border-bottom: 1px solid var(--tt-border);
+}
+.btn {
+  padding: 8px 12px; font-size: 13px;
+  border: none; border-radius: 4px; cursor: pointer;
+}
+.btn--icon {
+  width: 32px; height: 32px; padding: 0;
+  background: var(--tt-bg); border: 1px solid var(--tt-border);
+  font-size: 14px;
+}
+.btn--secondary { background: var(--tt-muted-bg); color: var(--tt-text-secondary); border: 1px solid var(--tt-border-strong); }
+.spacer { flex: 1; }
+.editor-layout {
+  display: flex; flex: 1; overflow: hidden;
+}
+.editor {
+  flex: 1; min-width: 0; padding: 16px;
+  font-family: var(--tt-font-mono); font-size: 14px;
+  line-height: 1.6; border: none; resize: none; outline: none;
+  border-right: 1px solid var(--tt-border);
+}
+.preview {
+  flex: 1; padding: 16px; overflow: auto;
+  background: var(--tt-bg-secondary);
+}
+.preview h1, .preview h2, .preview h3 { margin: 16px 0 8px; }
+.preview p { margin: 8px 0; line-height: 1.6; }
+.preview code {
+  padding: 2px 6px; background: var(--tt-muted-bg);
+  border-radius: 3px; font-family: var(--tt-font-mono);
+}
+.preview pre {
+  padding: 12px; background: var(--tt-bg-tertiary);
+  border-radius: 6px; overflow: auto;
+}
+.preview pre code { padding: 0; background: none; }
+.preview blockquote {
+  padding-left: 12px; border-left: 4px solid var(--tt-border);
+  color: var(--tt-text-secondary); margin: 8px 0;
+}
+.preview ul, .preview ol { margin: 8px 0; padding-left: 24px; }
+.preview a { color: var(--tt-primary); }
+.preview img { max-width: 100%; }
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px; background: var(--tt-toast-bg); color: var(--tt-text-inverse);
+  border-radius: 8px; opacity: 0; transition: all 0.3s; z-index: 1000;
+}
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }

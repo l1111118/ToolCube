@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>十六进制编辑器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <div class="toolbar-group">
+        <button class="btn btn--primary" id="btn-text-mode">📝 文本模式</button>
+        <button class="btn btn--secondary" id="btn-file-mode">📁 文件模式</button>
+      </div>
+      <div class="toolbar-group">
+        <div class="search-box">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索十六进制或ASCII...">
+          <button class="btn btn--icon" id="btn-search" title="搜索">🔍</button>
+          <button class="btn btn--icon" id="btn-search-prev" title="上一个">▲</button>
+          <button class="btn btn--icon" id="btn-search-next" title="下一个">▼</button>
+        </div>
+        <div class="goto-box">
+          <input type="text" class="goto-input" id="goto-input" placeholder="偏移量 (hex)">
+          <button class="btn btn--icon" id="btn-goto" title="跳转到偏移量">⏩</button>
+        </div>
+        <button class="btn btn--icon" id="btn-copy" title="复制十六进制输出">📋</button>
+        <button class="btn btn--icon" id="btn-export" title="导出编辑后的二进制文件">💾</button>
+        <button class="btn btn--icon" id="btn-clear" title="清空">🗑️</button>
+        <button class="btn btn--icon" id="btn-compare" title="差异比较">📊</button>
+        <input type="file" id="compare-file" style="display:none">
+      </div>
+    </div>
+
+    <div class="tool-main">
+      <div class="panel input-panel" id="text-panel">
+        <div class="panel-header">
+          <span>📥 输入文本</span>
+          <button class="btn btn--text" id="btn-paste">📋粘贴</button>
+        </div>
+        <div class="panel-body">
+          <textarea class="code-editor" id="input-area" placeholder="输入文本，将自动转换为十六进制..." spellcheck="false"></textarea>
+        </div>
+        <div class="panel-footer"><span id="input-status">0 字符</span></div>
+      </div>
+
+      <div class="panel file-panel" id="file-panel" style="display:none;">
+        <div class="panel-header">
+          <span>📁 加载文件</span>
+        </div>
+        <div class="panel-body file-drop-zone" id="file-drop-zone">
+          <div class="file-drop-content">
+            <span class="file-icon">📄</span>
+            <span class="file-label">点击或拖拽文件到此处</span>
+            <span class="file-hint">支持任意文件类型</span>
+          </div>
+          <input type="file" id="file-input" hidden>
+        </div>
+        <div class="panel-footer"><span id="file-status">未选择文件</span></div>
+      </div>
+
+      <div class="panel hex-panel">
+        <div class="panel-header">
+          <span>📤 十六进制视图</span>
+          <span class="search-status" id="search-status"></span>
+        </div>
+        <div class="panel-body scroll-body" id="hex-body">
+          <div class="hex-header" id="hex-header">
+            <span class="hex-offset">偏移量</span>
+            <span class="hex-bytes">00 01 02 03 04 05 06 07  08 09 0A 0B 0C 0D 0E 0F</span>
+            <span class="hex-ascii">ASCII</span>
+          </div>
+          <div class="hex-content" id="hex-content">
+            <div class="hex-empty">等待输入...</div>
+          </div>
+        </div>
+        <div class="panel-footer hex-footer">
+          <span id="byte-count">0 字节</span>
+          <span id="encoding-info">编码: UTF-8</span>
+          <span id="hex-stats"></span>
+          <span id="page-info"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hex-diff-panel" id="hex-diff-panel" style="display:none"></div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

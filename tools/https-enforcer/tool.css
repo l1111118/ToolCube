@@ -1,0 +1,86 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:13px;color:var(--tt-text);background:var(--tt-bg);height:100%;overflow:hidden}
+.he-container{height:100%;display:flex;flex-direction:column;overflow-y:auto}
+.he-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.he-header-left{display:flex;align-items:center;gap:10px}
+.he-title{font-size:14px;font-weight:700}
+.he-status{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;background:var(--tt-bg-tertiary);color:var(--tt-text-secondary)}
+.he-status--active{background:rgba(76,175,80,.15);color:#4caf50}
+
+.he-toggle{position:relative;display:inline-block;width:40px;height:22px}
+.he-toggle input{opacity:0;width:0;height:0}
+.he-toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--tt-bg-tertiary);border:1px solid var(--tt-border);border-radius:22px;transition:.3s}
+.he-toggle-slider::before{content:"";position:absolute;height:16px;width:16px;left:2px;bottom:2px;background:var(--tt-text-secondary);border-radius:50%;transition:.3s}
+.he-toggle input:checked+.he-toggle-slider{background:var(--tt-primary);border-color:var(--tt-primary)}
+.he-toggle input:checked+.he-toggle-slider::before{transform:translateX(18px);background:var(--tt-text-inverse)}
+
+.he-stats{display:flex;gap:20px;padding:10px 12px;background:var(--tt-bg-tertiary);border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.he-stat-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.he-stat-num{font-size:20px;font-weight:700;color:var(--tt-primary)}
+.he-stat-num--fail{color:#ef4444}
+.he-stat-num--safe{color:#f97316}
+.he-stat-label{font-size:10px;color:var(--tt-text-secondary)}
+
+.he-section{padding:10px 12px;border-bottom:1px solid var(--tt-border)}
+.he-section-title{font-size:12px;font-weight:600;color:var(--tt-text-secondary);margin-bottom:8px}
+
+.he-mode-group{display:flex;flex-direction:column;gap:6px}
+.he-mode-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--tt-bg-secondary);border-radius:6px;border:1px solid var(--tt-border);cursor:pointer}
+.he-mode-item input[type="radio"]{margin-top:2px;accent-color:var(--tt-primary);cursor:pointer}
+.he-mode-name{font-size:12px;font-weight:600;display:block}
+.he-mode-desc{font-size:10px;color:var(--tt-text-secondary);display:block;margin-top:2px}
+
+.he-textarea{width:100%;min-height:80px;padding:8px 10px;font-size:11px;font-family:var(--tt-font-mono);border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);color:var(--tt-text);resize:vertical;line-height:1.5}
+.he-textarea:focus{outline:none;border-color:var(--tt-primary)}
+
+.he-page-status{padding:8px 10px;background:var(--tt-bg-secondary);border-radius:6px;border:1px solid var(--tt-border);font-size:12px;color:var(--tt-text-secondary)}
+.he-page-status--secure{color:#4caf50}
+.he-page-status--insecure{color:#f44336}
+
+.he-warning{margin:10px 12px;padding:10px 14px;background:var(--tt-bg-secondary);border-left:3px solid #ff9800;border-radius:4px;font-size:11px;color:var(--tt-text-secondary);line-height:1.6;flex-shrink:0}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);padding:12px 24px;background:var(--tt-toast-bg);color:var(--tt-text-inverse);border-radius:8px;opacity:0;transition:all .3s;z-index:1000;font-size:13px;white-space:nowrap}
+.toast--show{transform:translateX(-50%) translateY(0);opacity:1}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:3px}
+
+/* ==================== 失败回退配置 ==================== */
+.he-fallback-label{display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:var(--tt-text)}
+.he-fallback-label input{accent-color:var(--tt-primary);cursor:pointer}
+.he-fallback-threshold{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;color:var(--tt-text-secondary)}
+.he-fallback-input{width:50px;padding:3px 6px;font-size:11px;border:1px solid var(--tt-border);border-radius:5px;background:var(--tt-bg);color:var(--tt-text);outline:none;text-align:center}
+.he-fallback-input:focus{border-color:var(--tt-primary)}
+
+/* ==================== 区块头部（带操作按钮） ==================== */
+.he-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
+.he-section-head .he-section-title{margin-bottom:0}
+.he-link-btn{padding:3px 8px;font-size:11px;font-weight:500;border:1px solid var(--tt-border);border-radius:5px;background:var(--tt-bg-secondary);color:var(--tt-text-secondary);cursor:pointer;transition:all .15s}
+.he-link-btn:hover{color:var(--tt-primary);border-color:var(--tt-primary)}
+.he-link-btn--danger:hover{color:#ef4444;border-color:#ef4444}
+.he-log-actions{display:flex;gap:6px;align-items:center}
+.he-log-filter{padding:3px 6px;font-size:11px;border:1px solid var(--tt-border);border-radius:5px;background:var(--tt-bg-secondary);color:var(--tt-text);cursor:pointer;outline:none}
+.he-log-filter:focus{border-color:var(--tt-primary)}
+
+/* ==================== 失败域名列表 ==================== */
+.he-failed-list{display:flex;flex-direction:column;gap:4px;max-height:140px;overflow-y:auto}
+.he-failed-item{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--tt-bg-secondary);border:1px solid var(--tt-border);border-left:3px solid #ef4444;border-radius:5px;font-size:11px}
+.he-failed-domain{flex:1;min-width:0;font-family:var(--tt-font-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.he-failed-count{font-weight:700;color:#ef4444;flex-shrink:0;font-size:10px}
+.he-failed-add{padding:2px 6px;font-size:10px;border:1px solid var(--tt-border);border-radius:4px;background:var(--tt-bg);color:var(--tt-text-secondary);cursor:pointer;flex-shrink:0}
+.he-failed-add:hover{color:var(--tt-primary);border-color:var(--tt-primary)}
+
+/* ==================== 升级日志 ==================== */
+.he-log-list{display:flex;flex-direction:column;gap:4px;max-height:200px;overflow-y:auto}
+.he-log-item{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--tt-bg-secondary);border:1px solid var(--tt-border);border-radius:5px;font-size:11px;border-left:3px solid var(--tt-border)}
+.he-log-item--upgraded{border-left-color:#22c55e}
+.he-log-item--failed{border-left-color:#ef4444}
+.he-log-item--fallback{border-left-color:#f97316}
+.he-log-time{color:var(--tt-text-secondary);font-family:var(--tt-font-mono);font-size:10px;flex-shrink:0}
+.he-log-domain{flex:1;min-width:0;font-family:var(--tt-font-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.he-log-status{font-size:9px;padding:1px 5px;border-radius:6px;font-weight:600;flex-shrink:0}
+.he-log-status--upgraded{background:#22c55e20;color:#16a34a}
+.he-log-status--failed{background:#ef444420;color:#dc2626}
+.he-log-status--fallback{background:#f9731620;color:#ea580c}
+
+.he-empty{padding:16px;text-align:center;color:var(--tt-text-secondary);font-size:12px}

@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>追踪拦截器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tb-container">
+  <div class="tb-header">
+    <div class="tb-header-left">
+      <span class="tb-title">🛡️ 追踪拦截器</span>
+      <span class="tb-status" id="tb-status">未启用</span>
+    </div>
+    <label class="tb-toggle"><input type="checkbox" id="tb-master"><span class="tb-toggle-slider"></span></label>
+  </div>
+
+  <div class="tb-stats" id="tb-stats">
+    <div class="tb-stat-item"><span class="tb-stat-num" id="tb-blocked-count">0</span><span class="tb-stat-label">已启用规则</span></div>
+  </div>
+
+  <!-- 预设规则 -->
+  <div class="tb-section">
+    <div class="tb-section-title">预设规则</div>
+    <div class="tb-presets">
+      <button class="tb-preset-btn" data-preset="light">⚡ 轻量拦截</button>
+      <button class="tb-preset-btn" data-preset="ads">🚫 广告追踪</button>
+      <button class="tb-preset-btn" data-preset="social">👁 社交追踪</button>
+      <button class="tb-preset-btn" data-preset="analytics">📊 分析追踪</button>
+      <button class="tb-preset-btn" data-preset="privacy">🔒 隐私保护</button>
+      <button class="tb-preset-btn" data-preset="fpcrypto">🖐 仅指纹与挖矿</button>
+      <button class="tb-preset-btn tb-preset-btn--all" data-preset="all">🛡️ 全量拦截</button>
+    </div>
+  </div>
+
+  <div class="tb-section">
+    <div class="tb-section-title">拦截类别</div>
+    <div class="tb-categories" id="tb-categories">
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="ad" checked><span class="tb-cat-name">🚫 广告拦截</span></label><span class="tb-cat-count">—</span></div>
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="social" checked><span class="tb-cat-name">👁 社交追踪</span></label><span class="tb-cat-count">—</span></div>
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="analytics" checked><span class="tb-cat-name">📊 分析统计</span></label><span class="tb-cat-count">—</span></div>
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="fingerprint" checked><span class="tb-cat-name">🖐 指纹追踪</span></label><span class="tb-cat-count">—</span></div>
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="crypto" checked><span class="tb-cat-name">⛏ 挖矿脚本</span></label><span class="tb-cat-count">—</span></div>
+      <div class="tb-cat-item"><label class="tb-cat-label"><input type="checkbox" class="tb-cat-check" data-cat="other" checked><span class="tb-cat-name">🔍 其他追踪</span></label><span class="tb-cat-count">—</span></div>
+    </div>
+  </div>
+
+  <div class="tb-section">
+    <div class="tb-section-title">自定义拦截域名</div>
+    <textarea class="tb-textarea" id="tb-custom" placeholder="每行一个域名，例如：&#10;tracker.example.com&#10;ads.example.net"></textarea>
+  </div>
+
+  <div class="tb-section">
+    <div class="tb-section-head">
+      <span class="tb-section-title">白名单域名</span>
+      <button class="tb-link-btn" id="tb-add-current" title="将当前页域名加入白名单">＋ 当前域名</button>
+    </div>
+    <textarea class="tb-textarea" id="tb-whitelist" placeholder="每行一个域名，白名单中的域名不会被拦截，例如：&#10;safe.example.com&#10;cdn.example.net"></textarea>
+  </div>
+
+  <div class="tb-warning">⚠️ 启用后将持续拦截，关闭工具页面后仍生效</div>
+</div>
+<div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

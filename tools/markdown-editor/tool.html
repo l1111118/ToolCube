@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown编辑器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="toolbar">
+      <button class="btn btn--icon" data-md="**" title="粗体"><b>B</b></button>
+      <button class="btn btn--icon" data-md="*" title="斜体"><i>I</i></button>
+      <button class="btn btn--icon" data-md="# " title="标题">H</button>
+      <button class="btn btn--icon" data-md="- " title="列表">•</button>
+      <button class="btn btn--icon" data-md="```\n\n```" title="代码块">&lt;/&gt;</button>
+      <button class="btn btn--icon" data-md="[链接](url)" title="链接">🔗</button>
+      <button class="btn btn--icon" data-md="![图片](url)" title="图片">🖼️</button>
+      <button class="btn btn--icon" data-md="> " title="引用">"</button>
+      <div class="spacer"></div>
+      <button class="btn btn--secondary" id="btn-copy">📋 复制</button>
+      <button class="btn btn--secondary" id="btn-download">💾 下载</button>
+    </div>
+    <div class="editor-layout">
+      <textarea class="editor" id="editor" placeholder="在此输入Markdown..."></textarea>
+      <div class="preview" id="preview"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

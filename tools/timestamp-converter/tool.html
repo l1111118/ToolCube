@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间戳转换</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <!-- 当前时间 -->
+    <div class="current-time-section">
+      <div class="current-time">
+        <span class="time-label">当前时间戳:</span>
+        <span class="time-value" id="current-timestamp">-</span>
+        <button class="btn btn--icon" id="btn-refresh" title="刷新">🔄</button>
+      </div>
+      <div class="current-datetime">
+        <span class="time-label">当前时间:</span>
+        <span class="time-value" id="current-datetime">-</span>
+      </div>
+    </div>
+
+    <!-- 转换区域 -->
+    <div class="converter-section">
+      <div class="converter-row">
+        <div class="input-group">
+          <label class="input-label">Unix 时间戳</label>
+          <div class="input-wrapper">
+            <input type="text" class="input-field" id="timestamp-input" placeholder="输入时间戳...">
+            <label class="radio-label">
+              <input type="radio" name="unit" value="ms" checked> 毫秒
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="unit" value="s"> 秒
+            </label>
+          </div>
+        </div>
+        <button class="btn btn--primary" id="btn-convert-ts">转换 ➜</button>
+        <div class="input-group">
+          <label class="input-label">日期时间</label>
+          <input type="text" class="input-field" id="datetime-output" readonly>
+        </div>
+      </div>
+
+      <div class="converter-row">
+        <div class="input-group">
+          <label class="input-label">日期时间</label>
+          <input type="datetime-local" class="input-field" id="datetime-input" step="1">
+        </div>
+        <button class="btn btn--primary" id="btn-convert-dt">转换 ➜</button>
+        <div class="input-group">
+          <label class="input-label">Unix 时间戳</label>
+          <input type="text" class="input-field" id="timestamp-output" readonly>
+        </div>
+      </div>
+    </div>
+
+    <!-- 时区选择 -->
+    <div class="timezone-section">
+      <label class="input-label">时区</label>
+      <select class="select-field" id="timezone-select">
+        <option value="local">本地时间</option>
+        <option value="UTC">UTC</option>
+        <option value="+8">北京时间 (UTC+8)</option>
+        <option value="+9">东京时间 (UTC+9)</option>
+        <option value="-5">纽约时间 (UTC-5)</option>
+        <option value="-8">洛杉矶时间 (UTC-8)</option>
+        <option value="+0">伦敦时间 (UTC+0)</option>
+        <option value="+1">巴黎时间 (UTC+1)</option>
+        <option value="+5.5">孟买时间 (UTC+5:30)</option>
+        <option value="+10">悉尼时间 (UTC+10)</option>
+      </select>
+    </div>
+
+    <!-- 日期计算 -->
+    <div class="calc-section">
+      <h3 class="section-title">📅 日期计算</h3>
+      <div class="calc-row">
+        <div class="input-group">
+          <label class="input-label">基准日期</label>
+          <input type="datetime-local" class="input-field" id="base-date" step="1">
+        </div>
+        <div class="input-group input-group--small">
+          <label class="input-label">加减天数</label>
+          <div class="number-input">
+            <button class="btn btn--icon" id="btn-minus-day">-</button>
+            <input type="number" class="input-field" id="day-offset" value="0">
+            <button class="btn btn--icon" id="btn-plus-day">+</button>
+          </div>
+        </div>
+        <button class="btn btn--secondary" id="btn-calc">计算</button>
+        <div class="input-group">
+          <label class="input-label">结果</label>
+          <input type="text" class="input-field" id="calc-result" readonly>
+        </div>
+      </div>
+    </div>
+
+    <!-- 批量转换 -->
+    <div class="batch-section">
+      <h3 class="section-title">🔄 批量转换</h3>
+      <div class="batch-layout">
+        <div class="batch-input">
+          <label class="input-label">输入（每行一个）</label>
+          <textarea class="batch-textarea" id="batch-input" placeholder="输入时间戳或日期，每行一个..."></textarea>
+        </div>
+        <div class="batch-actions">
+          <button class="btn btn--primary" id="btn-batch-convert">转换 ➜</button>
+          <button class="btn btn--text" id="btn-batch-clear">清空</button>
+        </div>
+        <div class="batch-output">
+          <label class="input-label">结果</label>
+          <textarea class="batch-textarea" id="batch-output" readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 时间戳参考 -->
+    <div class="reference-section">
+      <h3 class="section-title">📖 常用时间戳参考</h3>
+      <div class="reference-grid">
+        <div class="reference-item">
+          <span class="reference-label">今天开始</span>
+          <span class="reference-value" id="ref-today-start">-</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-label">今天结束</span>
+          <span class="reference-value" id="ref-today-end">-</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-label">本周开始</span>
+          <span class="reference-value" id="ref-week-start">-</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-label">本月开始</span>
+          <span class="reference-value" id="ref-month-start">-</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-label">本年开始</span>
+          <span class="reference-value" id="ref-year-start">-</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-label">Unix纪元</span>
+          <span class="reference-value" id="ref-unix-epoch">-</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提示消息 -->
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

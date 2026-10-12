@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串统计</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><button class="btn btn--primary" id="btn-count">📊 统计</button><button class="btn btn--secondary" id="btn-auto">🔄 自动统计</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--icon" id="btn-copy-stats">📋</button><button class="btn btn--icon" id="btn-clear">🗑️</button>
+        </div>
+      </div>
+      <div class="sc-content">
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-chars">0</div>
+            <div class="stat-label">总字符数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-nospace">0</div>
+            <div class="stat-label">字符数(无空格)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-words">0</div>
+            <div class="stat-label">单词数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-lines">0</div>
+            <div class="stat-label">行数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-sentences">0</div>
+            <div class="stat-label">句子数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-bytes">0</div>
+            <div class="stat-label">字节数(UTF-8)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-chinese">0</div>
+            <div class="stat-label">中文字符</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-digits">0</div>
+            <div class="stat-label">数字</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-spaces">0</div>
+            <div class="stat-label">空格数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-specials">0</div>
+            <div class="stat-label">特殊字符</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span>📝 输入文本</span><button class="btn btn--text" id="btn-paste">📋粘贴</button>
+          </div>
+          <div class="panel-body">
+            <textarea class="code-editor" id="input-area" placeholder="输入要统计的文本..." spellcheck="false"></textarea>
+          </div>
+          <div class="panel-footer"><span id="input-status">0字符</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

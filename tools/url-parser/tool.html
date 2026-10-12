@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL解析</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><button class="btn btn--primary" id="btn-parse">🔍 解析</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--secondary" id="btn-current">🌐 当前页面</button><button class="btn btn--icon" id="btn-copy-url" title="复制URL">📋</button><button class="btn btn--icon" id="btn-clear">🗑️</button><button class="btn btn--secondary" id="btn-gen-qr">📱 QR码</button>
+        </div>
+      </div>
+      <div class="up-content">
+        <div class="up-input-row"><input type="text" id="up-input" placeholder="输入URL地址..." spellcheck="false"><button class="btn btn--primary" id="btn-parse2">解析</button>
+        </div>
+        <div class="up-table-wrap" id="up-result">
+          <div class="up-empty">输入URL后点击"解析"查看详细信息</div>
+        </div>
+        <div class="up-section">
+          <div class="up-section-title">🛡️ URL安全检查</div>
+          <div id="up-security">
+          </div>
+        </div>
+        <div class="up-section">
+          <div class="up-section-title">🔤 URL编码/解码</div>
+          <div class="up-encode-row">
+            <textarea id="up-encode-input" placeholder="输入要编码/解码的文本..." rows="2"></textarea>
+            <div class="up-encode-btns"><button class="btn btn--secondary btn--sm" id="btn-url-encode">编码</button><button class="btn btn--secondary btn--sm" id="btn-url-decode">解码</button>
+            </div>
+          </div>
+          <div id="up-encode-result">
+          </div>
+        </div>
+        <div class="up-section">
+          <div class="up-section-title">🔧 URL构建</div>
+          <div class="up-builder" id="up-builder">
+            <div class="up-builder-row"><label>协议</label><select id="build-protocol"><option value="https:">https://</option><option value="http:">http://</option></select>
+            </div>
+            <div class="up-builder-row"><label>主机</label><input type="text" id="build-host" placeholder="example.com">
+            </div>
+            <div class="up-builder-row"><label>端口</label><input type="text" id="build-port" placeholder="443">
+            </div>
+            <div class="up-builder-row"><label>路径</label><input type="text" id="build-path" placeholder="/api/data">
+            </div>
+            <div class="up-builder-row"><label>查询</label><input type="text" id="build-query" placeholder="key=value&foo=bar">
+            </div>
+            <div class="up-builder-row"><label>Hash</label><input type="text" id="build-hash" placeholder="section">
+            </div><button class="btn btn--primary btn--sm" id="btn-build-url">构建URL</button>
+          </div>
+        </div>
+        <div class="up-section">
+          <div class="up-section-title">📱 QR码</div>
+          <div id="up-qr">
+            <div class="up-empty">点击工具栏"QR码"按钮生成</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="../../common/qrcode.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

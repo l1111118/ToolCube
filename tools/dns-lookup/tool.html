@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNS查询</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <div class="toolbar-group toolbar-group--input">
+        <input type="text" class="domain-input" id="domain-input" placeholder="输入域名，如 example.com">
+        <select class="provider-select" id="provider-select">
+          <option value="cloudflare">Cloudflare (1.1.1.1)</option>
+          <option value="google">Google (8.8.8.8)</option>
+          <option value="alibaba">Alibaba (223.5.5.5)</option>
+          <option value="quad9">Quad9 (9.9.9.9)</option>
+        </select>
+      </div>
+      <div class="toolbar-group">
+        <button class="btn btn--primary" id="btn-query">🔍 查询</button>
+        <button class="btn btn--secondary" id="btn-query-all">📋 查询全部</button>
+        <button class="btn btn--secondary" id="btn-check-dnssec">🔒 DNSSEC</button>
+        <button class="btn btn--secondary" id="btn-propagation">🌐 传播检查</button>
+        <button class="btn btn--secondary" id="btn-batch">📑 批量查询</button>
+        <button class="btn btn--secondary" id="btn-export">📤 导出</button>
+      </div>
+    </div>
+
+    <div class="type-bar">
+      <span class="type-label">记录类型：</span>
+      <label class="type-checkbox"><input type="checkbox" value="A" checked> A</label>
+      <label class="type-checkbox"><input type="checkbox" value="AAAA"> AAAA</label>
+      <label class="type-checkbox"><input type="checkbox" value="MX"> MX</label>
+      <label class="type-checkbox"><input type="checkbox" value="NS"> NS</label>
+      <label class="type-checkbox"><input type="checkbox" value="TXT"> TXT</label>
+      <label class="type-checkbox"><input type="checkbox" value="CNAME"> CNAME</label>
+      <label class="type-checkbox"><input type="checkbox" value="SOA"> SOA</label>
+      <label class="type-checkbox"><input type="checkbox" value="SRV"> SRV</label>
+      <label class="type-checkbox"><input type="checkbox" value="PTR"> PTR</label>
+      <label class="type-checkbox"><input type="checkbox" value="CAA"> CAA</label>
+    </div>
+
+    <!-- 批量查询面板 -->
+    <div class="batch-panel" id="batch-panel" style="display:none">
+      <div class="batch-header">
+        <span>📑 批量查询（每行一个域名）</span>
+        <button class="btn btn--text" id="btn-close-batch">✕</button>
+      </div>
+      <textarea id="batch-input" class="batch-input" placeholder="example.com&#10;github.com&#10;cloudflare.com" rows="4"></textarea>
+      <div class="batch-actions">
+        <button class="btn btn--primary btn--xs" id="btn-run-batch">▶ 批量查询</button>
+        <span class="batch-hint">将对每个域名查询已选记录类型</span>
+      </div>
+      <div id="batch-result" class="batch-result"></div>
+    </div>
+
+    <div class="tool-main">
+      <div class="panel">
+        <div class="panel-header">
+          <span>📊 查询结果</span>
+          <button class="btn-copy-result" id="btn-copy" title="复制结果">📋</button>
+        </div>
+        <div class="panel-body scroll-body" id="result-area">
+          <div class="info-placeholder">输入域名并选择记录类型，点击查询</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="history-section" id="history-section">
+      <div class="panel-header">
+        <span>🕐 查询历史</span>
+        <button class="btn-clear-history" id="btn-clear-history">清除</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="info-placeholder info-placeholder--small">暂无查询历史</div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。DNS查询通过公共DoH服务进行，结果仅供参考。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

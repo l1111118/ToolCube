@@ -1,0 +1,140 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:14px;color:var(--tt-text);background:var(--tt-bg-tertiary);height:100%;overflow:hidden}
+.tool-container{display:flex;flex-direction:column;height:100%;background:var(--tt-bg)}
+.tool-toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;flex-wrap:wrap;gap:6px}
+.toolbar-group{display:flex;align-items:center;gap:6px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;font-size:12px;font-weight:500;border:none;border-radius:6px;cursor:pointer;transition:all .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(0.96)}
+.btn--primary{background:var(--tt-primary);color:var(--tt-primary-on);border:none}
+.btn--primary:hover{background:var(--tt-primary-hover)}
+.btn--icon{padding:6px 10px;font-size:13px;background:var(--tt-bg-secondary);border:1px solid var(--tt-border);color:var(--tt-text)}
+.btn--icon:hover{background:var(--tt-bg-tertiary)}
+
+.plc-input{flex:1;padding:8px 12px;font-size:13px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);color:var(--tt-text);outline:none;font-family:var(--tt-font-mono);letter-spacing:1px}
+.plc-input:focus{border-color:var(--tt-primary)}
+
+.plc-content{flex:1;overflow-y:auto;padding:16px}
+.plc-section{margin-bottom:16px;padding:14px;background:var(--tt-bg-secondary);border-radius:10px}
+.plc-section-title{font-size:12px;font-weight:600;color:var(--tt-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--tt-border)}
+
+/* 闅愮璇存槑 */
+.plc-privacy{display:flex;align-items:center;gap:10px;padding:12px 16px;margin-bottom:16px;background:var(--tt-bg-secondary);border-radius:10px;border:1px solid var(--tt-border);font-size:12px;color:var(--tt-text-secondary);line-height:1.6}
+.plc-privacy-icon{font-size:18px;flex-shrink:0}
+
+/* 瀵嗙爜寮哄害鏉?*/
+.plc-meter{height:8px;background:var(--tt-bg);border-radius:4px;overflow:hidden;border:1px solid var(--tt-border)}
+.plc-meter__fill{height:100%;width:0;border-radius:4px;transition:width .3s,background .3s}
+.plc-meter__fill.s1{width:20%;background:#ef4444}
+.plc-meter__fill.s2{width:40%;background:#f97316}
+.plc-meter__fill.s3{width:60%;background:#eab308}
+.plc-meter__fill.s4{width:80%;background:#22c55e}
+.plc-meter__fill.s5{width:100%;background:#10b981}
+.plc-meter-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--tt-text-secondary)}
+.plc-meter-labels span:nth-child(2){font-weight:600}
+
+/* 妫€娴嬬粨鏋?*/
+.plc-result{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;text-align:center}
+.plc-result__icon{font-size:48px;line-height:1}
+.plc-result__message{font-size:15px;font-weight:600;line-height:1.5}
+.plc-result__count{font-size:24px;font-weight:700}
+.plc-result--safe .plc-result__message{color:#22c55e}
+.plc-result--safe .plc-result__count{color:#22c55e}
+.plc-result--leaked .plc-result__message{color:#ef4444}
+.plc-result--leaked .plc-result__count{color:#ef4444}
+
+/* 涓ラ噸绋嬪害鎸囩ず */
+.plc-severity{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.plc-severity--low{background:#fbbf2420;color:#d97706;border:1px solid #d9770640}
+.plc-severity--medium{background:#f9731620;color:#ea580c;border:1px solid #ea580c40}
+.plc-severity--high{background:#ef444420;color:#dc2626;border:1px solid #dc262640}
+.plc-severity--critical{background:#7f1d1d20;color:#b91c1c;border:1px solid #b91c1c40}
+
+/* 鍝堝笇淇℃伅 */
+.plc-hash-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--tt-bg);border-radius:6px;margin-bottom:6px;border:1px solid var(--tt-border)}
+.plc-hash-label{font-size:12px;color:var(--tt-text-secondary)}
+.plc-hash-value{font-family:var(--tt-font-mono);font-size:13px;font-weight:600;color:var(--tt-text)}
+
+/* 瀹夊叏寤鸿 */
+.plc-tips{list-style:none;padding:0}
+.plc-tip{padding:8px 12px;margin-bottom:6px;border-radius:6px;font-size:12px;line-height:1.6;background:var(--tt-bg);border-left:3px solid var(--tt-primary);color:var(--tt-text-secondary)}
+.plc-tip:last-child{margin-bottom:0}
+
+/* 鍔犺浇鍔ㄧ敾 */
+.plc-loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:30px;text-align:center}
+.plc-loading__spinner{width:32px;height:32px;border:3px solid var(--tt-border);border-top-color:var(--tt-primary);border-radius:50%;animation:plc-spin .8s linear infinite}
+@keyframes plc-spin{to{transform:rotate(360deg)}}
+.plc-loading__text{font-size:13px;color:var(--tt-text-secondary)}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);padding:12px 24px;background:var(--tt-toast-bg);color:var(--tt-text-inverse);border-radius:8px;opacity:0;transition:all .3s;z-index:1000;font-size:13px;white-space:nowrap}
+.toast--show{transform:translateX(-50%) translateY(0);opacity:1}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:3px}
+
+/* ==================== 模式切换 Tab ==================== */
+.plc-tabs{display:flex;gap:2px;padding:8px 8px 0;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;overflow-x:auto}
+.plc-tab{flex:1;min-width:0;padding:8px 6px;font-size:12px;font-weight:500;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--tt-text-secondary);cursor:pointer;transition:all .15s;white-space:nowrap}
+.plc-tab:hover{color:var(--tt-text);background:var(--tt-bg-tertiary)}
+.plc-tab.active{color:var(--tt-primary);border-bottom-color:var(--tt-primary);font-weight:600}
+
+/* ==================== 模式容器 ==================== */
+.plc-mode{display:flex;flex-direction:column;flex:1;min-height:0}
+.plc-mode .tool-toolbar{padding:8px 16px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;flex-wrap:wrap;gap:6px}
+
+/* ==================== 批量检查 ==================== */
+.plc-textarea{width:100%;min-height:120px;padding:10px 12px;font-size:13px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);color:var(--tt-text);outline:none;font-family:var(--tt-font-mono);resize:vertical;line-height:1.6}
+.plc-textarea:focus{border-color:var(--tt-primary)}
+.plc-batch-actions{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.plc-batch-count{font-size:11px;color:var(--tt-text-secondary);margin-left:auto}
+
+.plc-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--tt-border)}
+.plc-section-head .plc-section-title{margin-bottom:0;padding-bottom:0;border-bottom:none}
+
+.plc-batch-summary{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.plc-batch-stat{flex:1;min-width:90px;padding:10px 12px;background:var(--tt-bg);border:1px solid var(--tt-border);border-radius:8px;text-align:center}
+.plc-batch-stat__num{font-size:20px;font-weight:700;line-height:1.2}
+.plc-batch-stat__label{font-size:11px;color:var(--tt-text-secondary);margin-top:4px}
+.plc-batch-stat--safe .plc-batch-stat__num{color:#22c55e}
+.plc-batch-stat--leak .plc-batch-stat__num{color:#ef4444}
+.plc-batch-stat--total .plc-batch-stat__num{color:var(--tt-primary)}
+
+.plc-batch-list{display:flex;flex-direction:column;gap:6px}
+.plc-batch-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--tt-bg);border:1px solid var(--tt-border);border-radius:6px;font-size:12px}
+.plc-batch-item--safe{border-left:3px solid #22c55e}
+.plc-batch-item--leak{border-left:3px solid #ef4444}
+.plc-batch-item__pwd{font-family:var(--tt-font-mono);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.plc-batch-item__count{font-weight:700;color:#ef4444}
+.plc-batch-item__count--safe{color:#22c55e}
+.plc-batch-item__sev{font-size:10px;padding:2px 6px;border-radius:8px;font-weight:600}
+
+/* ==================== 邮箱泄露 ==================== */
+.plc-email-input-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.plc-apikey-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.plc-apikey-label{font-size:11px;color:var(--tt-text-secondary);width:100%;margin-bottom:2px}
+.plc-apikey-input{flex:1;min-width:160px;font-size:12px;letter-spacing:0}
+
+.plc-breach-item{padding:12px;background:var(--tt-bg);border:1px solid var(--tt-border);border-left:3px solid #ef4444;border-radius:6px;margin-bottom:8px}
+.plc-breach-item:last-child{margin-bottom:0}
+.plc-breach-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.plc-breach-name{font-weight:700;font-size:14px;color:var(--tt-text)}
+.plc-breach-date{font-size:11px;color:var(--tt-text-secondary)}
+.plc-breach-domains{font-size:11px;color:var(--tt-text-secondary);margin-bottom:6px}
+.plc-breach-desc{font-size:12px;line-height:1.6;color:var(--tt-text-secondary)}
+.plc-breach-types{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.plc-breach-type{font-size:10px;padding:2px 6px;background:var(--tt-bg-tertiary);border:1px solid var(--tt-border);border-radius:4px;color:var(--tt-text-secondary)}
+.plc-breach-types .plc-breach-type--sensitive{color:#dc2626;border-color:#dc262640}
+
+/* ==================== 历史记录 ==================== */
+.plc-history-list{display:flex;flex-direction:column;gap:6px}
+.plc-history-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--tt-bg);border:1px solid var(--tt-border);border-radius:6px;font-size:12px}
+.plc-history-item--leak{border-left:3px solid #ef4444}
+.plc-history-item--safe{border-left:3px solid #22c55e}
+.plc-history-item__icon{font-size:16px;flex-shrink:0}
+.plc-history-item__body{flex:1;min-width:0}
+.plc-history-item__title{font-weight:600;color:var(--tt-text)}
+.plc-history-item__meta{font-size:11px;color:var(--tt-text-secondary);margin-top:2px}
+.plc-history-item__count{font-weight:700;color:#ef4444}
+
+.plc-empty{padding:24px;text-align:center;color:var(--tt-text-secondary);font-size:13px}

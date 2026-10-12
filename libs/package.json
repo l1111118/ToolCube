@@ -1,0 +1,4 @@
+{
+  "//": "本文件仅用于 Node 侧的模块类型标注：libs/ 下是 UMD 构建的第三方库，必须以 CommonJS 方式加载（见 ../package.json 的 type: module）。浏览器加载这些文件时不读取本文件。",
+  "type": "commonjs"
+}

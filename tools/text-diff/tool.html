@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>文本对比</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+<div class="tool-toolbar"><div class="toolbar-group">
+<button class="btn btn--primary" id="btn-diff">📊 对比差异</button>
+<button class="btn btn--secondary" id="btn-swap">⇄ 交换</button></div>
+<div class="toolbar-group"><button class="btn btn--icon" id="btn-copy">📋</button>
+<button class="btn btn--icon" id="btn-clear">🗑️</button></div></div>
+<div class="tool-main">
+<div class="panel"><div class="panel-header"><span>📥 原始文本</span><label class="switch-label"><input type="checkbox" id="ignore-case"><span>忽略大小写</span></label><label class="switch-label"><input type="checkbox" id="ignore-whitespace"><span>忽略空格</span></label></div>
+<div class="panel-body"><textarea class="code-editor" id="input-left" placeholder="输入原始文本..." spellcheck="false"></textarea></div></div>
+<div class="panel"><div class="panel-header"><span>📤 对比文本</span><button class="btn btn--text" id="btn-paste">📋粘贴</button></div>
+<div class="panel-body"><textarea class="code-editor" id="input-right" placeholder="输入对比文本..." spellcheck="false"></textarea></div></div>
+</div>
+<div class="tool-main"><div class="panel"><div class="panel-header"><span>📊 差异结果</span><span id="diff-stats"></span></div>
+<div class="panel-body scroll-body" id="diff-output"><div style="text-align:center;padding:40px;color:var(--tt-text-muted)">输入两个文本后点击"对比差异"</div></div></div></div>
+<div class="tool-toolbar" style="border-top:1px solid var(--tt-border);border-bottom:none"><span style="font-size:11px;color:var(--tt-text-muted)">💡 基于LCS(最长公共子序列)算法 | 绿色=新增 红色=删除</span></div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

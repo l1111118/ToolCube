@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>链接提取器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="le-container">
+  <div class="le-toolbar">
+    <button class="btn btn--primary" id="btn-extract">🔗 提取链接</button>
+    <button class="btn btn--secondary" id="btn-filter-ext">🔗 仅外链</button>
+    <button class="btn btn--secondary" id="btn-filter-int">🏠 仅内链</button>
+    <button class="btn btn--secondary" id="btn-filter-anchor">🔗 锚点</button>
+    <button class="btn btn--secondary" id="btn-filter-mail">📧 邮件</button>
+    <button class="btn btn--secondary" id="btn-filter-image">🖼️ 图片</button>
+    <button class="btn btn--secondary" id="btn-filter-all">📑 全部</button>
+    <button class="btn btn--secondary" id="btn-dedup">🔄 去重显示</button>
+    <button class="btn btn--secondary" id="btn-export">📋 复制全部</button>
+    <button class="btn btn--secondary" id="btn-export-csv">📊 导出CSV</button>
+  </div>
+  <div class="le-searchbar">
+    <input type="text" id="le-search" placeholder="🔍 搜索链接文本或URL...">
+  </div>
+  <div class="le-stats" id="le-stats">点击"提取链接"分析页面链接</div>
+  <div class="le-list" id="le-list"></div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

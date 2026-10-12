@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS美化</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="toolbar">
+      <button class="btn btn--primary" id="btn-format">✨ 格式化</button>
+      <button class="btn btn--secondary" id="btn-minify">🗜️ 压缩</button>
+      <button class="btn btn--icon" id="btn-copy">📋</button>
+      <button class="btn btn--icon" id="btn-clear">🗑️</button>
+    </div>
+    <div class="editor-layout">
+      <textarea class="code-editor" id="input-area" placeholder="输入CSS代码..."></textarea>
+      <textarea class="code-editor code-editor--output" id="output-area" placeholder="结果..." readonly></textarea>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

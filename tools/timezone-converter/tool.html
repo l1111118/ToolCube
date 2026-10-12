@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时区转换器</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--secondary" id="btn-now" title="设为当前时间">⌚ 当前时间</button>
+      <button class="btn btn--secondary" id="btn-swap" title="互换源/目标时区">🔄 互换</button>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-add-row" title="添加对照行">+ 添加城市</button>
+      <button class="btn btn--icon" id="btn-copy" title="复制结果">📋</button>
+    </div>
+  </div>
+
+  <div class="tz-content">
+
+    <!-- 源时间 -->
+    <div class="tz-section">
+      <div class="tz-section-title">源时间</div>
+      <div class="tz-row">
+        <div class="tz-cell">
+          <label class="tz-label">日期</label>
+          <input type="date" id="src-date" class="tz-input">
+        </div>
+        <div class="tz-cell">
+          <label class="tz-label">时间</label>
+          <input type="time" id="src-time" class="tz-input" step="1">
+        </div>
+        <div class="tz-cell tz-cell--grow">
+          <label class="tz-label">时区</label>
+          <select id="src-tz" class="tz-input"></select>
+        </div>
+      </div>
+      <div class="tz-meta" id="src-meta"></div>
+    </div>
+
+    <!-- 目标时区列表 -->
+    <div class="tz-section">
+      <div class="tz-section-title">目标时区（可添加多个对比）</div>
+      <div id="target-list" class="tz-targets"></div>
+    </div>
+
+    <!-- 时间戳 -->
+    <div class="tz-section">
+      <div class="tz-section-title">时间戳</div>
+      <div class="tz-row">
+        <div class="tz-cell tz-cell--grow">
+          <input type="text" id="ts-input" class="tz-input" placeholder="Unix 时间戳（秒 或 毫秒）">
+        </div>
+        <div class="tz-cell">
+          <select id="ts-type" class="tz-input">
+            <option value="s">秒</option>
+            <option value="ms">毫秒</option>
+          </select>
+        </div>
+        <div class="tz-cell">
+          <button class="btn btn--primary" id="btn-ts-to-time">↪ 转时间</button>
+        </div>
+        <div class="tz-cell">
+          <button class="btn btn--secondary" id="btn-time-to-ts">↩ 转时间戳</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 日历对照 -->
+    <div class="tz-section">
+      <div class="tz-section-title">跨时区日历对照</div>
+      <div class="tz-cal" id="cal-strip"></div>
+    </div>
+
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

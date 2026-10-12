@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS测试器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="config-section">
+      <div class="config-row">
+        <label class="config-label">目标URL</label>
+        <input type="url" class="config-input" id="target-url" placeholder="https://api.example.com/data">
+      </div>
+      <div class="config-row">
+        <label class="config-label">请求 Origin</label>
+        <input type="text" class="config-input" id="origin-display" readonly title="浏览器禁止页面脚本伪造 Origin，这里显示的是请求实际携带的来源">
+        <span class="config-hint">浏览器禁止页面伪造 Origin，此处为实际请求来源（只读）</span>
+      </div>
+      <div class="config-row config-row--inline">
+        <div class="config-field">
+          <label class="config-label">方法</label>
+          <select class="config-select" id="method-select">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="OPTIONS">OPTIONS</option>
+          </select>
+        </div>
+        <div class="config-field config-field--grow">
+          <label class="config-label">自定义Headers</label>
+          <input type="text" class="config-input" id="custom-headers" placeholder='{"X-Custom":"value"}'>
+        </div>
+      </div>
+      <div class="config-row">
+        <label class="config-label">请求Body</label>
+        <textarea class="config-textarea" id="request-body" placeholder='{"key":"value"}'></textarea>
+      </div>
+      <div class="config-actions">
+        <button class="btn btn--primary" id="btn-preflight">发送预检请求(OPTIONS)</button>
+        <button class="btn btn--primary" id="btn-actual">发送实际请求</button>
+        <button class="btn btn--secondary" id="btn-multi-origin">🔀 反射Origin检测</button>
+        <button class="btn btn--secondary" id="btn-cors-score">📊 CORS评分</button>
+        <button class="btn btn--secondary" id="btn-cors-fix">🔧 修复建议</button>
+      </div>
+      <div id="multi-origin-result" style="margin-top:8px"></div>
+      <div id="cors-score-result" style="margin-top:8px"></div>
+      <div id="cors-fix-result" style="margin-top:8px"></div>
+    </div>
+
+    <div class="results-section" id="results-section" style="display:none;">
+      <div class="result-group">
+        <h4>响应状态</h4>
+        <div class="status-display" id="response-status">--</div>
+      </div>
+      <div class="result-group">
+        <h4>CORS响应头</h4>
+        <div class="cors-headers" id="cors-headers"></div>
+      </div>
+      <div class="result-group">
+        <h4>安全评估</h4>
+        <div class="assessment" id="assessment"></div>
+      </div>
+      <div class="result-group">
+        <h4 class="collapsible-toggle" id="all-headers-toggle">所有响应头 ▾</h4>
+        <div class="all-headers" id="all-headers" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div class="history-section">
+      <div class="history-header">
+        <h4>测试历史</h4>
+        <button class="btn-clear" id="btn-clear-history">清除</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="info-placeholder--small">暂无测试历史</div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。CORS测试结果仅供参考。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="settings.pageTitle">ToolCube - 设置</title>
+  <link rel="stylesheet" href="options.css">
+  <link rel="stylesheet" href="../common/terms.css">
+</head>
+<body>
+  <div class="options-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="logo">🔧 <span data-i18n="app.name">ToolCube</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#general" class="nav-item nav-item--active" data-section="general">⚙️ 常规设置</a>
+        <a href="#services" class="nav-item" data-section="services">🌐 服务端点</a>
+        <a href="#tools" class="nav-item" data-section="tools">🛠️ 工具管理</a>
+        <a href="#shortcuts" class="nav-item" data-section="shortcuts">⌨️ 快捷键</a>
+        <a href="#data" class="nav-item" data-section="data">💾 数据管理</a>
+        <a href="#about" class="nav-item" data-section="about">ℹ️ 关于</a>
+      </nav>
+    </aside>
+    
+    <main class="main-content">
+      <!-- 常规设置 -->
+      <section class="section section--active" id="general">
+        <h2 class="section-title">⚙️ <span data-i18n="settings.general">常规设置</span></h2>
+
+        <div class="setting-group">
+          <h3 class="setting-title" data-i18n="settings.appearance">外观</h3>
+          <div class="setting-item">
+            <label class="setting-label" data-i18n="settings.theme">主题</label>
+            <select class="setting-select" id="theme-select">
+              <option value="light" data-i18n="theme.light">浅色</option>
+              <option value="dark" data-i18n="theme.dark">深色</option>
+              <option value="auto" data-i18n="theme.auto">跟随系统</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label class="setting-label" data-i18n="settings.language">语言</label>
+            <div class="lang-selector" id="lang-selector">
+              <button type="button" class="lang-selector__item" data-lang="zh-CN">简体中文</button>
+              <button type="button" class="lang-selector__item" data-lang="zh-TW">繁體中文</button>
+              <button type="button" class="lang-selector__item" data-lang="en">English</button>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label class="setting-label" data-i18n="settings.sidebarPosition">侧边栏位置</label>
+            <select class="setting-select" id="position-select">
+              <option value="right" data-i18n="position.right">右侧</option>
+              <option value="left" data-i18n="position.left">左侧</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label class="setting-label" data-i18n="settings.sidebarWidth">侧边栏宽度</label>
+            <input type="range" class="setting-range" id="width-range" min="320" max="600" value="400">
+            <span class="range-value" id="width-value">400px</span>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h3 class="setting-title" data-i18n="settings.behavior">行为</h3>
+          <div class="setting-item setting-item--checkbox">
+            <label class="checkbox-label">
+              <input type="checkbox" id="auto-save" checked>
+              <span data-i18n="settings.autoSave">自动保存工具输入内容</span>
+            </label>
+          </div>
+          <div class="setting-item setting-item--checkbox">
+            <label class="checkbox-label">
+              <input type="checkbox" id="show-notifications" checked>
+              <span data-i18n="settings.notifications">显示操作通知</span>
+            </label>
+          </div>
+          <div class="setting-item setting-item--checkbox">
+            <label class="checkbox-label">
+              <input type="checkbox" id="show-floating-btn" checked>
+              <span data-i18n="settings.floatingBtn">显示便捷悬浮按钮</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-actions">
+          <button class="btn btn--primary" id="btn-save-general" data-i18n="btn.save">保存设置</button>
+          <button class="btn btn--secondary" id="btn-reset-general" data-i18n="btn.reset">恢复默认</button>
+        </div>
+      </section>
+      
+      <!-- 服务端点 -->
+      <section class="section" id="services">
+        <h2 class="section-title">🌐 <span data-i18n="settings.services">服务端点</span></h2>
+        <p class="section-desc" data-i18n="services.desc">本扩展中需要联网的功能（DNS 查询、WHOIS、IP 归属地、证书透明度、子域名枚举、汇率、泄露查询等）都通过下列「服务端点」访问外部服务。你可以把任意一类指向自己的服务器，或更换为其他服务商 —— 无需修改任何代码。</p>
+
+        <div class="svc-note">
+          <p data-i18n="services.noteBody">如何接入自建服务：在对应类别的「服务商」中选择「自定义服务（自建 / 自托管）」，然后填写你的服务地址（支持 {name}、{type} 等占位符），你的服务只需返回该类别的归一化 JSON 结构即可。</p>
+          <p>
+            <!-- href 由 options.js 依据 manifest 的 homepage_url 动态填充，
+                 避免把仓库地址硬编码在界面里 -->
+            <a id="svc-docs-link" target="_blank" rel="noopener" data-i18n="services.docsLink">自建服务接入指南</a>
+            <span data-i18n="services.noteAdapters">（含各类别的参数说明、返回结构，以及可直接部署的示例适配器）</span>
+          </p>
+        </div>
+
+        <div class="svc-list" id="service-endpoints">
+          <div class="svc-loading" data-i18n="services.loading">正在加载服务端点配置…</div>
+        </div>
+
+        <div class="setting-actions">
+          <button class="btn btn--primary" id="btn-save-services" data-i18n="services.save">保存服务端点</button>
+          <button class="btn btn--secondary" id="btn-reset-services" data-i18n="services.reset">全部恢复默认</button>
+        </div>
+      </section>
+
+      <!-- 工具管理 -->
+      <section class="section" id="tools">
+        <h2 class="section-title">🛠️ <span data-i18n="settings.tools">工具管理</span></h2>
+        <p class="section-desc" data-i18n="tools.managerDesc">启用或禁用工具，拖拽调整顺序</p>
+        
+        <div class="tools-manager" id="tools-manager">
+          <!-- 动态生成 -->
+        </div>
+        
+        <div class="setting-actions">
+          <button class="btn btn--primary" id="btn-save-tools" data-i18n="btn.saveChanges">保存更改</button>
+          <button class="btn btn--secondary" id="btn-reset-tools" data-i18n="btn.resetTools">恢复默认</button>
+        </div>
+      </section>
+      
+      <!-- 快捷键 -->
+      <section class="section" id="shortcuts">
+        <h2 class="section-title">⌨️ <span data-i18n="settings.shortcuts">快捷键</span></h2>
+        
+        <div class="shortcuts-list">
+          <div class="shortcut-item">
+            <div class="shortcut-info">
+              <span class="shortcut-name" data-i18n="shortcuts.openSidebar">打开/关闭侧边栏</span>
+              <span class="shortcut-desc" data-i18n="shortcuts.openSidebarDesc">在任何页面快速打开侧边栏</span>
+            </div>
+            <kbd class="shortcut-key">Ctrl+Shift+B</kbd>
+          </div>
+          <div class="shortcut-item">
+            <div class="shortcut-info">
+              <span class="shortcut-name" data-i18n="shortcuts.quickSearch">快速搜索</span>
+              <span class="shortcut-desc" data-i18n="shortcuts.quickSearchDesc">直接聚焦到搜索框</span>
+            </div>
+            <kbd class="shortcut-key">Ctrl+Shift+K</kbd>
+          </div>
+          <div class="shortcut-item">
+            <div class="shortcut-info">
+              <span class="shortcut-name" data-i18n="shortcuts.openPopup">打开弹出菜单</span>
+              <span class="shortcut-desc" data-i18n="shortcuts.openPopupDesc">打开插件弹出窗口</span>
+            </div>
+            <kbd class="shortcut-key">Ctrl+Shift+E</kbd>
+          </div>
+        </div>
+
+        <div class="shortcut-note">
+          <p data-i18n="about.shortcutsTip">💡 提示: 快捷键可以在浏览器扩展快捷键设置中自定义</p>
+          <button class="btn btn--secondary" id="btn-open-shortcuts" data-i18n="about.openShortcuts">打开快捷键设置</button>
+        </div>
+      </section>
+      
+      <!-- 数据管理 -->
+      <section class="section" id="data">
+        <h2 class="section-title">💾 <span data-i18n="settings.data">数据管理</span></h2>
+        
+        <div class="data-actions">
+          <div class="data-action">
+            <div class="data-action-info">
+              <h4 data-i18n="data.export">导出数据</h4>
+              <p data-i18n="data.exportDesc">将所有设置和历史记录导出为文件</p>
+            </div>
+            <button class="btn btn--secondary" id="btn-export">📤 <span data-i18n="data.exportAction">导出</span></button>
+          </div>
+          
+          <div class="data-action">
+            <div class="data-action-info">
+              <h4 data-i18n="data.import">导入数据</h4>
+              <p data-i18n="data.importDesc">从文件导入设置和历史记录</p>
+            </div>
+            <label class="btn btn--secondary">
+              📥 <span data-i18n="data.importAction">导入</span>
+              <input type="file" id="btn-import" accept=".json" hidden>
+            </label>
+          </div>
+          
+          <div class="data-action data-action--danger">
+            <div class="data-action-info">
+              <h4 data-i18n="data.clear">清除所有数据</h4>
+              <p data-i18n="data.clearDesc">删除所有设置、历史记录和缓存</p>
+            </div>
+            <button class="btn btn--danger" id="btn-clear-all">🗑️ <span data-i18n="data.clearAction">清除</span></button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 关于 -->
+      <section class="section" id="about">
+        <h2 class="section-title">ℹ️ <span data-i18n="settings.about">关于</span></h2>
+        
+        <div class="about-content">
+          <div class="about-logo">
+            <span class="logo-icon">🧰</span>
+            <h3 data-i18n="about.extName">ToolCube</h3>
+            <p class="version" id="about-version"></p>
+            <p class="about-subtitle" data-i18n="about.pureLocal">纯本地运行，保护隐私</p>
+          </div>
+          
+          <div class="about-info">
+            <p data-i18n="about.desc">一款功能强大的浏览器扩展，整合了覆盖文本处理、编码解码、数据格式、设计视觉、网络工具、元素检查、金融换算、密码安全、API 调试、跨时区协作等多个领域的实用与极客工具。</p>
+
+            <h4 data-i18n="about.features">功能特点</h4>
+            <ul>
+              <li>✅ <span data-i18n="about.feature1">实用与极客工具，覆盖文本、编码、设计、网络、密码、API 调试</span></li>
+              <li>✅ <span data-i18n="about.feature2">纯本地运行，所有数据处理均在浏览器内完成，保护您的隐私</span></li>
+              <li>✅ <span data-i18n="about.feature3">浮动侧边栏设计，随时随地调用，支持拖拽和缩放</span></li>
+              <li>✅ <span data-i18n="about.feature4">支持快捷键、收藏夹、分类折叠、历史记录</span></li>
+              <li>✅ <span data-i18n="about.feature5">深色/浅色主题自动切换（跟随系统）</span></li>
+              <li>✅ <span data-i18n="about.feature6">视频倍速控制器与视频解锁/进度伪装</span></li>
+              <li>✅ <span data-i18n="about.feature7">图形化元素检查器，轻松查看和修改 DOM</span></li>
+              <li>✅ <span data-i18n="about.feature8">银狐木马下载拦截、追踪器屏蔽、HTTPS 强制升级</span></li>
+              <li>✅ <span data-i18n="about.feature9">多浏览器兼容：Chrome / Edge / Firefox / Kiwi 等</span></li>
+            </ul>
+            
+            <h4 data-i18n="about.feedback">问题反馈</h4>
+            <div class="about-links">
+              <!-- href 由 options.js 依据 manifest 的 homepage_url 动态填充。
+                   这里刻意不写死任何个人联系方式：邮箱等私人信息不应随开源仓库公开，
+                   反馈入口统一走项目主页的 Issue 页。 -->
+              <a class="about-link" id="about-issue-link" target="_blank" rel="noopener" data-i18n="about.feedbackLink">🐞 提交 Issue / 查看项目主页</a>
+            </div>
+
+            <h4 data-i18n="about.openSource">开源声明</h4>
+            <p class="about-opensource" data-i18n="about.openSourceDesc">本扩展遵循相关开源协议发布。所有数据处理均在本地完成，不收集任何用户隐私数据。部分在线功能（IP查询、汇率换算等）仅在用户主动触发时访问公开API。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <div class="toast" id="toast"></div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

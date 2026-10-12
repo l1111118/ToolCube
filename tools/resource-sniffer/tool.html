@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资源嗅探器</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="rs-container">
+  <div class="rs-toolbar">
+    <button class="btn btn--primary" id="btn-scan">🔍 扫描资源</button>
+    <button class="btn btn--secondary" id="btn-rescan">🔄 重新扫描</button>
+    <button class="btn btn--secondary" id="btn-download-selected">⬇️ 下载选中</button>
+    <button class="btn btn--secondary" id="btn-select-video">🎬 选视频</button>
+    <button class="btn btn--secondary" id="btn-select-image">🖼️ 选图片</button>
+    <button class="btn btn--secondary" id="btn-select-audio">🎵 选音频</button>
+    <button class="btn btn--secondary" id="btn-clear-sel">✗ 清选择</button>
+    <button class="btn btn--secondary" id="rs-live-toggle">📡 实时监控</button>
+  </div>
+  <div class="rs-tabs" id="rs-tabs">
+    <button class="rs-tab rs-tab--active" data-filter="all">全部 <span class="rs-count" id="cnt-all">0</span></button>
+    <button class="rs-tab" data-filter="video">🎬 视频 <span class="rs-count" id="cnt-video">0</span></button>
+    <button class="rs-tab" data-filter="audio">🎵 音频 <span class="rs-count" id="cnt-audio">0</span></button>
+    <button class="rs-tab" data-filter="image">🖼️ 图片 <span class="rs-count" id="cnt-image">0</span></button>
+    <button class="rs-tab" data-filter="document">📄 文档 <span class="rs-count" id="cnt-document">0</span></button>
+    <button class="rs-tab" data-filter="font">🔤 字体 <span class="rs-count" id="cnt-font">0</span></button>
+  </div>
+  <div class="rs-searchbar">
+    <input type="text" class="rs-input" id="rs-search" placeholder="🔍 搜索 URL / 文件名 / 类型">
+    <select class="rs-select" id="rs-dedupe">
+      <option value="exact">去重: 精确URL</option>
+      <option value="host+path">去重: 域名+路径</option>
+      <option value="aggressive">去重: 激进</option>
+    </select>
+    <select class="rs-select" id="rs-sort">
+      <option value="type">排序: 类型</option>
+      <option value="size-desc">排序: 大→小</option>
+      <option value="size-asc">排序: 小→大</option>
+      <option value="name">排序: 名称</option>
+      <option value="duration-desc">排序: 时长长→短</option>
+      <option value="duration-asc">排序: 时长短→长</option>
+      <option value="resolution">排序: 分辨率高→低</option>
+      <option value="bitrate">排序: 码率高→低</option>
+    </select>
+    <label class="rs-check"><input type="checkbox" id="rs-include-network" checked> 网络</label>
+    <label class="rs-check"><input type="checkbox" id="rs-include-dom" checked> DOM</label>
+    <label class="rs-check"><input type="checkbox" id="rs-include-meta" checked> Meta</label>
+    <button class="btn btn--secondary btn--sm" id="rs-filter-long-video">🎬 长视频</button>
+    <button class="btn btn--secondary btn--sm" id="rs-filter-hd">📺 高清</button>
+  </div>
+  <div class="rs-summary" id="rs-summary">
+    <span>⏳ 点击"扫描资源"开始扫描当前页面所有可下载资源</span>
+  </div>
+  <div class="rs-list" id="rs-list">
+    <div class="rs-empty">📦 资源列表为空</div>
+  </div>
+  <div class="rs-m3u8-panel" id="rs-m3u8-panel" style="display:none">
+    <div class="rs-m3u8-head">
+      <span>📺 M3U8 详情</span>
+      <button class="btn btn--secondary btn--sm" id="btn-m3u8-close">✕</button>
+    </div>
+    <div class="rs-m3u8-body" id="rs-m3u8-body"></div>
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

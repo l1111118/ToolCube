@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="app.name">ToolCube</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="../common/terms.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="logo">
+        <span class="logo-icon">🔧</span>
+        <span class="logo-text" data-i18n="app.name">ToolCube</span>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" title="切换主题" data-i18n-title="popup.toggleTheme">🌙</button>
+        <span class="version" id="popup-version"></span>
+      </div>
+    </header>
+
+    <!-- 搜索栏 -->
+    <div class="popup-search">
+      <div class="search-box">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="搜索工具..." autofocus data-i18n-placeholder="sidebar.search">
+        <button class="search-clear" id="search-clear" hidden>✕</button>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <!-- 全局开关 -->
+      <div class="master-switch-row" id="master-switch-row">
+        <div class="master-switch__info">
+          <span class="master-switch__icon">⚡</span>
+          <span class="master-switch__label" data-i18n="masterSwitch.label">全局开关</span>
+        </div>
+        <label class="master-switch__toggle">
+          <input type="checkbox" id="master-switch-input" checked>
+          <span class="master-switch__slider"></span>
+        </label>
+      </div>
+
+      <button class="action-btn" id="btn-toggle-sidebar">
+        <span class="action-icon">📂</span>
+        <span class="action-text" data-i18n="popup.openSidebar">打开侧边栏</span>
+        <span class="shortcut">Ctrl+Shift+B</span>
+      </button>
+      <button class="action-btn" id="btn-quick-search">
+        <span class="action-icon">🔍</span>
+        <span class="action-text" data-i18n="popup.quickSearch">快速搜索</span>
+        <span class="shortcut">Ctrl+Shift+K</span>
+      </button>
+    </div>
+
+    <!-- 所有工具列表 -->
+    <div class="all-tools-section">
+      <div class="section-header">
+        <h3 class="section-title" data-i18n="popup.allTools">所有工具</h3>
+        <span class="tool-count" id="tool-count">0</span>
+      </div>
+      <div class="tools-list" id="all-tools-list"></div>
+      <div class="no-results" id="no-results" hidden>
+        <span>🔍</span> <span data-i18n="popup.noResults">未找到匹配的工具</span>
+      </div>
+    </div>
+
+    <div class="recent-tools" id="recent-section">
+      <h3 class="section-title" data-i18n="sidebar.recent">最近使用</h3>
+      <div class="tools-list" id="recent-tools-list">
+        <div class="empty-state" data-i18n="sidebar.noRecent">暂无最近使用</div>
+      </div>
+    </div>
+
+    <div class="favorite-tools" id="fav-section">
+      <h3 class="section-title" data-i18n="sidebar.favorites">收藏工具</h3>
+      <div class="tools-list" id="favorite-tools-list">
+        <div class="empty-state" data-i18n="sidebar.noFavorites">暂无收藏</div>
+      </div>
+    </div>
+
+    <footer class="popup-footer">
+      <button class="footer-btn" id="btn-options">⚙️ <span data-i18n="popup.options">设置</span></button>
+      <button class="footer-btn" id="btn-help">❓ <span data-i18n="popup.help">帮助</span></button>
+    </footer>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

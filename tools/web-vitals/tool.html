@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Web Vitals 仪表盘</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="wv-container">
+  <div class="wv-toolbar">
+    <button class="btn btn--primary" id="btn-measure">🔄 重新测量</button>
+    <span class="wv-page" id="wv-page">测量中...</span>
+  </div>
+  <div class="wv-metrics" id="wv-metrics">
+    <div class="wv-card" data-metric="lcp">
+      <div class="wv-card-label">LCP · 最大内容绘制</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 2.5s</div>
+    </div>
+    <div class="wv-card" data-metric="fid">
+      <div class="wv-card-label">FID · 首次输入延迟</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 100ms</div>
+    </div>
+    <div class="wv-card" data-metric="inp">
+      <div class="wv-card-label">INP · 交互延迟</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 200ms</div>
+    </div>
+    <div class="wv-card" data-metric="cls">
+      <div class="wv-card-label">CLS · 累计布局偏移</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 0.1</div>
+    </div>
+    <div class="wv-card" data-metric="fcp">
+      <div class="wv-card-label">FCP · 首次内容绘制</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 1.8s</div>
+    </div>
+    <div class="wv-card" data-metric="ttfb">
+      <div class="wv-card-label">TTFB · 首字节时间</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">目标 ≤ 800ms</div>
+    </div>
+    <div class="wv-card" data-metric="score">
+      <div class="wv-card-label">总体评分</div>
+      <div class="wv-card-value">—</div>
+      <div class="wv-card-bar"><div class="wv-card-bar-fill"></div></div>
+      <div class="wv-card-target">综合所有指标</div>
+    </div>
+  </div>
+  <div class="wv-section">
+    <div class="wv-section-head">🐢 慢资源 (Top 10, 超过 200ms)</div>
+    <div class="wv-list" id="wv-slow"></div>
+  </div>
+  <div class="wv-section">
+    <div class="wv-section-head">📊 资源统计</div>
+    <div class="wv-stats" id="wv-stats"></div>
+  </div>
+  <div class="wv-section">
+    <div class="wv-section-head">💡 性能建议</div>
+    <div id="wv-recommendations"></div>
+  </div>
+  <div class="wv-section">
+    <div class="wv-section-head">📈 历史趋势图 (最近 10 次)</div>
+    <div class="wv-chart-wrap"><canvas id="wv-chart"></canvas></div>
+  </div>
+  <div class="wv-section">
+    <div class="wv-section-head">📊 历史对比</div>
+    <div id="wv-history"></div>
+  </div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

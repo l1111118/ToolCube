@@ -1,0 +1,839 @@
+/**
+ * ToolCube - Main Styles
+ * 主样式文件，包含Material Design风格和主题变量
+ * @version 1.2.6
+ */
+
+/* ==================== CSS变量定义 ==================== */
+:root {
+  /* 主色调 */
+  --toolbox-primary: #5b7fff;
+  --toolbox-primary-dark: #4a6ae5;
+  --toolbox-primary-light: #8ba4ff;
+  --toolbox-primary-rgb: 91, 127, 255;
+  
+  /* 辅助色 */
+  --toolbox-secondary: #5c6bc0;
+  --toolbox-success: #4caf50;
+  --toolbox-warning: #ff9800;
+  --toolbox-error: #f44336;
+  --toolbox-info: #2196f3;
+  
+  /* 背景色 - 浅色主题 */
+  --toolbox-bg: #fefefe;
+  --toolbox-bg-secondary: #f7f7f8;
+  --toolbox-bg-tertiary: #efefef;
+  --toolbox-bg-hover: rgba(0, 0, 0, 0.04);
+  --toolbox-bg-active: rgba(0, 0, 0, 0.08);
+  
+  /* 文字色 - 浅色主题 */
+  --toolbox-text-primary: #212121;
+  --toolbox-text-secondary: #757575;
+  --toolbox-text-tertiary: #9e9e9e;
+  --toolbox-text-disabled: #bdbdbd;
+  --toolbox-text-inverse: #ffffff;
+
+  /* 边框和分割线 */
+  --toolbox-border: #e0e0e0;
+  --toolbox-divider: rgba(0, 0, 0, 0.12);
+
+  /* 提示组件 */
+  --toolbox-toast-bg: #323232;
+  --toolbox-toast-text: #ffffff;
+  --toolbox-tooltip-bg: #333333;
+  --toolbox-tooltip-text: #ffffff;
+  
+  /* 阴影 */
+  --toolbox-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --toolbox-shadow-2: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --toolbox-shadow-3: 0 4px 8px rgba(0, 0, 0, 0.04), 0 12px 28px rgba(0, 0, 0, 0.12);
+  --toolbox-shadow-4: 0 8px 16px rgba(0, 0, 0, 0.06), 0 20px 40px rgba(0, 0, 0, 0.14);
+  
+  /* 圆角 */
+  --toolbox-radius-sm: 4px;
+  --toolbox-radius-md: 8px;
+  --toolbox-radius-lg: 12px;
+  --toolbox-radius-xl: 16px;
+  --toolbox-radius-full: 9999px;
+  
+  /* 间距 */
+  --toolbox-spacing-xs: 4px;
+  --toolbox-spacing-sm: 8px;
+  --toolbox-spacing-md: 16px;
+  --toolbox-spacing-lg: 24px;
+  --toolbox-spacing-xl: 32px;
+  
+  /* 字体 */
+  --toolbox-font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --toolbox-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --toolbox-font-size-xs: 10px;
+  --toolbox-font-size-sm: 12px;
+  --toolbox-font-size-md: 14px;
+  --toolbox-font-size-lg: 16px;
+  --toolbox-font-size-xl: 18px;
+  --toolbox-font-size-2xl: 20px;
+  --toolbox-font-size-3xl: 24px;
+  
+  /* 过渡动画 */
+  --toolbox-transition-fast: 150ms ease;
+  --toolbox-transition-normal: 250ms ease;
+  --toolbox-transition-slow: 350ms ease;
+  
+  /* 玻璃拟态效果 */
+  --toolbox-glass-bg: rgba(255, 255, 255, 0.72);
+  --toolbox-glass-border: rgba(255, 255, 255, 0.3);
+  --toolbox-glass-blur: 12px;
+
+  /* 微妙的光效 */
+  --toolbox-glow: 0 0 20px rgba(var(--toolbox-primary-rgb), 0.15);
+  --toolbox-glow-strong: 0 0 30px rgba(var(--toolbox-primary-rgb), 0.25);
+
+  /* 侧边栏宽度 */
+  --toolbox-sidebar-width: 400px;
+}
+
+/* ==================== 深色主题 ==================== */
+/* 该样式表会注入到任意宿主页面，因此使用带命名空间的属性名，
+   避免与站点自身的 html[data-theme] 主题机制冲突（见 injector.js applyHostTheme） */
+[data-toolbox-theme="dark"] {
+  --toolbox-bg: #18181b;
+  --toolbox-bg-secondary: #27272a;
+  --toolbox-bg-tertiary: #303036;
+  --toolbox-bg-hover: rgba(255, 255, 255, 0.05);
+  --toolbox-bg-active: rgba(255, 255, 255, 0.08);
+
+  --toolbox-text-primary: #fafafa;
+  --toolbox-text-secondary: #a1a1aa;
+  --toolbox-text-tertiary: #71717a;
+  --toolbox-text-disabled: #52525b;
+  --toolbox-text-inverse: #18181b;
+
+  --toolbox-border: #3f3f46;
+  --toolbox-divider: rgba(255, 255, 255, 0.08);
+
+  /* 深色主题玻璃拟态 */
+  --toolbox-glass-bg: rgba(30, 30, 30, 0.72);
+  --toolbox-glass-border: rgba(255, 255, 255, 0.06);
+  --toolbox-glass-blur: 12px;
+
+  --toolbox-toast-bg: #e0e0e0;
+  --toolbox-toast-text: #18181b;
+  --toolbox-tooltip-bg: #f0f0f0;
+  --toolbox-tooltip-text: #18181b;
+
+  --toolbox-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --toolbox-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.5);
+  --toolbox-shadow-3: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== 基础样式重置 ==================== */
+#toolbox-sidebar,
+#toolbox-sidebar *,
+#toolbox-toggle-btn,
+#toolbox-toggle-btn * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--toolbox-font-family);
+}
+
+#toolbox-sidebar {
+  font-size: var(--toolbox-font-size-md);
+  line-height: 1.5;
+  color: var(--toolbox-text-primary);
+  background: var(--toolbox-bg);
+}
+
+/* ==================== 侧边栏样式 ==================== */
+.toolbox-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--toolbox-bg);
+  overflow: hidden;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+}
+
+.toolbox-sidebar--closed {
+  transform: translateX(100%);
+}
+
+.toolbox-sidebar--open {
+  transform: translateX(0);
+}
+
+/* 调整大小手柄 */
+.toolbox-resize-handle {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: transparent;
+  cursor: w-resize;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.toolbox-resize-handle:hover {
+  background: var(--toolbox-primary);
+}
+
+/* ==================== 切换按钮 ==================== */
+.toolbox-toggle-btn {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--toolbox-primary);
+  color: var(--toolbox-text-inverse, #fff);
+  border: none;
+  box-shadow: var(--toolbox-shadow-2);
+  cursor: pointer;
+  z-index: 2147483644;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.toolbox-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--toolbox-shadow-3);
+}
+
+.toolbox-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==================== 按钮组件 ==================== */
+.toolbox-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--toolbox-spacing-sm);
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  font-size: var(--toolbox-font-size-md);
+  font-weight: 500;
+  border: none;
+  border-radius: var(--toolbox-radius-md);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+  white-space: nowrap;
+}
+
+.toolbox-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbox-btn:focus-visible {
+  outline: 2px solid var(--toolbox-primary);
+  outline-offset: 2px;
+}
+
+.toolbox-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.toolbox-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* 主要按钮 */
+.toolbox-btn--primary {
+  background: var(--toolbox-primary);
+  color: var(--toolbox-text-inverse, #fff);
+}
+
+.toolbox-btn--primary:hover:not(:disabled) {
+  background: var(--toolbox-primary-dark);
+  box-shadow: var(--toolbox-shadow-1);
+}
+
+/* 次要按钮 */
+.toolbox-btn--secondary {
+  background: var(--toolbox-bg-secondary);
+  color: var(--toolbox-text-primary);
+  border: 1px solid var(--toolbox-border);
+}
+
+.toolbox-btn--secondary:hover:not(:disabled) {
+  background: var(--toolbox-bg-tertiary);
+}
+
+/* 文字按钮 */
+.toolbox-btn--text {
+  background: transparent;
+  color: var(--toolbox-primary);
+}
+
+.toolbox-btn--text:hover:not(:disabled) {
+  background: var(--toolbox-bg-hover);
+}
+
+/* 图标按钮 */
+.toolbox-btn--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--toolbox-radius-md);
+  background: transparent;
+  color: var(--toolbox-text-secondary);
+}
+
+.toolbox-btn--icon:hover:not(:disabled) {
+  background: var(--toolbox-bg-hover);
+  color: var(--toolbox-text-primary);
+}
+
+/* 危险按钮 */
+.toolbox-btn--danger {
+  background: var(--toolbox-error);
+  color: var(--toolbox-text-inverse, #fff);
+}
+
+.toolbox-btn--danger:hover:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+/* 按钮尺寸 */
+.toolbox-btn--sm {
+  padding: var(--toolbox-spacing-xs) var(--toolbox-spacing-sm);
+  font-size: var(--toolbox-font-size-sm);
+}
+
+.toolbox-btn--lg {
+  padding: var(--toolbox-spacing-md) var(--toolbox-spacing-lg);
+  font-size: var(--toolbox-font-size-lg);
+}
+
+/* ==================== 输入框组件 ==================== */
+.toolbox-input {
+  width: 100%;
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  font-size: var(--toolbox-font-size-md);
+  color: var(--toolbox-text-primary);
+  background: var(--toolbox-bg);
+  border: 1px solid var(--toolbox-border);
+  border-radius: var(--toolbox-radius-md);
+  transition: border-color var(--toolbox-transition-fast), box-shadow var(--toolbox-transition-fast);
+}
+
+.toolbox-input:focus {
+  outline: none;
+  border-color: var(--toolbox-primary);
+  box-shadow: 0 0 0 3px rgba(var(--toolbox-primary-rgb), 0.1), var(--toolbox-glow);
+}
+
+.toolbox-input::placeholder {
+  color: var(--toolbox-text-tertiary);
+}
+
+.toolbox-input:disabled {
+  background: var(--toolbox-bg-secondary);
+  cursor: not-allowed;
+}
+
+/* 文本域 */
+.toolbox-textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: var(--toolbox-font-mono);
+}
+
+/* ==================== 选择框组件 ==================== */
+.toolbox-select {
+  width: 100%;
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-lg) var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  font-size: var(--toolbox-font-size-md);
+  color: var(--toolbox-text-primary);
+  background: var(--toolbox-bg);
+  border: 1px solid var(--toolbox-border);
+  border-radius: var(--toolbox-radius-md);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23757575' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.toolbox-select:focus {
+  outline: none;
+  border-color: var(--toolbox-primary);
+  box-shadow: 0 0 0 3px rgba(var(--toolbox-primary-rgb), 0.2);
+}
+
+/* ==================== 卡片组件 ==================== */
+.toolbox-card {
+  background: var(--toolbox-bg);
+  border: 1px solid var(--toolbox-border);
+  border-radius: var(--toolbox-radius-lg);
+  box-shadow: var(--toolbox-shadow-1);
+  overflow: hidden;
+}
+
+.toolbox-card__header {
+  padding: var(--toolbox-spacing-md);
+  background: var(--toolbox-bg-secondary);
+  border-bottom: 1px solid var(--toolbox-border);
+}
+
+.toolbox-card__title {
+  font-size: var(--toolbox-font-size-lg);
+  font-weight: 600;
+  color: var(--toolbox-text-primary);
+}
+
+.toolbox-card__body {
+  padding: var(--toolbox-spacing-md);
+}
+
+.toolbox-card__footer {
+  padding: var(--toolbox-spacing-md);
+  background: var(--toolbox-bg-secondary);
+  border-top: 1px solid var(--toolbox-border);
+}
+
+/* ==================== 标签页组件 ==================== */
+.toolbox-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--toolbox-border);
+}
+
+.toolbox-tab {
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  font-size: var(--toolbox-font-size-md);
+  color: var(--toolbox-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--toolbox-transition-fast);
+}
+
+.toolbox-tab:hover {
+  color: var(--toolbox-text-primary);
+  background: var(--toolbox-bg-hover);
+}
+
+.toolbox-tab--active {
+  color: var(--toolbox-primary);
+  border-bottom-color: var(--toolbox-primary);
+}
+
+/* ==================== 列表组件 ==================== */
+.toolbox-list {
+  list-style: none;
+}
+
+.toolbox-list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  cursor: pointer;
+  transition: background var(--toolbox-transition-fast);
+  border-radius: var(--toolbox-radius-md);
+}
+
+.toolbox-list-item:hover {
+  background: var(--toolbox-bg-hover);
+}
+
+.toolbox-list-item--active {
+  background: rgba(var(--toolbox-primary-rgb), 0.1);
+  color: var(--toolbox-primary);
+}
+
+.toolbox-list-item__icon {
+  width: 24px;
+  height: 24px;
+  margin-right: var(--toolbox-spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbox-list-item__content {
+  flex: 1;
+}
+
+.toolbox-list-item__title {
+  font-weight: 500;
+  color: var(--toolbox-text-primary);
+}
+
+.toolbox-list-item__subtitle {
+  font-size: var(--toolbox-font-size-sm);
+  color: var(--toolbox-text-secondary);
+}
+
+/* ==================== 搜索框组件 ==================== */
+.toolbox-search {
+  position: relative;
+}
+
+.toolbox-search__input {
+  width: 100%;
+  padding: var(--toolbox-spacing-sm) var(--toolbox-spacing-md);
+  padding-left: 40px;
+  font-size: var(--toolbox-font-size-md);
+  color: var(--toolbox-text-primary);
+  border: 1.5px solid var(--toolbox-border);
+  border-radius: var(--toolbox-radius-lg);
+  background: transparent;
+  transition: all var(--toolbox-transition-fast);
+}
+
+.toolbox-search__input::placeholder {
+  color: var(--toolbox-text-tertiary);
+}
+
+.toolbox-search__input:focus {
+  outline: none;
+  background: transparent;
+  border-color: var(--toolbox-primary);
+  box-shadow: 0 0 0 3px rgba(var(--toolbox-primary-rgb), 0.12), var(--toolbox-glow);
+}
+
+.toolbox-search__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--toolbox-text-tertiary);
+  pointer-events: none;
+}
+
+/* ==================== 开关组件 ==================== */
+.toolbox-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toolbox-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toolbox-switch__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--toolbox-bg-tertiary);
+  border-radius: var(--toolbox-radius-full);
+  transition: background var(--toolbox-transition-fast);
+}
+
+.toolbox-switch__slider:before {
+  content: '';
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--toolbox-bg, #fff);
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+
+.toolbox-switch input:checked + .toolbox-switch__slider {
+  background: var(--toolbox-primary);
+}
+
+.toolbox-switch input:checked + .toolbox-switch__slider:before {
+  transform: translateX(20px);
+}
+
+/* ==================== 徽章组件 ==================== */
+.toolbox-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  font-size: var(--toolbox-font-size-xs);
+  font-weight: 600;
+  color: var(--toolbox-text-inverse, #fff);
+  background: var(--toolbox-primary);
+  border-radius: var(--toolbox-radius-full);
+}
+
+.toolbox-badge--success {
+  background: var(--toolbox-success);
+}
+
+.toolbox-badge--warning {
+  background: var(--toolbox-warning);
+}
+
+.toolbox-badge--error {
+  background: var(--toolbox-error);
+}
+
+/* ==================== 提示组件 ==================== */
+.toolbox-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  padding: 10px 20px;
+  background: var(--toolbox-toast-bg, #323232);
+  color: var(--toolbox-toast-text, #fff);
+  border-radius: var(--toolbox-radius-lg);
+  font-size: var(--toolbox-font-size-sm);
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 2147483647;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.toolbox-toast--show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toolbox-toast--success {
+  background: var(--toolbox-success);
+}
+
+.toolbox-toast--error {
+  background: var(--toolbox-error);
+}
+
+/* ==================== 代码编辑器样式 ==================== */
+.toolbox-code {
+  font-family: var(--toolbox-font-mono);
+  font-size: var(--toolbox-font-size-sm);
+  line-height: 1.6;
+  padding: var(--toolbox-spacing-md);
+  background: var(--toolbox-bg-secondary);
+  border: 1px solid var(--toolbox-border);
+  border-radius: var(--toolbox-radius-md);
+  overflow: auto;
+}
+
+.toolbox-code pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* ==================== 分割线 ==================== */
+.toolbox-divider {
+  height: 1px;
+  background: var(--toolbox-divider);
+  margin: var(--toolbox-spacing-md) 0;
+}
+
+/* ==================== 工具栏 ==================== */
+.toolbox-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--toolbox-spacing-sm);
+  padding: var(--toolbox-spacing-sm);
+  background: var(--toolbox-bg-secondary);
+  border-bottom: 1px solid var(--toolbox-border);
+}
+
+.toolbox-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: var(--toolbox-spacing-xs);
+}
+
+.toolbox-toolbar__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--toolbox-divider);
+  margin: 0 var(--toolbox-spacing-sm);
+}
+
+/* ==================== 布局工具 ==================== */
+.toolbox-flex {
+  display: flex;
+}
+
+.toolbox-flex--column {
+  flex-direction: column;
+}
+
+.toolbox-flex--wrap {
+  flex-wrap: wrap;
+}
+
+.toolbox-flex--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbox-flex--between {
+  justify-content: space-between;
+}
+
+.toolbox-flex--gap-sm {
+  gap: var(--toolbox-spacing-sm);
+}
+
+.toolbox-flex--gap-md {
+  gap: var(--toolbox-spacing-md);
+}
+
+.toolbox-flex--gap-lg {
+  gap: var(--toolbox-spacing-lg);
+}
+
+/* ==================== 间距工具 ==================== */
+.toolbox-mt-sm { margin-top: var(--toolbox-spacing-sm); }
+.toolbox-mt-md { margin-top: var(--toolbox-spacing-md); }
+.toolbox-mt-lg { margin-top: var(--toolbox-spacing-lg); }
+
+.toolbox-mb-sm { margin-bottom: var(--toolbox-spacing-sm); }
+.toolbox-mb-md { margin-bottom: var(--toolbox-spacing-md); }
+.toolbox-mb-lg { margin-bottom: var(--toolbox-spacing-lg); }
+
+.toolbox-ml-sm { margin-left: var(--toolbox-spacing-sm); }
+.toolbox-ml-md { margin-left: var(--toolbox-spacing-md); }
+.toolbox-ml-lg { margin-left: var(--toolbox-spacing-lg); }
+
+.toolbox-mr-sm { margin-right: var(--toolbox-spacing-sm); }
+.toolbox-mr-md { margin-right: var(--toolbox-spacing-md); }
+.toolbox-mr-lg { margin-right: var(--toolbox-spacing-lg); }
+
+.toolbox-p-sm { padding: var(--toolbox-spacing-sm); }
+.toolbox-p-md { padding: var(--toolbox-spacing-md); }
+.toolbox-p-lg { padding: var(--toolbox-spacing-lg); }
+
+/* ==================== 滚动条样式 ==================== */
+.toolbox-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--toolbox-text-tertiary) transparent;
+}
+
+.toolbox-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.toolbox-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toolbox-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--toolbox-text-tertiary);
+  border-radius: var(--toolbox-radius-full);
+}
+
+.toolbox-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--toolbox-text-secondary);
+}
+
+/* ==================== 动画 ==================== */
+@keyframes toolbox-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes toolbox-slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes toolbox-slide-in-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes toolbox-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes toolbox-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes toolbox-item-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.toolbox-animate-fade-in {
+  animation: toolbox-fade-in var(--toolbox-transition-normal);
+}
+
+.toolbox-animate-slide-in-right {
+  animation: toolbox-slide-in-right var(--toolbox-transition-normal);
+}
+
+.toolbox-animate-slide-in-up {
+  animation: toolbox-slide-in-up var(--toolbox-transition-normal);
+}
+
+.toolbox-animate-spin {
+  animation: toolbox-spin 1s linear infinite;
+}
+
+.toolbox-animate-pulse {
+  animation: toolbox-pulse 2s ease-in-out infinite;
+}
+
+/* ==================== 响应式 ==================== */
+@media (max-width: 480px) {
+  :root {
+    --toolbox-sidebar-width: 100vw;
+  }
+  
+  .toolbox-sidebar {
+    width: 100vw !important;
+  }
+}
+
+/* ==================== 隐藏元素 ==================== */
+.toolbox-hidden {
+  display: none !important;
+}
+
+.toolbox-invisible {
+  visibility: hidden;
+}
+
+.toolbox-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==================== 减少动画偏好 ==================== */
+@media (prefers-reduced-motion: reduce) {
+  #toolbox-sidebar,
+  #toolbox-sidebar *,
+  #toolbox-toggle-btn,
+  #toolbox-toggle-btn * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

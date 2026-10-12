@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二维码生成器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="main-layout">
+      <div class="input-section">
+        <div class="input-tabs">
+          <button class="tab tab--active" data-tab="text">文本</button>
+          <button class="tab" data-tab="url">URL</button>
+          <button class="tab" data-tab="wifi">WiFi</button>
+          <button class="tab" data-tab="vcard">名片</button>
+        </div>
+        
+        <div class="tab-content tab-content--active" id="text-tab">
+          <textarea class="input-area" id="text-input" placeholder="输入要生成二维码的文本..."></textarea>
+        </div>
+        
+        <div class="tab-content" id="url-tab">
+          <input type="url" class="input-field" id="url-input" placeholder="https://example.com">
+        </div>
+        
+        <div class="tab-content" id="wifi-tab">
+          <div class="wifi-form">
+            <input type="text" class="input-field" id="wifi-ssid" placeholder="WiFi名称 (SSID)">
+            <input type="password" class="input-field" id="wifi-password" placeholder="密码">
+            <select class="input-field" id="wifi-type">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">无密码</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="vcard-tab">
+          <div class="vcard-form">
+            <input type="text" class="input-field" id="vcard-name" placeholder="姓名">
+            <input type="tel" class="input-field" id="vcard-phone" placeholder="电话">
+            <input type="email" class="input-field" id="vcard-email" placeholder="邮箱">
+            <input type="text" class="input-field" id="vcard-org" placeholder="公司">
+          </div>
+        </div>
+        
+        <div class="options-section">
+          <div class="option-row">
+            <label>尺寸:</label>
+            <input type="range" id="qr-size" min="100" max="500" value="256">
+            <span id="size-value">256px</span>
+          </div>
+          <div class="option-row">
+            <label>颜色:</label>
+            <input type="color" id="qr-color" value="#000000">
+            <input type="color" id="qr-bg" value="#ffffff">
+          </div>
+        </div>
+        
+        <button class="btn btn--primary btn--large" id="btn-generate">🚀 生成二维码</button>
+      </div>
+      
+      <div class="output-section">
+        <div class="qr-container" id="qr-container">
+          <div class="qr-placeholder">二维码将显示在这里</div>
+        </div>
+        <div class="qr-actions" id="qr-actions" hidden>
+          <button class="btn btn--secondary" id="btn-download">💾 下载</button>
+          <button class="btn btn--text" id="btn-copy-data">📋 复制内容</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="../../common/qrcode.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

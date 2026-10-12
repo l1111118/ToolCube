@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>HTTPS 强制</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="he-container">
+  <div class="he-header">
+    <div class="he-header-left">
+      <span class="he-title">🔒 HTTPS 强制</span>
+      <span class="he-status" id="he-status">未启用</span>
+    </div>
+    <label class="he-toggle"><input type="checkbox" id="he-master"><span class="he-toggle-slider"></span></label>
+  </div>
+
+  <div class="he-stats" id="he-stats">
+    <div class="he-stat-item"><span class="he-stat-num" id="he-upgraded-count">0</span><span class="he-stat-label">已启用</span></div>
+    <div class="he-stat-item"><span class="he-stat-num he-stat-num--safe" id="he-fallback-count">0</span><span class="he-stat-label">白名单域名</span></div>
+  </div>
+
+  <div class="he-section">
+    <div class="he-section-title">运行模式</div>
+    <div class="he-mode-group">
+      <label class="he-mode-item">
+        <input type="radio" name="he-mode" value="strict" checked>
+        <span class="he-mode-name">严格模式</span>
+        <span class="he-mode-desc">所有 HTTP 请求（含脚本/图片/XHR 等子资源）强制跳转 HTTPS</span>
+      </label>
+      <label class="he-mode-item">
+        <input type="radio" name="he-mode" value="lenient">
+        <span class="he-mode-name">宽松模式</span>
+        <span class="he-mode-desc">仅升级页面级导航；子资源保持原样，避免仅提供 HTTP 的第三方资源失效</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="he-section">
+    <div class="he-section-head">
+      <span class="he-section-title">白名单域名（不强制 HTTPS）</span>
+      <button class="he-link-btn" id="he-add-current" title="将当前页域名加入白名单">＋ 当前域名</button>
+    </div>
+    <textarea class="he-textarea" id="he-whitelist" placeholder="每行一个域名，例如：&#10;example.com&#10;legacy.example.net"></textarea>
+  </div>
+
+  <div class="he-section">
+    <div class="he-section-title">当前页面状态</div>
+    <div class="he-page-status" id="he-page-status">等待检测...</div>
+  </div>
+
+  <div class="he-warning">⚠️ 启用后将持续强制 HTTPS，关闭工具页面后仍生效</div>
+</div>
+<div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

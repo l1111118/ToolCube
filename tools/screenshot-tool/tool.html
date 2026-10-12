@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>网页截图</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="st-container">
+  <div class="st-header">
+    <h3>📸 网页截图工具</h3>
+    <p>截取当前网页的可见区域截图，支持保存和复制到剪贴板</p>
+  </div>
+  <div class="st-actions">
+    <button class="btn btn--primary" id="btn-capture">🖼️ 截取可见区域</button>
+    <button class="btn btn--secondary" id="btn-capture-selection">✂️ 截取选中区域</button>
+    <button class="btn btn--secondary" id="btn-capture-fullpage">📄 全页截图</button>
+  </div>
+  <div class="st-settings">
+    <div class="st-setting-row">
+      <label>截图模式</label>
+      <select id="st-mode">
+        <option value="visible">可见区域</option>
+        <option value="fullpage">全页</option>
+        <option value="selection">选择区域</option>
+      </select>
+    </div>
+    <div class="st-setting-row">
+      <label>格式</label>
+      <select id="st-format">
+        <option value="png">PNG</option>
+        <option value="jpeg">JPEG</option>
+        <option value="webp">WebP</option>
+      </select>
+    </div>
+    <div class="st-setting-row">
+      <label>质量</label>
+      <input type="range" id="st-quality" min="1" max="100" value="92">
+      <span id="st-quality-label">92%</span>
+    </div>
+    <div class="st-setting-row">
+      <label>延迟截图</label>
+      <select id="st-delay">
+        <option value="0">立即</option>
+        <option value="1">1 秒</option>
+        <option value="2">2 秒</option>
+        <option value="3">3 秒</option>
+        <option value="5">5 秒</option>
+        <option value="7">7 秒</option>
+        <option value="10">10 秒</option>
+      </select>
+      <span id="st-delay-label">立即</span>
+    </div>
+    <div class="st-setting-row">
+      <label>服务端截图</label>
+      <input type="text" id="st-server-url" placeholder="https://example.com（非当前页也可）" spellcheck="false">
+      <button class="btn btn--secondary btn--sm" id="btn-capture-server">🌐 渲染</button>
+    </div>
+  </div>
+  <div class="st-image-info" id="st-image-info"></div>
+  <div class="st-method-info">
+    <p>💡 截图通过向宿主页面请求执行，请确保已在要截图的页面中打开侧边栏</p>
+  </div>
+  <div class="st-preview-wrap" id="st-preview-wrap" style="display:none">
+    <img id="st-preview" class="st-preview" style="display:none">
+    <canvas id="st-canvas" style="display:none"></canvas>
+    <div class="st-preview-placeholder" id="st-placeholder">点击上方按钮截取当前页面</div>
+  </div>
+  <div class="st-result-actions" id="st-result-actions" style="display:none">
+    <button class="btn btn--secondary" id="btn-download">💾 保存 PNG</button>
+    <button class="btn btn--secondary" id="btn-copy-img">📋 复制到剪贴板</button>
+    <button class="btn btn--secondary" id="btn-crop-start">✂️ 裁剪</button>
+    <button class="btn btn--secondary" id="btn-annotate-start">🖊️ 标注</button>
+  </div>
+  <div class="st-annotate-bar" id="st-annotate-bar" style="display:none">
+    <div class="st-annotate-tools">
+      <button class="btn btn--sm" data-tool="rect" title="矩形框">▭</button>
+      <button class="btn btn--sm" data-tool="arrow" title="箭头">➤</button>
+      <button class="btn btn--sm" data-tool="pen" title="画笔">✏️</button>
+      <button class="btn btn--sm" data-tool="text" title="文字">T</button>
+      <button class="btn btn--sm" data-tool="blur" title="马赛克">🔲</button>
+    </div>
+    <div class="st-annotate-colors">
+      <span class="st-color-swatch" data-color="#E74C3C" style="background:#E74C3C"></span>
+      <span class="st-color-swatch" data-color="#F39C12" style="background:#F39C12"></span>
+      <span class="st-color-swatch" data-color="#27AE60" style="background:#27AE60"></span>
+      <span class="st-color-swatch" data-color="#3498DB" style="background:#3498DB"></span>
+      <span class="st-color-swatch" data-color="#000000" style="background:#000000"></span>
+      <span class="st-color-swatch" data-color="#FFFFFF" style="background:#FFF;border:1px solid #ccc"></span>
+    </div>
+    <div class="st-annotate-thickness">
+      <label>粗细</label>
+      <input type="range" id="st-anno-thickness" min="1" max="20" value="3">
+    </div>
+    <div class="st-annotate-actions">
+      <button class="btn btn--sm" id="btn-anno-undo" title="撤销">↶</button>
+      <button class="btn btn--sm" id="btn-anno-clear" title="清除标注">🗑️</button>
+      <button class="btn btn--primary btn--sm" id="btn-anno-done">✅ 完成</button>
+    </div>
+  </div>
+  <div class="st-crop-area" id="st-crop-area" style="display:none">
+    <div class="st-crop-info">在预览图上拖拽选择裁剪区域</div>
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

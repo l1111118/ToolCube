@@ -1,0 +1,76 @@
+name: 缺陷报告
+description: 报告一个可复现的缺陷
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请尽量填写完整 —— 缺少复现步骤的问题往往无法定位。
+        安全问题请勿在此提交，请按 SECURITY.md 通过 GitHub 私密漏洞报告渠道反馈。
+
+  - type: input
+    id: version
+    attributes:
+      label: 扩展版本
+      description: 设置页「关于」中可见
+      placeholder: 例如 1.2.6
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: 浏览器与版本
+      placeholder: 例如 Firefox 141.0 / Chrome 140
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开 …
+        2. 点击 …
+        3. 观察到 …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: 控制台报错（如有）
+      description: |
+        Firefox：about:debugging#/runtime/this-firefox → 本扩展 → 检查
+        Chrome：chrome://extensions → 本扩展 → Service Worker → 检查
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 影响范围
+      options:
+        - 侧边栏 / 工具列表
+        - 某个具体工具
+        - 服务端点（DNS/WHOIS/汇率等联网功能）
+        - 注入类功能（视频倍速、UA 切换、拦截等）
+        - 设置页
+        - 其他
+    validations:
+      required: true

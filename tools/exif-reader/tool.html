@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXIF分析器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="er-header">📷 EXIF分析器</div>
+    <div class="er-drop" id="er-drop">
+      <div class="er-drop-text">拖拽图片到此处或点击选择</div>
+      <input type="file" id="er-file" accept="image/*" hidden>
+    </div>
+    <div class="er-preview" id="er-preview" style="display:none">
+      <img id="er-img" class="er-img">
+      <div class="er-file-info" id="er-file-info"></div>
+    </div>
+    <div class="er-results" id="er-results">
+      <div class="er-empty">选择图片以查看EXIF信息</div>
+    </div>
+  </div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

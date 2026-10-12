@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>计算器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <span style="font-size:13px;font-weight:600;color:var(--tt-text)">🔢 计算器</span>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--secondary" id="calc-mode-toggle" type="button">科学模式</button>
+      <button class="btn btn--secondary" id="calc-copy" type="button">复制结果</button>
+    </div>
+  </div>
+  <div class="calc-body">
+    <div class="calc-display-prev" id="calc-prev"></div>
+    <div class="calc-display" id="calc-display">0</div>
+
+    <!-- 科学计算面板：由"科学模式"按钮切换显示 -->
+    <div class="calc-sci" id="calc-sci" hidden>
+      <div class="calc-grid calc-grid--sci">
+        <button class="calc-btn calc-btn--fn" type="button" data-key="sin(">sin</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="cos(">cos</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="tan(">tan</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="π">π</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="ln(">ln</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="log(">log</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="√(">√</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="^">xʸ</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="^2">x²</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="!">n!</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="e">e</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="RECIP">1/x</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="(">(</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key=")">)</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="abs(">|x|</button>
+        <button class="calc-btn calc-btn--fn" type="button" data-key="exp(">eˣ</button>
+      </div>
+    </div>
+
+    <div class="calc-grid">
+      <button class="calc-btn calc-btn--fn" type="button" data-key="C">C</button>
+      <button class="calc-btn calc-btn--fn" type="button" data-key="BACK">⌫</button>
+      <button class="calc-btn calc-btn--fn" type="button" data-key="%">%</button>
+      <button class="calc-btn calc-btn--op" type="button" data-key="÷">÷</button>
+      <button class="calc-btn" type="button" data-key="7">7</button>
+      <button class="calc-btn" type="button" data-key="8">8</button>
+      <button class="calc-btn" type="button" data-key="9">9</button>
+      <button class="calc-btn calc-btn--op" type="button" data-key="×">×</button>
+      <button class="calc-btn" type="button" data-key="4">4</button>
+      <button class="calc-btn" type="button" data-key="5">5</button>
+      <button class="calc-btn" type="button" data-key="6">6</button>
+      <button class="calc-btn calc-btn--op" type="button" data-key="−">−</button>
+      <button class="calc-btn" type="button" data-key="1">1</button>
+      <button class="calc-btn" type="button" data-key="2">2</button>
+      <button class="calc-btn" type="button" data-key="3">3</button>
+      <button class="calc-btn calc-btn--op" type="button" data-key="+">+</button>
+      <button class="calc-btn" type="button" data-key="NEG">±</button>
+      <button class="calc-btn" type="button" data-key="0">0</button>
+      <button class="calc-btn" type="button" data-key=".">.</button>
+      <button class="calc-btn calc-btn--eq" type="button" data-key="=">=</button>
+    </div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

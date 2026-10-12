@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>银狐木马拦截</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="sfg-header">
+      <div class="sfg-title">🛡️ 银狐木马拦截</div>
+      <label class="sfg-switch">
+        <input type="checkbox" id="sfg-enabled">
+        <span class="sfg-slider"></span>
+      </label>
+    </div>
+    <div class="sfg-engine-badge" id="sfg-engine-badge">
+      <span class="sfg-dot sfg-dot--online"></span>
+      <span>纯本地JS引擎 · 无需安装</span>
+    </div>
+    <div class="sfg-stats">
+      <div class="sfg-stat">
+        <div class="sfg-stat-num" id="sfg-scanned">0</div>
+        <div class="sfg-stat-label">已扫描</div>
+      </div>
+      <div class="sfg-stat">
+        <div class="sfg-stat-num sfg-stat--danger" id="sfg-blocked">0</div>
+        <div class="sfg-stat-label">已拦截</div>
+      </div>
+      <div class="sfg-stat">
+        <div class="sfg-stat-num sfg-stat--safe" id="sfg-passed">0</div>
+        <div class="sfg-stat-label">已放行</div>
+      </div>
+    </div>
+    <div class="sfg-section">
+      <div class="sfg-section-title">灵敏度</div>
+      <div class="sfg-sensitivity">
+        <button class="sfg-sens-btn" data-level="low">低</button>
+        <button class="sfg-sens-btn active" data-level="medium">中</button>
+        <button class="sfg-sens-btn" data-level="high">高</button>
+      </div>
+    </div>
+    <div class="sfg-section">
+      <div class="sfg-section-header">
+        <span class="sfg-section-title">最近警报</span>
+        <button class="sfg-clear-btn" id="sfg-clear">清除</button>
+      </div>
+      <div class="sfg-alerts" id="sfg-alerts">
+        <div class="sfg-empty">暂无警报记录</div>
+      </div>
+    </div>
+    <div class="sfg-section" id="sfg-reports">
+      <div class="sfg-section-header">
+        <span class="sfg-section-title">🚨 误判举报记录 (0)</span>
+        <button class="sfg-clear-btn" id="sfg-clear-reports">清空</button>
+      </div>
+      <div class="sfg-empty">暂无举报记录。在威胁详情中点击"举报误判"可提交。</div>
+    </div>
+  </div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

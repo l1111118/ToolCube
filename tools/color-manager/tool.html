@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>颜色管理</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="color-picker-section">
+      <div class="color-display">
+        <div class="color-preview" id="color-preview"></div>
+        <input type="color" class="color-input" id="color-picker" value="#5b7fff">
+      </div>
+      <div class="color-values">
+        <div class="value-row">
+          <label>HEX</label>
+          <input type="text" id="hex-value" value="#5B7FFF">
+          <button class="btn btn--icon" data-target="hex-value">📋</button>
+        </div>
+        <div class="value-row">
+          <label>RGB</label>
+          <input type="text" id="rgb-value" value="rgb(91, 127, 255)">
+          <button class="btn btn--icon" data-target="rgb-value">📋</button>
+        </div>
+        <div class="value-row">
+          <label>HSL</label>
+          <input type="text" id="hsl-value" value="hsl(209, 64%, 57%)">
+          <button class="btn btn--icon" data-target="hsl-value">📋</button>
+        </div>
+        <div class="value-row">
+          <label>CMYK</label>
+          <input type="text" id="cmyk-value" value="cmyk(66%, 34%, 0%, 15%)">
+          <button class="btn btn--icon" data-target="cmyk-value">📋</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="palette-section">
+      <h3 class="section-title">调色板</h3>
+      <div class="palette-grid" id="palette-grid"></div>
+    </div>
+    
+    <div class="shades-section">
+      <h3 class="section-title">色阶</h3>
+      <div class="shades-row" id="shades-row"></div>
+    </div>
+    
+    <div class="history-section">
+      <h3 class="section-title">历史记录</h3>
+      <div class="history-list" id="history-list"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>密码泄露检测</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+
+    <!-- 模式切换 Tab -->
+    <div class="plc-tabs">
+      <button class="plc-tab active" data-mode="single">🔑 单密码</button>
+      <button class="plc-tab" data-mode="batch">📚 批量检查</button>
+      <button class="plc-tab" data-mode="email">📧 邮箱泄露</button>
+      <button class="plc-tab" data-mode="history">📜 检查历史</button>
+    </div>
+
+    <!-- ============ 单密码模式 ============ -->
+    <div class="plc-mode plc-mode--single" id="mode-single">
+      <div class="tool-toolbar">
+        <div class="toolbar-group">
+          <input type="password" class="plc-input" id="pwd-input" placeholder="输入要检测的密码..." autocomplete="off" spellcheck="false">
+          <button class="btn btn--icon" id="btn-toggle" title="显示/隐藏密码">👁</button>
+        </div>
+        <div class="toolbar-group">
+          <button class="btn btn--primary" id="btn-check">🔍 检测</button>
+        </div>
+      </div>
+
+      <div class="plc-content">
+
+        <!-- 隐私说明 -->
+        <div class="plc-privacy">
+          <span class="plc-privacy-icon">🔒</span>
+          <span>使用 k-匿名算法，仅发送密码哈希的前5位，完整密码永远不会离开本机</span>
+        </div>
+
+        <!-- 密码强度 -->
+        <div class="plc-section">
+          <div class="plc-section-title">密码强度</div>
+          <div class="plc-meter">
+            <div class="plc-meter__fill" id="meter-fill"></div>
+          </div>
+          <div class="plc-meter-labels">
+            <span>弱</span>
+            <span id="strength-text">-</span>
+            <span>强</span>
+          </div>
+        </div>
+
+        <!-- 检测结果 -->
+        <div class="plc-section" id="result-section" style="display:none">
+          <div class="plc-section-title">检测结果</div>
+          <div class="plc-result" id="result-area"></div>
+        </div>
+
+        <!-- SHA-1 哈希信息 -->
+        <div class="plc-section" id="hash-section" style="display:none">
+          <div class="plc-section-title">哈希信息</div>
+          <div class="plc-hash-row">
+            <span class="plc-hash-label">SHA-1 前缀（已发送）:</span>
+            <code class="plc-hash-value" id="hash-prefix">-</code>
+          </div>
+          <div class="plc-hash-row">
+            <span class="plc-hash-label">匹配后缀:</span>
+            <code class="plc-hash-value" id="hash-suffix">-</code>
+          </div>
+        </div>
+
+        <!-- 安全建议 -->
+        <div class="plc-section">
+          <div class="plc-section-title">密码安全建议</div>
+          <ul class="plc-tips">
+            <li class="plc-tip">使用至少 12 位以上的密码，混合大小写字母、数字和特殊符号</li>
+            <li class="plc-tip">不要在多个网站使用相同密码，一处泄露将危及所有账户</li>
+            <li class="plc-tip">考虑使用密码管理器生成和保存高强度随机密码</li>
+            <li class="plc-tip">定期检查密码是否泄露，发现泄露后立即更换</li>
+            <li class="plc-tip">启用两步验证（2FA），即使密码泄露也能提供额外保护</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ 批量检查模式 ============ -->
+    <div class="plc-mode plc-mode--batch" id="mode-batch" style="display:none">
+      <div class="plc-content">
+        <div class="plc-privacy">
+          <span class="plc-privacy-icon">📚</span>
+          <span>每行一个密码进行批量检测，所有密码仅以 SHA-1 哈希前5位形式发送，不会离开本机</span>
+        </div>
+        <div class="plc-section">
+          <div class="plc-section-title">批量输入（每行一个密码）</div>
+          <textarea class="plc-textarea" id="batch-input" placeholder="每行输入一个密码，例如：&#10;P@ssw0rd123&#10;mySecret2024&#10;tr0ub4dour&3" rows="6"></textarea>
+          <div class="plc-batch-actions">
+            <button class="btn btn--primary" id="btn-batch-check">🔍 开始批量检测</button>
+            <button class="btn" id="btn-batch-clear">🗑️ 清空</button>
+            <span class="plc-batch-count" id="batch-count">0 个密码</span>
+          </div>
+        </div>
+
+        <div class="plc-section" id="batch-result-section" style="display:none">
+          <div class="plc-section-head">
+            <span class="plc-section-title">批量检测结果</span>
+            <button class="btn" id="btn-batch-export" style="font-size:11px;padding:3px 8px;">导出 JSON</button>
+          </div>
+          <div class="plc-batch-summary" id="batch-summary"></div>
+          <div class="plc-batch-list" id="batch-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 邮箱泄露模式 ============ -->
+    <div class="plc-mode plc-mode--email" id="mode-email" style="display:none">
+      <div class="plc-content">
+        <div class="plc-privacy">
+          <span class="plc-privacy-icon">📧</span>
+          <span>查询邮箱是否在已知数据泄露事件中出现，邮箱地址将直接发送到 Have I Been Pwned 服务</span>
+        </div>
+        <div class="plc-section">
+          <div class="plc-section-title">邮箱地址</div>
+          <div class="plc-email-input-row">
+            <input type="text" class="plc-input" id="email-input" placeholder="例如：user@example.com" autocomplete="off" spellcheck="false">
+            <button class="btn btn--primary" id="btn-email-check">🔍 检测</button>
+          </div>
+          <div class="plc-apikey-row">
+            <label class="plc-apikey-label">HIBP API Key (可选，未填写则跳转官网查询):</label>
+            <input type="password" class="plc-input plc-apikey-input" id="hibp-apikey" placeholder="HIBP API Key..." autocomplete="off">
+            <button class="btn btn--icon" id="btn-apikey-toggle" title="显示/隐藏">👁</button>
+          </div>
+        </div>
+
+        <div class="plc-section" id="email-result-section" style="display:none">
+          <div class="plc-section-title">泄露事件</div>
+          <div id="email-result-area"></div>
+        </div>
+
+        <div class="plc-section">
+          <div class="plc-section-title">邮箱安全建议</div>
+          <ul class="plc-tips">
+            <li class="plc-tip">不要在可疑网站使用主邮箱注册，可使用别名邮箱服务</li>
+            <li class="plc-tip">为每个网站使用独立密码，避免一处泄露影响多个账户</li>
+            <li class="plc-tip">启用邮箱两步验证（2FA），防止账号被盗</li>
+            <li class="plc-tip">定期检查邮箱是否出现在新泄露事件中</li>
+            <li class="plc-tip">收到钓鱼邮件时不要点击链接，直接访问官方网站</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 检查历史模式 ============ -->
+    <div class="plc-mode plc-mode--history" id="mode-history" style="display:none">
+      <div class="plc-content">
+        <div class="plc-section">
+          <div class="plc-section-head">
+            <span class="plc-section-title">检查历史记录</span>
+            <button class="btn" id="btn-history-refresh">🔄 刷新</button>
+          </div>
+          <div class="plc-history-list" id="history-list">
+            <div class="plc-empty">暂无检查记录</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

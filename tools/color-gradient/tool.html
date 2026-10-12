@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>颜色梯度生成器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="cg-container">
+  <h3>🌈 渐变色生成器</h3>
+  <div class="cg-preview" id="cg-preview"></div>
+  <div class="cg-controls">
+    <div class="cg-row"><label>起始色</label><input type="color" id="cg-from" value="#667eea"><label>结束色</label><input type="color" id="cg-to" value="#764ba2"></div>
+    <div class="cg-row"><label>角度</label><input type="range" id="cg-angle" min="0" max="360" value="135"><span id="cg-angle-val">135°</span></div>
+    <div class="cg-row"><label>类型</label><select id="cg-type"><option value="linear">线性渐变</option><option value="radial">径向渐变</option></select></div>
+  </div>
+  <div class="cg-colors" id="cg-stops">
+    <div class="cg-color-stop"><span>0%</span><input type="color" class="cg-stop-color" id="cg-stop-0" value="#667eea"></div>
+    <div class="cg-color-stop"><span>50%</span><input type="color" class="cg-stop-color" id="cg-stop-50" value="#764ba2"></div>
+    <div class="cg-color-stop"><span>100%</span><input type="color" class="cg-stop-color" id="cg-stop-100" value="#f093fb"></div>
+  </div>
+  <div class="cg-code" id="cg-code">background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);</div>
+  <button class="btn btn--primary" id="btn-copy">📋 复制CSS</button>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

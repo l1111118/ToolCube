@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket客户端</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="connection-section">
+      <input type="url" class="url-input" id="ws-url" placeholder="wss://echo.websocket.org">
+      <button class="btn btn--primary" id="btn-connect">连接</button>
+      <button class="btn btn--danger" id="btn-disconnect" disabled>断开</button>
+      <span class="status" id="connection-status">⚪ 未连接</span>
+      <span class="status-light" id="status-light" title="连接状态指示灯"></span>
+      <label class="auto-reconnect-label"><input type="checkbox" id="auto-reconnect"> 自动重连</label>
+      <label class="auto-reconnect-label"><input type="checkbox" id="auto-format" checked> JSON格式化</label>
+      <label class="auto-reconnect-label"><input type="checkbox" id="save-history"> 保存历史</label>
+      <label class="auto-reconnect-label"><input type="checkbox" id="heartbeat"> 心跳检测</label>
+      <input type="number" id="heartbeat-interval" value="30" min="5" max="300" style="width:50px;padding:2px 4px;font-size:12px;" title="心跳间隔(秒)">s
+      <input type="text" id="heartbeat-msg" value="ping" style="width:80px;padding:2px 4px;font-size:12px;" title="心跳消息内容">
+    </div>
+
+    <div class="template-section">
+      <div class="template-header">
+        <span>📋 消息模板</span>
+        <button class="btn btn--secondary btn--sm" id="btn-add-template">+ 保存当前消息为模板</button>
+      </div>
+      <div class="template-list" id="template-list"><div class="template-empty">暂无模板</div></div>
+    </div>
+
+    <div class="messages-section">
+      <div class="messages-header">
+        <span>消息记录 <small id="msg-counter" class="msg-counter">(0/100)</small></span>
+        <div class="messages-actions">
+          <button class="btn btn--text btn--sm" id="btn-clear">清空</button>
+        </div>
+      </div>
+      <div class="messages-list" id="messages-list"></div>
+    </div>
+
+    <div class="send-section">
+      <textarea class="message-input" id="message-input" placeholder="输入要发送的消息... (Ctrl+Enter 发送)"></textarea>
+      <button class="btn btn--primary" id="btn-send" disabled>发送</button>
+    </div>
+  
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习和调试自己的 WebSocket 服务，请勿用于未授权访问或攻击他人服务器。</div>
+</div>
+  <div class="toast" id="toast">
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

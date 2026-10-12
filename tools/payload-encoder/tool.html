@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payload编码器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="warning-banner">
+      <span class="warning-icon">⚠️</span>
+      <span>本工具仅供授权安全测试使用，请确保在合法范围内操作</span>
+    </div>
+
+    <div class="main-layout">
+      <div class="panel panel--input">
+        <div class="panel-header">
+          <span class="panel-title">📥 输入</span>
+          <span class="panel-info" id="input-status">0 字符</span>
+        </div>
+        <div class="panel-body">
+          <textarea class="code-editor" id="input-area" placeholder="输入要编码/解码的Payload文本..." spellcheck="false"></textarea>
+        </div>
+      </div>
+
+      <div class="control-panel">
+        <div class="control-section">
+          <div class="section-title">编码方式（按顺序链式应用）</div>
+          <div class="encoding-list" id="encoding-list">
+            <label class="chip" data-enc="url">
+              <input type="checkbox" value="url"> URL编码
+            </label>
+            <label class="chip" data-enc="double-url">
+              <input type="checkbox" value="double-url"> 双重URL编码
+            </label>
+            <label class="chip" data-enc="base64">
+              <input type="checkbox" value="base64"> Base64编码
+            </label>
+            <label class="chip" data-enc="base32">
+              <input type="checkbox" value="base32"> Base32编码
+            </label>
+            <label class="chip" data-enc="html">
+              <input type="checkbox" value="html"> HTML实体编码
+            </label>
+            <label class="chip" data-enc="unicode">
+              <input type="checkbox" value="unicode"> Unicode编码
+            </label>
+            <label class="chip" data-enc="hex">
+              <input type="checkbox" value="hex"> 十六进制编码
+            </label>
+            <label class="chip" data-enc="octal">
+              <input type="checkbox" value="octal"> 八进制编码
+            </label>
+            <label class="chip" data-enc="rot13">
+              <input type="checkbox" value="rot13"> ROT13
+            </label>
+            <label class="chip" data-enc="reverse">
+              <input type="checkbox" value="reverse"> 反转字符串
+            </label>
+          </div>
+        </div>
+
+        <div class="control-section">
+          <div class="section-title">操作方向</div>
+          <div class="direction-toggle">
+            <button class="btn btn--primary btn--direction active" id="btn-encode" data-dir="encode">🔒 编码</button>
+            <button class="btn btn--secondary btn--direction" id="btn-decode" data-dir="decode">🔓 解码</button>
+          </div>
+        </div>
+
+        <div class="control-actions">
+          <button class="btn btn--primary btn--execute" id="btn-execute">▶ 执行</button>
+          <button class="btn btn--secondary" id="btn-clear">🗑️ 清空</button>
+        </div>
+
+        <div class="control-section">
+          <div class="section-title">多重编码</div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <select id="multi-encode-type" class="cg-select" style="flex:1;min-width:100px">
+              <option value="url">URL编码</option>
+              <option value="base64">Base64编码</option>
+              <option value="base32">Base32编码</option>
+              <option value="hex">Hex编码</option>
+              <option value="unicode">Unicode编码</option>
+              <option value="html">HTML实体编码</option>
+            </select>
+            <label style="font-size:12px;white-space:nowrap">次数: <input type="number" id="multi-encode-count" value="3" min="1" max="10" style="width:50px"></label>
+            <button class="btn btn--secondary" id="btn-multi-encode">🔄 多重编码</button>
+          </div>
+        </div>
+
+        <div class="control-section">
+          <div class="section-title">编码检测</div>
+          <button class="btn btn--secondary" id="btn-detect-encoding">🔍 检测编码</button>
+          <div id="detect-result" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+      <div class="panel panel--output">
+        <div class="panel-header">
+          <span class="panel-title">📤 输出</span>
+          <button class="btn btn--text" id="btn-copy">📋 复制</button>
+        </div>
+        <div class="panel-body">
+          <textarea class="code-editor code-editor--output" id="output-area" placeholder="结果将显示在这里..." readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="chain-display" id="chain-display">
+      <span class="chain-label">编码链：</span>
+      <span class="chain-text" id="chain-text">等待执行</span>
+    </div>
+
+    <!-- 编码历史记录 -->
+    <div class="history-section" id="history-section">
+      <div class="history-header">
+        <span class="history-title">🕘 编码历史</span>
+        <button class="btn btn--text" id="btn-clear-history" title="清空历史">🗑️ 清空</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">暂无历史记录</div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

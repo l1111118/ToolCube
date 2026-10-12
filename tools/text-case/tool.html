@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大小写转换</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><button class="btn btn--primary" id="btn-upper">全大写</button><button class="btn btn--secondary" id="btn-lower">全小写</button><button class="btn btn--secondary" id="btn-title">首字母大写</button><button class="btn btn--secondary" id="btn-sentence">句首大写</button><button class="btn btn--secondary" id="btn-camel">驼峰命名</button><button class="btn btn--secondary" id="btn-snake">下划线命名</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--icon" id="btn-copy">📋</button><button class="btn btn--icon" id="btn-clear">🗑️</button>
+        </div>
+      </div>
+      <div class="tool-main">
+        <div class="panel">
+          <div class="panel-header"><span>📥 输入</span>
+          </div>
+          <div class="panel-body">
+            <textarea class="code-editor" id="input-area" placeholder="输入文本..." spellcheck="false"></textarea>
+          </div>
+          <div class="panel-footer"><span id="input-status">0 字符</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span>📤 输出</span>
+          </div>
+          <div class="panel-body">
+            <textarea class="code-editor code-editor--output" id="output-area" readonly></textarea>
+          </div>
+          <div class="panel-footer"><span id="output-status">等待输入</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

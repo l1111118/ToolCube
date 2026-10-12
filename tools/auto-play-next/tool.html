@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>自动连播</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="apn-container">
+  <div class="apn-header">
+    <div class="apn-header-left">
+      <span class="apn-title">⏭️ 自动连播</span>
+      <span class="apn-status" id="apn-status">未启用</span>
+    </div>
+    <label class="apn-toggle"><input type="checkbox" id="apn-master"><span class="apn-toggle-slider"></span></label>
+  </div>
+
+  <div class="apn-stats" id="apn-stats">
+    <div class="apn-stat-item"><span class="apn-stat-indicator" id="apn-indicator">⚪</span><span class="apn-stat-label">运行状态</span></div>
+    <div class="apn-stat-item"><span class="apn-stat-num" id="apn-count">0</span><span class="apn-stat-label">已自动播放</span></div>
+    <div class="apn-stat-item"><span class="apn-stat-num" id="apn-next-found">—</span><span class="apn-stat-label">下一集检测</span></div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">触发设置</div>
+    <div class="apn-delay-row">
+      <span class="apn-param-label">连播延迟</span>
+      <input type="range" class="apn-slider" id="apn-delay" min="0" max="10" step="1" value="3">
+      <span class="apn-delay-val" id="apn-delay-val">3s</span>
+    </div>
+    <div class="apn-delay-hint">视频结束后等待指定秒数再播放下一个（0=立即）</div>
+    <div class="apn-delay-row" style="margin-top:8px">
+      <span class="apn-param-label">提前触发</span>
+      <input type="range" class="apn-slider" id="apn-nearend" min="0" max="10" step="1" value="3">
+      <span class="apn-delay-val" id="apn-nearend-val">3s</span>
+    </div>
+    <div class="apn-delay-hint">视频结束前N秒开始寻找下一个（0=仅等ended事件，3=结束前3秒触发）</div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">功能选项</div>
+    <div class="apn-options">
+      <div class="apn-opt-item">
+        <label class="apn-opt-label">
+          <input type="checkbox" class="apn-opt-check" id="apn-autoreplay">
+          <span class="apn-opt-name">🔁 无下一集时自动重播</span>
+        </label>
+        <span class="apn-opt-desc">当没有找到下一个视频时，自动从头重播当前视频</span>
+      </div>
+      <div class="apn-opt-item">
+        <label class="apn-opt-label">
+          <input type="checkbox" class="apn-opt-check" id="apn-clicknext" checked>
+          <span class="apn-opt-name">👉 自动点击下一集按钮</span>
+        </label>
+        <span class="apn-opt-desc">自动寻找并点击页面上的"下一集"按钮</span>
+      </div>
+      <div class="apn-opt-item">
+        <label class="apn-opt-label">
+          <input type="checkbox" class="apn-opt-check" id="apn-skipintro">
+          <span class="apn-opt-name">⏭️ 自动跳过片头/片尾</span>
+        </label>
+        <span class="apn-opt-desc">检测"跳过片头"/"跳过片尾"按钮并自动点击，跳过片头片尾</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">自定义选择器</div>
+    <div class="apn-opt-desc" style="margin-bottom:6px">如果自动连播在你的平台上不生效，可以手动指定"下一集"按钮的CSS选择器</div>
+    <div style="display:flex;gap:6px;margin-bottom:6px">
+      <input type="text" class="apn-input" id="apn-custom-selector" placeholder="例如: .next-btn, #nextEpisode" style="flex:1">
+      <button class="apn-reset-btn" id="apn-pick-element" title="在页面上拾取下一集按钮">🎯 拾取</button>
+    </div>
+    <div class="apn-opt-desc" id="apn-pick-hint" style="display:none;color:#ff9800">点击"拾取"后，到目标页面点击"下一集"按钮即可自动填充选择器</div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">检测状态</div>
+    <div class="apn-detection-grid" id="apn-detection-grid">
+      <div class="apn-detect-item" data-method="ended"><span class="apn-detect-dot">⚪</span><span>ended事件</span></div>
+      <div class="apn-detect-item" data-method="nearEnd"><span class="apn-detect-dot">⚪</span><span>接近结尾</span></div>
+      <div class="apn-detect-item" data-method="pauseAtEnd"><span class="apn-detect-dot">⚪</span><span>结尾暂停</span></div>
+      <div class="apn-detect-item" data-method="domCompletion"><span class="apn-detect-dot">⚪</span><span>DOM完成态</span></div>
+      <div class="apn-detect-item" data-method="customSelector"><span class="apn-detect-dot">⚪</span><span>自定义选择器</span></div>
+    </div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">测试与日志</div>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <button class="apn-reset-btn" id="apn-test-btn" style="flex:1">🧪 测试连播</button>
+    </div>
+    <div class="apn-opt-desc" style="margin-bottom:6px">手动触发一次连播，无需等待视频结束</div>
+    <div class="apn-log-panel" id="apn-log-panel">
+      <div class="apn-log-empty">暂无记录</div>
+    </div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">排除域名</div>
+    <div class="apn-opt-desc" style="margin-bottom:6px">在以下网站不自动播放，每行一个域名</div>
+    <textarea class="apn-input" id="apn-exclude-domains" rows="3" placeholder="例如:&#10;example.com&#10;test.com" style="resize:vertical;min-height:60px"></textarea>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-section-title">检测机制说明</div>
+    <div class="apn-opt-desc">
+      v3.0 使用5重检测机制：<br>
+      1. <b>ended事件</b> — 标准视频结束事件<br>
+      2. <b>接近结尾</b> — 视频剩余N秒时提前触发（解决部分平台不触发ended的问题）<br>
+      3. <b>结尾暂停</b> — 视频在结尾1.5秒内暂停视为完成（很多平台在结尾pause而非ended）<br>
+      4. <b>DOM完成态</b> — 检测重播按钮、完成弹窗等UI元素<br>
+      5. <b>自定义选择器</b> — 用户指定的按钮选择器
+    </div>
+  </div>
+
+  <div class="apn-section">
+    <div class="apn-counter-row">
+      <span class="apn-counter-label">已自动播放计数</span>
+      <button class="apn-reset-btn" id="apn-reset">重置计数</button>
+    </div>
+  </div>
+
+  <!-- 连播历史记录 -->
+  <div class="apn-section">
+    <div class="apn-section-title">📜 连播历史记录</div>
+    <div class="apn-counter-row" style="margin-bottom:8px">
+      <span class="apn-opt-desc">最近 50 条自动连播记录</span>
+      <button class="apn-reset-btn" id="apn-clear-history">清空历史</button>
+    </div>
+    <div class="apn-log-panel" id="apn-history-panel" style="max-height:200px">
+      <div class="apn-log-empty">暂无连播历史</div>
+    </div>
+  </div>
+
+  <div class="apn-warning">⚠️ 启用后将在所有网页持续生效，关闭工具页面后仍有效</div>
+</div>
+<div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

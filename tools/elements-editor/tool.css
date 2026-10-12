@@ -1,0 +1,148 @@
+﻿*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:12px;color:var(--tt-text);background:var(--tt-bg);height:100%;overflow:hidden}
+
+/* === 瀹瑰櫒 === */
+.ee-container{height:100%;display:flex;flex-direction:column}
+.ee-toolbar{display:flex;align-items:center;gap:5px;padding:6px 8px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;flex-wrap:wrap;min-height:36px}
+.ee-status{font-size:10px;color:var(--tt-text-muted);flex:1;text-align:right;min-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ee-status--error{color:var(--tt-danger)}
+.ee-status--success{color:var(--tt-success)}
+.ee-status--warn{color:var(--tt-warning)}
+
+/* === 鎸夐挳 === */
+.ee-btn{padding:4px 10px;font-size:11px;font-weight:500;border:none;border-radius:4px;cursor:pointer;transition:all .12s;white-space:nowrap;display:inline-flex;align-items:center;gap:3px}
+.ee-btn--primary{background:var(--tt-primary);color:#fff}
+.ee-btn--primary:hover{opacity:.9}
+.ee-btn--secondary{background:var(--tt-bg);color:var(--tt-text);border:1px solid var(--tt-border)}
+.ee-btn--secondary:hover{background:var(--tt-bg-hover)}
+.ee-btn--danger{background:var(--tt-danger,#f44336);color:#fff}
+.ee-btn--danger:hover{opacity:.9}
+.ee-btn--sm{padding:3px 7px;font-size:10px}
+
+/* === 鍏冪礌姒傝 === */
+.ee-overview{padding:6px 8px;border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.ee-tag-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px}
+.ee-tag-name{display:inline-block;padding:2px 8px;background:var(--tt-primary);color:#fff;border-radius:4px;font-family: var(--tt-font-mono);font-size:13px;font-weight:600}
+.ee-tag-info{font-size:11px;color:var(--tt-text-secondary);font-family: var(--tt-font-mono)}
+.ee-tag-dim{font-size:10px;color:var(--tt-text-muted);font-family: var(--tt-font-mono)}
+.ee-tag-selector{font-size:10px;color:var(--tt-text-muted);font-family: var(--tt-font-mono);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--tt-bg-secondary);padding:2px 5px;border-radius:3px}
+.ee-breadcrumb{font-size:10px;color:var(--tt-text-muted);white-space:nowrap;overflow-x:auto;padding:2px 0}
+.ee-bc-item{color:var(--tt-primary);cursor:pointer;margin:0 1px}
+.ee-bc-item:hover{text-decoration:underline}
+
+/* === 鏍囩椤?=== */
+.ee-tabs{display:flex;gap:0;flex-shrink:0;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);padding:0 8px}
+.ee-tab{padding:6px 10px;font-size:11px;border:none;border-bottom:2px solid transparent;background:none;color:var(--tt-text-muted);cursor:pointer;transition:all .15s}
+.ee-tab--active{border-bottom-color:var(--tt-primary);color:var(--tt-primary);font-weight:600}
+.ee-tab:hover{color:var(--tt-text)}
+
+/* === 涓诲唴瀹瑰尯 === */
+.ee-main{flex:1;min-height:0;overflow-y:auto;padding:0}
+.ee-panel{display:none;padding:8px}
+.ee-panel--active{display:block}
+
+/* === 鑺?=== */
+.ee-section{margin-bottom:8px;background:var(--tt-bg-secondary);border-radius:6px;padding:8px 10px;border:1px solid var(--tt-border)}
+.ee-section-title{font-size:10px;font-weight:600;color:var(--tt-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+
+/* === 灞炴€х紪杈戝櫒 === */
+.ee-attrs{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
+.ee-attr-row{display:flex;gap:4px;align-items:center}
+.ee-attr-name{font-size:10px;color:var(--tt-primary);font-family: var(--tt-font-mono);min-width:55px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ee-attr-input{padding:3px 5px;font-size:10px;border:1px solid var(--tt-border);border-radius:3px;background:var(--tt-bg);color:var(--tt-text);flex:1;outline:none;min-width:0;font-family: var(--tt-font-mono)}
+.ee-attr-input:focus{border-color:var(--tt-primary)}
+.ee-attr-btn{width:20px;height:20px;border:none;border-radius:3px;font-size:10px;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ee-attr-btn.set{background: var(--tt-success-soft);color:var(--tt-success)}
+.ee-attr-btn.del{background: var(--tt-danger-soft);color:var(--tt-danger)}
+.ee-attr-btn.set:hover{background: var(--tt-success-soft)}
+.ee-attr-btn.del:hover{background: var(--tt-danger-soft)}
+.ee-add-row{display:flex;gap:4px;margin-top:4px}
+.ee-add-row input{padding:3px 6px;font-size:10px;border:1px solid var(--tt-border);border-radius:3px;background:var(--tt-bg);color:var(--tt-text);outline:none;flex:1;min-width:0}
+.ee-add-row input:focus{border-color:var(--tt-primary)}
+
+/* === 绫诲悕 === */
+.ee-classes{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px}
+.ee-cls-tag{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;background: var(--tt-success-soft);color:var(--tt-success);border-radius:10px;font-size:10px;font-family: var(--tt-font-mono);cursor:pointer;transition:all .12s}
+.ee-cls-tag:hover{background: var(--tt-success-soft)}
+.ee-cls-del{background:0;border:none;color:inherit;cursor:pointer;font-size:12px;padding:0;margin-left:2px;opacity:.5}
+.ee-cls-del:hover{opacity:1}
+
+/* === 鏍峰紡闈㈡澘 === */
+.ee-style-search{margin-bottom:6px}
+.ee-style-search input{width:100%;padding:5px 8px;font-size:10px;border:1px solid var(--tt-border);border-radius:4px;background:var(--tt-bg);color:var(--tt-text);outline:none}
+.ee-style-search input:focus{border-color:var(--tt-primary)}
+.ee-styles{max-height:400px;overflow-y:auto}
+.ee-sg{margin-bottom:6px}
+.ee-sg-title{font-size:10px;color:var(--tt-text-muted);font-weight:600;margin-bottom:2px;text-transform:uppercase;padding:2px 4px}
+.ee-sr{display:flex;justify-content:space-between;align-items:center;padding:2px 6px;font-size:10px;border-radius:3px;gap:4px}
+.ee-sr:hover{background:var(--tt-bg-hover)}
+.ee-sr-prop{color:var(--tt-primary);font-family: var(--tt-font-mono);min-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ee-sr-val{color:var(--tt-text);font-family: var(--tt-font-mono);background:var(--tt-bg);border:1px solid transparent;border-radius:2px;font-size:10px;text-align:right;flex:1;outline:none;padding:2px 4px;min-width:0;transition:border .15s}
+.ee-sr-val:focus{border-color:var(--tt-primary);background:var(--tt-bg-secondary)}
+
+/* === HTML/Text 缂栬緫鍣?=== */
+.ee-html-source,.ee-text-content{width:100%;padding:6px 8px;font-size:10px;font-family: var(--tt-font-mono);border:1px solid var(--tt-border);border-radius:4px;background:var(--tt-bg);color:var(--tt-text);resize:vertical;outline:none;min-height:80px;max-height:200px}
+.ee-text-content{min-height:60px;max-height:120px}
+.ee-html-source:focus,.ee-text-content:focus{border-color:var(--tt-primary)}
+.ee-btn-row{display:flex;gap:4px;margin-top:6px}
+
+/* === 鐩掓ā鍨?=== */
+.ee-box-model{padding:4px;background:var(--tt-bg);border-radius:6px;font-size:11px}
+.ee-bm-row{display:flex;justify-content:space-between;padding:3px 6px;font-size:10px;border-bottom:1px solid var(--tt-border)}
+.ee-bm-row:last-child{border:none}
+.ee-bm-row span:first-child{color:var(--tt-text-muted)}
+.ee-bm-row span:last-child{font-family: var(--tt-font-mono)}
+
+/* === 瀛愬厓绱?=== */
+.ee-children{display:flex;flex-direction:column;gap:3px;max-height:250px;overflow-y:auto}
+.ee-child-row{display:flex;align-items:center;gap:5px;padding:4px 8px;background:var(--tt-bg);border-radius:4px;font-size:11px;transition:background .1s}
+.ee-child-row:hover{background:var(--tt-bg-hover)}
+.ee-child-tag{font-family: var(--tt-font-mono);color:var(--tt-primary);font-weight:600}
+.ee-child-id{font-family: var(--tt-font-mono);color:var(--tt-danger);font-size:10px}
+.ee-child-cls{color:var(--tt-text-muted);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.ee-child-sel{font-size:10px!important;flex-shrink:0}
+
+/* === DOM鏍?=== */
+.ee-dom-tree{font-family: var(--tt-font-mono);font-size:10px;max-height:300px;overflow-y:auto;overflow-x:auto}
+.ee-tn{white-space:nowrap;padding:1px 0;cursor:default;line-height:1.6;user-select:none}
+.ee-tt{display:inline-block;width:14px;font-size:9px;cursor:pointer;color:var(--tt-text-muted);text-align:center}
+.ee-tta{color:var(--tt-primary);font-weight:600}
+.ee-ti{color:var(--tt-text-secondary)}
+.ee-tnc .ee-tta{opacity:.6}
+
+/* === 绌虹姸鎬?=== */
+.ee-empty{text-align:center;padding:12px;color:var(--tt-text-muted);font-size:11px}
+
+/* === Toast === */
+.ee-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:6px;font-size:11px;color:var(--tt-toast-text);background:var(--tt-toast-bg);z-index:9999;opacity:0;pointer-events:none;transition:opacity .25s}
+.ee-toast--show{opacity:1}
+.ee-toast--success{background:var(--tt-success);color:var(--tt-success-on)}
+.ee-toast--error{background:var(--tt-danger);color:var(--tt-danger-on)}
+
+/* === 妯″紡鍒囨崲 === */
+.ee-mode-toggle{display:flex;gap:0;margin-right:8px;border-radius:5px;overflow:hidden;border:1px solid var(--tt-border)}
+.ee-mode-btn{padding:3px 10px;font-size:10px;font-weight:500;border:none;background:var(--tt-bg);color:var(--tt-text-muted);cursor:pointer;transition:all .15s;white-space:nowrap}
+.ee-mode-btn:not(:last-child){border-right:1px solid var(--tt-border)}
+.ee-mode-btn--active{background:var(--tt-primary);color:#fff}
+.ee-mode-btn:hover:not(.ee-mode-btn--active){background:var(--tt-bg-hover);color:var(--tt-text)}
+
+/* === 浠ｇ爜缂栬緫妯″紡 === */
+.ee-code-mode{flex-shrink:0;border-bottom:1px solid var(--tt-border)}
+.ee-code-layout{display:flex;height:200px;overflow:hidden}
+.ee-code-pane{flex:1;display:flex;flex-direction:column;min-width:0}
+.ee-code-pane + .ee-code-pane{border-left:1px solid var(--tt-border)}
+.ee-code-pane__header{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;min-height:28px}
+.ee-code-pane__title{font-size:10px;font-weight:600;color:var(--tt-text-secondary)}
+.ee-code-pane__hint{font-size:9px;color:var(--tt-text-muted)}
+.ee-code-pane__actions{display:flex;gap:4px}
+.ee-code-input{flex:1;width:100%;padding:6px 8px;font-size:11px;font-family:var(--tt-font-mono);border:none;background:var(--tt-bg);color:var(--tt-text);resize:none;outline:none;tab-size:2;line-height:1.4}
+.ee-code-input::placeholder{color:var(--tt-text-muted);opacity:.6}
+.ee-code-input:focus{background:var(--tt-bg-secondary)}
+.ee-code-preview-wrapper{flex:1;overflow:hidden;background:var(--tt-bg);position:relative}
+.ee-code-preview{width:100%;height:100%;border:none;display:block}
+
+/* === 婊氬姩鏉?=== */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:2px}
+::-webkit-scrollbar-track{background:transparent}
+.tool-disclaimer{margin-top:16px;padding:10px 14px;background:var(--tt-bg-secondary);border-left:3px solid var(--tt-warning);border-radius:4px;font-size:12px;color:var(--tt-text-secondary,#666);line-height:1.6}

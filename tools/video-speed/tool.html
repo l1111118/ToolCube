@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频倍速</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-detect">🔍 检测视频</button>
+      <button class="btn btn--secondary" id="btn-apply">✅ 应用速度</button>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--secondary" id="btn-pip">🖼 画中画</button>
+      <button class="btn btn--secondary" id="btn-reset">↺ 重置1x</button>
+    </div>
+  </div>
+  
+  <div class="vs-content">
+    <div class="vs-current" id="vs-display">1.00<span>x</span></div>
+    
+    <div class="vs-range-row">
+      <span class="vs-range-label">0.1x</span>
+      <input type="range" class="vs-slider" id="vs-slider" min="0.1" max="16" step="0.05" value="1">
+      <span class="vs-range-label">16x</span>
+    </div>
+    
+    <div class="vs-presets">
+      <div class="vs-preset-group">
+        <div class="vs-preset-group-label">常用</div>
+        <div class="vs-preset-group-items">
+          <div class="vs-preset" data-speed="0.5">0.5x</div>
+          <div class="vs-preset" data-speed="0.75">0.75x</div>
+          <div class="vs-preset vs-preset--active" data-speed="1">1x</div>
+          <div class="vs-preset" data-speed="1.25">1.25x</div>
+          <div class="vs-preset" data-speed="1.5">1.5x</div>
+          <div class="vs-preset" data-speed="2">2x</div>
+        </div>
+      </div>
+      <div class="vs-preset-group">
+        <div class="vs-preset-group-label">高速</div>
+        <div class="vs-preset-group-items">
+          <div class="vs-preset extreme" data-speed="3">3x</div>
+          <div class="vs-preset extreme" data-speed="4">4x</div>
+          <div class="vs-preset extreme" data-speed="5">5x</div>
+          <div class="vs-preset extreme" data-speed="8">8x</div>
+          <div class="vs-preset extreme" data-speed="16">16x</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vs-controls">
+      <button class="btn btn--secondary btn--sm" id="btn-slower">− 减速</button>
+      <button class="btn btn--secondary btn--sm" id="btn-faster">+ 加速</button>
+    </div>
+    
+    <div class="vs-video-list" id="vs-video-list">
+      <div class="vs-info">📹 点击"检测视频"查找页面中的视频元素</div>
+    </div>
+
+    <!-- 当前视频信息 -->
+    <div class="vs-section" id="vs-video-info-section" style="display:none">
+      <div class="vs-section-title">📺 视频信息</div>
+      <div class="vs-info-grid" id="vs-info-grid">
+        <div class="vs-info-item"><span class="vs-info-label">时长</span><span class="vs-info-value" id="vs-info-duration">--</span></div>
+        <div class="vs-info-item"><span class="vs-info-label">当前时间</span><span class="vs-info-value" id="vs-info-current">--</span></div>
+        <div class="vs-info-item"><span class="vs-info-label">分辨率</span><span class="vs-info-value" id="vs-info-resolution">--</span></div>
+      </div>
+    </div>
+
+    <!-- A-B 循环播放 -->
+    <div class="vs-section">
+      <div class="vs-section-title">🔁 A-B 循环播放</div>
+      <div class="vs-ab-controls">
+        <button class="btn btn--secondary btn--sm" id="btn-ab-set-a">📌 设定A点</button>
+        <button class="btn btn--secondary btn--sm" id="btn-ab-set-b">📌 设定B点</button>
+        <button class="btn btn--secondary btn--sm" id="btn-ab-toggle">▶ 开启循环</button>
+        <button class="btn btn--secondary btn--sm" id="btn-ab-clear">✕ 清除</button>
+      </div>
+      <div class="vs-ab-status" id="vs-ab-status">未设定循环点</div>
+    </div>
+
+    <!-- 网站倍速记忆 -->
+    <div class="vs-section">
+      <div class="vs-section-title">🌐 网站倍速记忆</div>
+      <div class="vs-site-speed-row">
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-site-memory">
+          <span class="vu-toggle-slider"></span>
+        </label>
+        <span class="vs-site-speed-label">记忆每个网站的倍速设置</span>
+      </div>
+      <div class="vs-site-current" id="vs-site-current"></div>
+    </div>
+
+    <!-- 时间加速（墙钟时间 Hook） -->
+    <div class="vs-section">
+      <div class="vs-section-title">⏱ 时间加速</div>
+      <div class="vs-site-speed-row">
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-time-accel">
+          <span class="vu-toggle-slider"></span>
+        </label>
+        <span class="vs-site-speed-label">加速墙钟时间（进度条跟随倍速）</span>
+      </div>
+      <div class="vs-site-current" style="color:var(--text-tertiary);font-size:12px">加速墙钟时间，让进度条跟随倍速推进</div>
+    </div>
+
+    <!-- 音频变调补偿 -->
+    <div class="vs-section">
+      <div class="vs-section-title">🎵 音频变调补偿</div>
+      <div class="vs-site-speed-row">
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-pitch" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+        <span class="vs-site-speed-label">保留原音调（preservesPitch，倍速时声音不变调）</span>
+      </div>
+      <div class="vs-site-current" style="color:var(--text-tertiary);font-size:12px">默认开启；关闭后高倍速时声音会变调</div>
+    </div>
+
+    <!-- 快捷键提示折叠区 -->
+    <details class="vs-section vs-details">
+      <summary class="vs-section-title vs-summary">💡 快捷键提示（点击展开）</summary>
+      <div class="vs-tips" style="background:transparent;padding:8px 0;margin:0;border-radius:0">
+        <p>全局面板 · <kbd>Alt</kbd>+<kbd>V</kbd> 切换 | <kbd>Alt</kbd>+<kbd>=</kbd> 加速 | <kbd>Alt</kbd>+<kbd>-</kbd> 减速 | <kbd>Alt</kbd>+<kbd>0</kbd> 重置</p>
+        <p>工具内 · <kbd>空格</kbd> 暂停/播放 | <kbd>←</kbd><kbd>→</kbd> 快退/快进5秒 | <kbd>↑</kbd><kbd>↓</kbd> 倍速调整</p>
+        <p>A-B循环 · <kbd>[</kbd> 设定A点 | <kbd>]</kbd> 设定B点 | <kbd>\</kbd> 切换循环</p>
+        <p>精细调节 · <kbd>Shift</kbd>+<kbd>&gt;</kbd> 微加速 | <kbd>Shift</kbd>+<kbd>&lt;</kbd> 微减速 (0.1x步进)</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

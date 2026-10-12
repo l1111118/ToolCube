@@ -1,0 +1,148 @@
+/**
+ * WebSocket瀹㈡埛绔牱寮? */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family:var(--tt-font);
+  font-size: 14px; color: var(--tt-text); background: var(--tt-bg-tertiary);
+  height: 100%; overflow: hidden;
+}
+.tool-container {
+  display: flex; flex-direction: column;
+  height: 100%; background: var(--tt-bg); padding: 16px;
+}
+.connection-section {
+  display: flex; gap: 8px; align-items: center;
+  padding-bottom: 16px; border-bottom: 1px solid var(--tt-border);
+}
+.url-input {
+  flex: 1; padding: 10px; font-size: 14px;
+  background: var(--tt-input-bg);
+  color: var(--tt-text);
+  border: 1px solid var(--tt-input-border);
+  border-radius: 6px;
+  outline: none;
+}
+.url-input:focus { border-color: var(--tt-primary); }
+.btn {
+  padding: 10px 20px; font-size: 14px;
+  border: none; border-radius: 6px; cursor: pointer;
+}
+.btn--primary { background: var(--tt-primary); color: var(--tt-primary-on); }
+.btn--danger { background: var(--tt-danger); color: var(--tt-danger-on); }
+.btn--text { background: transparent; color: var(--tt-primary); padding: 6px 12px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.status {
+  padding: 6px 12px; border-radius: 4px;
+  font-size: 12px; background: var(--tt-muted-bg);
+  color: var(--tt-muted-text);
+}
+.status--connected { background: var(--tt-success-bg); color: var(--tt-success-text); }
+.status--error { background: var(--tt-danger-bg); color: var(--tt-danger-text); }
+.status--connecting { background: var(--tt-warning-bg); color: var(--tt-warning-text); }
+.status--disconnected { background: var(--tt-muted-bg); color: var(--tt-muted-text); }
+.auto-reconnect-label {
+  font-size: 12px; color: var(--tt-text-secondary); cursor: pointer;
+  display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.auto-reconnect-label input { margin: 0; }
+/* 状态指示灯 */
+.status-light {
+  display: inline-block; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--tt-text-muted);
+  box-shadow: 0 0 0 0 rgba(0,0,0,0); transition: all 0.3s;
+}
+.status-light--connected { background: var(--tt-success); box-shadow: 0 0 6px var(--tt-success); animation: pulse-light 2s infinite; }
+.status-light--connecting { background: var(--tt-warning); animation: pulse-light 0.8s infinite; }
+.status-light--error { background: var(--tt-danger); }
+.status-light--disconnected { background: var(--tt-text-muted); }
+@keyframes pulse-light {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.msg-counter { color: var(--tt-text-muted); font-size: 11px; font-weight: normal; }
+.messages-actions { display: flex; gap: 4px; }
+.btn--sm { padding: 4px 10px; font-size: 11px; }
+/* JSON 格式化消息样式 */
+.message-text-json {
+  font-family: var(--tt-font-mono); font-size: 12px;
+  white-space: pre-wrap; word-break: break-all;
+}
+.message-text-json .json-key { color: var(--tt-primary); }
+.message-text-json .json-string { color: var(--tt-success); }
+.message-text-json .json-number { color: var(--tt-warning); }
+.message-text-json .json-bool { color: var(--tt-danger); }
+.message-text-json .json-null { color: var(--tt-text-muted); }
+.message-item--received .message-text-json { background: var(--tt-bg); padding: 6px 8px; border-radius: 4px; margin-top: 2px; }
+.message-actions { display: flex; gap: 4px; margin-top: 4px; }
+.message-action-btn {
+  background: transparent; border: none; cursor: pointer;
+  font-size: 10px; padding: 1px 6px; color: var(--tt-text-muted);
+  border-radius: 3px;
+}
+.message-action-btn:hover { color: var(--tt-primary); background: var(--tt-bg-active); }
+.template-section {
+  padding: 8px 0; border-bottom: 1px solid var(--tt-border);
+}
+.template-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; font-size: 13px; color: var(--tt-text-secondary);
+}
+.template-list {
+  display: flex; gap: 6px; flex-wrap: wrap; padding: 6px 0; max-height: 60px; overflow-y: auto;
+}
+.template-empty { font-size: 12px; color: var(--tt-text-muted); }
+.template-item {
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 8px; font-size: 12px;
+  border: 1px solid var(--tt-border); border-radius: 4px;
+  background: var(--tt-bg-secondary);
+}
+.template-name { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.template-use, .template-del {
+  border: none; background: none; cursor: pointer; font-size: 12px; padding: 0 2px;
+  color: var(--tt-text-secondary);
+}
+.template-use:hover { color: var(--tt-primary); }
+.template-del:hover { color: var(--tt-danger); }
+.btn--secondary { background: var(--tt-bg-secondary); color: var(--tt-text-secondary); border: 1px solid var(--tt-border); }
+.message-item--system { background: var(--tt-warning-bg); color: var(--tt-warning-text); font-style: italic; font-size: 12px; }
+.messages-section {
+  flex: 1; display: flex; flex-direction: column;
+  margin: 16px 0; border: 1px solid var(--tt-border); border-radius: 8px;
+  overflow: hidden;
+}
+.messages-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; background: var(--tt-bg-secondary); border-bottom: 1px solid var(--tt-border);
+}
+.messages-list {
+  flex: 1; overflow: auto; padding: 12px;
+}
+.message-item {
+  padding: 8px 12px; margin-bottom: 8px;
+  border-radius: 6px; font-size: 13px;
+}
+.message-item--sent { background: var(--tt-info-bg); color: var(--tt-info-text); margin-left: 20%; }
+.message-item--received { background: var(--tt-bg-tertiary); margin-right: 20%; }
+.message-time { font-size: 10px; color: var(--tt-text-muted); margin-bottom: 4px; }
+.send-section {
+  display: flex; gap: 8px;
+}
+.message-input {
+  flex: 1; height: 80px; padding: 12px;
+  font-size: 14px;
+  background: var(--tt-input-bg);
+  color: var(--tt-text);
+  border: 1px solid var(--tt-input-border);
+  border-radius: 6px; resize: none;
+  outline: none;
+}
+.message-input:focus { border-color: var(--tt-primary); }
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px; background: var(--tt-toast-bg); color: var(--tt-toast-text);
+  border-radius: 8px; opacity: 0; transition: all 0.3s; z-index: 1000;
+}
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.tool-disclaimer{margin-top:16px;padding:10px 14px;background:var(--tt-bg-secondary);border-left:3px solid var(--tt-warning);border-radius:4px;font-size:12px;color:var(--tt-text-secondary,#666);line-height:1.6}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>JWT解码</title><link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-decode">🔍 解码</button>
+      <button class="btn btn--secondary" id="btn-copy-header">📋 复制Header</button>
+      <button class="btn btn--secondary" id="btn-copy-payload">📋 复制Payload</button>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--icon" id="btn-copy" title="复制结果">📋</button>
+      <button class="btn btn--icon" id="btn-clear" title="清空">🗑️</button>
+    </div>
+  </div>
+  <div class="tool-main">
+    <div class="panel panel--input">
+      <div class="panel-header"><span class="panel-title">📥 JWT Token</span><button class="btn btn--text" id="btn-paste">📋 粘贴</button></div>
+      <div class="panel-body"><textarea class="code-editor" id="input-area" placeholder="粘贴JWT Token (header.payload.signature)..." spellcheck="false"></textarea></div>
+      <div class="panel-footer"><span id="input-status">0 字符</span></div>
+    </div>
+    <div class="panel panel--output">
+      <div class="panel-header"><span class="panel-title">📤 解码结果</span></div>
+      <div class="panel-body scroll-body" id="output-area">
+        <div class="jwt-empty">请输入JWT Token进行解码</div>
+      </div>
+      <div class="panel-footer"><span id="output-status">等待输入</span></div>
+    </div>
+  </div>
+  <div class="validation-bar" id="validation-bar"><span class="validation-icon" id="validation-icon">⏳</span><span class="validation-text" id="validation-text">等待输入...</span></div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习和调试 JWT 工作原理，请勿用于伪造他人身份令牌或绕过授权验证。</div>
+</div>
+<div class="error-toast" id="error-toast"><span class="error-icon">❌</span><span class="error-message" id="error-message"></span><button class="error-close" id="error-close">✕</button>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

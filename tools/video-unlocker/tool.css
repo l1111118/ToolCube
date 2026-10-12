@@ -1,0 +1,84 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:14px;color:var(--tt-text);background:var(--tt-bg-tertiary);height:100%;overflow:hidden}
+.tool-container{display:flex;flex-direction:column;height:100%;background:var(--tt-bg)}
+.tool-toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0;flex-wrap:wrap;gap:6px}
+.toolbar-group{display:flex;align-items:center;gap:6px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;font-size:12px;font-weight:500;border:none;border-radius:6px;cursor:pointer;transition:all .15s}
+.btn--sm{padding:6px 10px;font-size:11px}
+.btn:hover{transform:translateY(-1px)}
+.btn--primary{background:var(--tt-primary);color:var(--tt-primary-on);border:none}
+.btn--primary:hover{background:var(--tt-primary-hover)}
+.btn--secondary{background:var(--tt-bg-secondary);color:var(--tt-text);border:1px solid var(--tt-border)}
+.btn--secondary:hover{background:var(--tt-bg-tertiary)}
+input[type=text],input[type=number]{padding:6px 10px;font-size:13px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);color:var(--tt-text);outline:none}
+input:focus{border-color:var(--tt-primary)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:3px}
+
+.vu-content{flex:1;overflow-y:auto;padding:16px}
+.vu-section{margin-bottom:16px;padding:14px;background:var(--tt-bg-secondary);border-radius:10px}
+.vu-section-title{font-size:12px;font-weight:600;color:var(--tt-text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--tt-border)}
+
+/* 寮€鍏宠 */
+.vu-switch-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.vu-switch-row+.vu-switch-row{border-top:1px solid var(--tt-border)}
+.vu-switch-label{flex:1}
+.vu-switch-title{font-size:13px;font-weight:600;display:block}
+.vu-switch-desc{font-size:11px;color:var(--tt-text-muted);margin-top:2px}
+
+/* 寮€鍏虫牱寮?*/
+.vu-toggle{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
+.vu-toggle input{opacity:0;width:0;height:0}
+.vu-toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--tt-border);border-radius:24px;transition:.2s}
+.vu-toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:var(--tt-bg);border-radius:50%;transition:.2s}
+.vu-toggle input:checked+.vu-toggle-slider{background:var(--tt-primary)}
+.vu-toggle input:checked+.vu-toggle-slider::before{transform:translateX(20px)}
+
+/* 鍙傛暟琛?*/
+.vu-param-row{margin-bottom:12px}
+.vu-param-row:last-child{margin-bottom:0}
+.vu-param-label{font-size:12px;font-weight:600;margin-bottom:4px}
+.vu-param-input-group{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.vu-param-value{font-size:13px;font-weight:600;color:var(--tt-primary);min-width:40px;text-align:right}
+.vu-param-unit{font-size:12px;color:var(--tt-text-muted)}
+.vu-param-desc{font-size:11px;color:var(--tt-text-muted);margin-top:2px}
+.vu-input{flex:1;max-width:120px}
+.vu-slider{flex:1;height:6px;-webkit-appearance:none;appearance:none;background:var(--tt-border);border-radius:3px;outline:none;cursor:pointer}
+.vu-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--tt-primary);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.2);transition:transform .15s}
+.vu-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.vu-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--tt-primary);cursor:pointer;border:none;box-shadow:0 1px 4px rgba(0,0,0,0.2);transition:transform .15s}
+.vu-slider::-moz-range-thumb:hover{transform:scale(1.2)}
+
+/* 寰界珷 */
+.vu-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;font-size:11px;font-weight:600;border-radius:12px;background:var(--tt-bg);border:1px solid var(--tt-border)}
+.vu-badge.active{color:#22c55e;border-color:#22c55e40}
+.vu-badge.inactive{color:#ef4444;border-color:#ef444440}
+
+/* 瑙嗛鍒楄〃 */
+.vu-video-list{margin-top:8px;min-height:40px}
+.vu-info{text-align:center;color:var(--tt-text-muted);font-size:13px;line-height:1.6;padding:12px}
+.vu-video-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--tt-bg);border-radius:8px;margin-bottom:6px;font-size:12px}
+.vu-video-item .vu-vid-time{font-weight:700;color:var(--tt-primary);min-width:60px;font-variant-numeric:tabular-nums}
+.vu-video-item .vu-vid-fake{color:#22c55e;font-size:11px;min-width:60px}
+.vu-video-item .vu-vid-dur{color:var(--tt-text-muted);font-size:11px}
+.vu-video-item .vu-vid-src{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--tt-text-muted);font-size:11px}
+.vu-video-item .vu-vid-status{font-size:11px;padding:2px 6px;border-radius:4px;background:var(--tt-bg-secondary)}
+.vu-video-item .vu-vid-status.playing{color:#22c55e}
+.vu-video-item .vu-vid-status.paused{color:#f59e0b}
+
+/* 鎻愮ず */
+.vu-tips{margin-top:16px;padding:14px;background:var(--tt-bg-secondary);border-radius:10px;font-size:12px;color:var(--tt-text-secondary);line-height:1.6}
+.vu-tips p{margin-bottom:4px}
+.vu-tips .vu-warning{color:#f59e0b;margin-top:8px;font-weight:500}
+
+/* 下载链接列表 */
+.vu-download-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--tt-bg);border-radius:8px;margin-bottom:6px;font-size:11px;flex-wrap:wrap}
+.vu-download-item .vu-dl-type{padding:2px 6px;border-radius:4px;font-weight:600;font-size:10px;flex-shrink:0}
+.vu-download-item .vu-dl-type.video{background:rgba(76,175,80,.15);color:#4caf50}
+.vu-download-item .vu-dl-type.audio{background:rgba(33,150,243,.15);color:#2196f3}
+.vu-download-item .vu-dl-info{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--tt-text-muted)}
+.vu-download-item .vu-dl-url{width:100%;padding:4px 8px;background:var(--tt-bg-secondary);border:1px solid var(--tt-border);border-radius:4px;font-size:10px;color:var(--tt-text-secondary);word-break:break-all;white-space:normal;max-height:60px;overflow-y:auto}
+.vu-download-item .vu-dl-res{font-size:10px;color:var(--tt-text-muted);white-space:nowrap}
+
+/* 鍏嶈矗澹版槑 */
+.tool-disclaimer{margin:12px 16px;padding:10px 14px;background:var(--tt-bg-secondary);border-left:3px solid var(--tt-warning);border-radius:4px;font-size:12px;color:var(--tt-text-secondary,#666);line-height:1.6}

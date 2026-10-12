@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP查询</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><input type="text" class="ip-input" id="ip-input" placeholder="输入IP地址（留空查询本机IP）..."><label class="batch-label"><input type="checkbox" id="batch-mode"> 批量</label><button class="btn btn--primary" id="btn-lookup">🔍 查询</button><button class="btn btn--secondary" id="btn-my-ip">🌐 查询我的IP</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--secondary" id="btn-export-json">📦 导出JSON</button><button class="btn btn--secondary" id="btn-export-csv">📊 导出CSV</button><button class="btn btn--secondary" id="btn-copy">📋 复制结果</button>
+        </div>
+      </div>
+      <textarea class="batch-area" id="batch-area" placeholder="每行一个IP地址，或用逗号分隔..." style="display:none"></textarea>
+      <div class="tool-main">
+        <div class="panel">
+          <div class="panel-header"><span>📊 查询结果</span>
+          </div>
+          <div class="panel-body scroll-body" id="result-area">
+            <div class="info-placeholder">输入IP地址点击查询，或留空查询当前网络信息</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span>📜 查询历史</span>
+          </div>
+          <div class="panel-body scroll-body" id="ip-history">
+            <div class="history-empty">暂无查询历史</div>
+          </div>
+        </div>
+      </div>
+      <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途或未授权追踪他人。</div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

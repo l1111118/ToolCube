@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL编解码</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="converter-layout">
+      <div class="converter-panel">
+        <div class="panel-header">
+          <span class="panel-title">输入</span>
+          <button class="btn btn--text" id="btn-paste">📋 粘贴</button>
+        </div>
+        <textarea class="converter-input" id="input-area" placeholder="输入要编码或解码的文本..."></textarea>
+      </div>
+      
+      <div class="converter-actions">
+        <button class="btn btn--primary" id="btn-encode">🔒 编码</button>
+        <button class="btn btn--secondary" id="btn-decode">🔓 解码</button>
+        <button class="btn btn--icon" id="btn-swap">⇄</button>
+      </div>
+      
+      <div class="converter-panel">
+        <div class="panel-header">
+          <span class="panel-title">输出</span>
+          <button class="btn btn--text" id="btn-copy">📋 复制</button>
+        </div>
+        <textarea class="converter-input converter-input--output" id="output-area" readonly></textarea>
+      </div>
+    </div>
+    
+    <div class="options-section">
+      <label class="checkbox-label">
+        <input type="checkbox" id="encode-all"> 编码所有字符（包括字母数字）
+      </label>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

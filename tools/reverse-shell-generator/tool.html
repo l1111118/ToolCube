@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>反向Shell生成器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+
+    <div class="warning-banner">
+      <span class="warning-icon">&#9888;&#65039;</span>
+      <span>仅供授权安全测试使用，未经授权的使用可能违反法律</span>
+    </div>
+
+    <div class="input-section">
+      <div class="input-row">
+        <div class="input-group">
+          <label class="input-label" for="lhost-input">LHOST (攻击机IP)</label>
+          <input type="text" id="lhost-input" class="rs-input" placeholder="10.10.14.1">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="lport-input">LPORT (监听端口)</label>
+          <input type="number" id="lport-input" class="rs-input rs-input--port" placeholder="4444" value="4444" min="1" max="65535">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="encoding-select">编码方式</label>
+          <select id="encoding-select" class="rs-input">
+            <option value="none">无编码</option>
+            <option value="base64">Base64</option>
+            <option value="url">URL编码</option>
+            <option value="hex">Hex编码</option>
+            <option value="xor">XOR (0x42)</option>
+          </select>
+        </div>
+      </div>
+      <!-- 快速IP/端口预设 -->
+      <div class="quick-presets" id="quick-presets">
+        <span class="preset-label">快速设置:</span>
+        <button class="preset-btn" data-lhost="127.0.0.1" data-lport="4444">本机 127.0.0.1:4444</button>
+        <button class="preset-btn" data-lhost="10.0.0.1" data-lport="4444">10.0.0.1:4444</button>
+        <button class="preset-btn" data-lhost="192.168.1.1" data-lport="4444">192.168.1.1:4444</button>
+        <button class="preset-btn" data-lhost="10.10.14.1" data-lport="4444">10.10.14.1:4444</button>
+        <button class="preset-btn" data-lhost="" data-lport="8080">端口 8080</button>
+        <button class="preset-btn" data-lhost="" data-lport="53">端口 53 (DNS)</button>
+        <button class="preset-btn" data-lhost="" data-lport="443">端口 443 (HTTPS)</button>
+      </div>
+    </div>
+
+    <div class="shell-tabs-section">
+      <div class="shell-tabs" id="shell-tabs"></div>
+      <button class="btn btn--primary" id="btn-generate-all">&#128196; 全部生成</button>
+    </div>
+
+    <div class="output-section" id="output-section">
+      <div class="single-output" id="single-output">
+        <div class="output-header">
+          <span class="output-title" id="output-title">Bash</span>
+          <button class="btn btn--copy" id="btn-copy" title="复制命令">&#128203; 复制</button>
+          <button class="btn btn--copy" id="btn-copy-b64" title="复制 Base64 编码后的命令">&#128203; 复制Base64</button>
+        </div>
+        <pre class="output-code" id="output-code"></pre>
+      </div>
+      <div class="all-output" id="all-output" style="display:none"></div>
+    </div>
+
+    <div class="output-section" id="listener-section">
+      <div class="output-header">
+        <span class="output-title">🎧 监听命令</span>
+      </div>
+      <div id="listener-output"></div>
+    </div>
+
+    <div class="output-section" id="msf-section">
+      <div class="output-header">
+        <span class="output-title">🛠️ MSFVenom 命令</span>
+      </div>
+      <div id="msf-output"></div>
+    </div>
+
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

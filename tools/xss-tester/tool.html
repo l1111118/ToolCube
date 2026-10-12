@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XSS测试器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="warning-banner">
+      ⚠️ <strong>仅供授权安全测试使用</strong> — 未经授权对他人系统进行XSS测试属于违法行为，使用本工具造成的后果由使用者自行承担。
+    </div>
+
+    <div class="payload-section">
+      <div class="section-header">
+        <h3>XSS Payload库</h3>
+        <button class="btn btn--secondary" id="btn-random-xss">🎲 生成随机XSS</button>
+      </div>
+      <div class="category-tabs" id="category-tabs">
+        <button class="category-tab active" data-cat="basic">基础XSS</button>
+        <button class="category-tab" data-cat="event">事件处理器</button>
+        <button class="category-tab" data-cat="tag">标签绕过</button>
+        <button class="category-tab" data-cat="encode">编码绕过</button>
+        <button class="category-tab" data-cat="filter">过滤绕过</button>
+        <button class="category-tab" data-cat="waf">WAF绕过</button>
+        <button class="category-tab" data-cat="context">上下文感知</button>
+        <button class="category-tab" data-cat="dom">DOM XSS</button>
+        <button class="category-tab" data-cat="stored">存储型XSS</button>
+        <button class="category-tab" data-cat="reflected">反射型XSS</button>
+      </div>
+      <div class="payload-list" id="payload-list"></div>
+    </div>
+
+    <div class="custom-section">
+      <h3>自定义Payload</h3>
+      <textarea class="payload-input" id="custom-payload" placeholder="输入自定义XSS payload..."></textarea>
+      <div class="encode-options">
+        <label class="encode-label">编码方式：</label>
+        <select id="encode-select">
+          <option value="none">不编码</option>
+          <option value="html">HTML实体编码</option>
+          <option value="unicode">Unicode编码</option>
+          <option value="hex">Hex编码</option>
+          <option value="base64">Base64编码</option>
+          <option value="url">URL编码</option>
+        </select>
+        <button class="btn btn--secondary" id="btn-encode">编码</button>
+        <button class="btn btn--secondary" id="btn-copy-custom">📋 复制</button>
+      </div>
+      <div class="encoded-result" id="encoded-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h3>反射型 XSS 检测</h3>
+      <div class="test-row">
+        <input type="url" class="target-input" id="target-url" placeholder="https://example.com/search?q=">
+        <button class="btn btn--primary" id="btn-test-current">🔍 检测反射</button>
+      </div>
+      <div id="xss-test-result" style="margin-top:10px"></div>
+    </div>
+
+    <div class="analysis-section" style="margin-top:16px">
+      <h3>安全分析</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <button class="btn btn--secondary" id="btn-detect-context">🎯 上下文检测</button>
+        <button class="btn btn--secondary" id="btn-check-csp">🛡️ CSP绕过检测</button>
+        <button class="btn btn--secondary" id="btn-check-filter">🔥 WAF过滤检测</button>
+      </div>
+      <div id="context-result" style="margin-bottom:8px"></div>
+      <div id="csp-result" style="margin-bottom:8px"></div>
+      <div id="filter-result" style="margin-bottom:8px"></div>
+    </div>
+
+    <div class="cheatsheet-section">
+      <h3 class="cheatsheet-toggle" id="cheatsheet-toggle">📖 XSS速查参考 ▾</h3>
+      <div class="cheatsheet-content" id="cheatsheet-content">
+        <div class="cheat-item"><strong>注入点探测：</strong>在输入框输入 <code>"&gt;&lt;&gt;'</code> 检查是否被反射</div>
+        <div class="cheat-item"><strong>HTML上下文：</strong>尝试闭合标签 <code>&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></div>
+        <div class="cheat-item"><strong>属性上下文：</strong>尝试闭合属性 <code>" onfocus="alert(1)" autofocus="</code></div>
+        <div class="cheat-item"><strong>JS上下文：</strong>尝试闭合脚本 <code>';alert(1);//</code></div>
+        <div class="cheat-item"><strong>事件处理器：</strong><code>onerror, onload, onmouseover, onfocus, onclick</code> 等</div>
+        <div class="cheat-item"><strong>伪协议：</strong><code>javascript:alert(1)</code> 可用于 href 等属性</div>
+        <div class="cheat-item"><strong>DOM XSS：</strong>关注 <code>location.hash, document.write, innerHTML, eval</code></div>
+        <div class="cheat-item"><strong>过滤绕过：</strong>大小写混合、双写、编码、空字节插入</div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究和授权安全测试，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

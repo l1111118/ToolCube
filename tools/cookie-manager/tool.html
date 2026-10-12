@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Cookie 管理</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="cm-container">
+  <div class="cm-toolbar">
+    <button class="btn btn--primary" id="btn-load">🔄 加载 Cookie</button>
+    <input type="text" class="cm-input" id="cm-domain" placeholder="域名 (例如 .example.com 留空=全部)">
+    <input type="text" class="cm-input" id="cm-search" placeholder="🔍 搜索 cookie 名/值">
+    <button class="btn btn--secondary" id="btn-filter-all">📑 全部</button>
+    <button class="btn btn--secondary" id="btn-filter-session">⏱️ 会话</button>
+    <button class="btn btn--secondary" id="btn-filter-persistent">💾 持久</button>
+    <button class="btn btn--danger" id="btn-delete-domain">🗑️ 删除该域</button>
+    <button class="btn btn--secondary" id="btn-select-all">☑ 全选</button>
+    <button class="btn btn--danger" id="btn-delete-selected">🗑️ 批量删除</button>
+    <button class="btn btn--secondary" id="btn-export-cookies">📤 导出</button>
+    <button class="btn btn--secondary" id="btn-import-cookies">📥 导入</button>
+    <input type="file" id="cm-file" accept="application/json" style="display:none">
+  </div>
+  <div class="cm-stats" id="cm-stats">点击"加载 Cookie"开始</div>
+  <div class="cm-add">
+    <input type="text" id="cm-add-name" placeholder="name">
+    <input type="text" id="cm-add-value" placeholder="value">
+    <input type="text" id="cm-add-domain" placeholder="domain">
+    <input type="text" id="cm-add-path" placeholder="path" value="/">
+    <label><input type="checkbox" id="cm-add-secure"> Secure</label>
+    <label><input type="checkbox" id="cm-add-httponly"> HttpOnly</label>
+    <select id="cm-add-samesite">
+      <option value="">默认</option>
+      <option value="no_restriction">None</option>
+      <option value="lax">Lax</option>
+      <option value="strict">Strict</option>
+    </select>
+    <button class="btn btn--primary" id="btn-add">+ 添加</button>
+  </div>
+  <div class="cm-list" id="cm-list">
+    <div class="cm-empty">🍪 暂无 cookie</div>
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

@@ -1,0 +1,62 @@
+﻿/**
+ * 杩涘埗杞崲鍣ㄦ牱寮?
+ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family:var(--tt-font);
+  font-size: 14px; color: var(--tt-text); background: var(--tt-bg-tertiary);
+  height: 100%; overflow: hidden;
+}
+.tool-container {
+  display: flex; flex-direction: column;
+  height: 100%; background: var(--tt-bg); padding: 20px;
+  overflow: auto;
+}
+.converter-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  flex: 1;
+}
+.base-item {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.base-label {
+  font-size: 13px; font-weight: 600; color: var(--tt-text-secondary);
+}
+.base-input-row {
+  display: flex; gap: 8px;
+}
+.base-input {
+  flex: 1; padding: 14px;
+  font-family: var(--tt-font-mono); font-size: 16px;
+  border: 2px solid var(--tt-border); border-radius: 8px;
+  outline: none; transition: border-color 0.2s;
+}
+.base-input:focus {
+  border-color: var(--tt-primary);
+}
+.btn {
+  padding: 10px 20px; font-size: 13px;
+  border: none; border-radius: 6px; cursor: pointer;
+}
+.btn--icon {
+  width: 48px; height: 48px; padding: 0;
+  background: var(--tt-bg-secondary); border: 1px solid var(--tt-border);
+  font-size: 16px;
+}
+.btn--secondary {
+  background: var(--tt-muted-bg); color: var(--tt-text-secondary);
+  border: 1px solid var(--tt-border-strong);
+}
+.actions {
+  margin-top: 20px; text-align: center;
+}
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px; background: var(--tt-toast-bg); color: var(--tt-text-inverse);
+  border-radius: 8px; opacity: 0; transition: all 0.3s; z-index: 1000;
+}
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
+@media (max-width: 600px) {
+  .converter-grid { grid-template-columns: 1fr; }
+}

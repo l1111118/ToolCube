@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+html, body {
+  height: 100%;
+  overflow: hidden
+}
+.tool-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--tt-bg)
+}
+.tool-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--tt-bg-secondary);
+  border-bottom: 1px solid var(--tt-border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 6px
+}
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .15s
+}
+.btn:hover {
+  transform: translateY(-1px)
+}
+.btn--primary {
+  background: var(--tt-primary);
+  color: var(--tt-primary-on);
+  border: none
+}
+.btn--primary:hover {
+  background: var(--tt-primary-hover)
+}
+.btn--secondary {
+  background: var(--tt-muted-bg);
+  color: var(--tt-text-secondary);
+  border: 1px solid var(--tt-border-strong)
+}
+.btn--secondary:hover {
+  background: var(--tt-muted-border)
+}
+.btn--icon {
+  background: 0 0;
+  color: var(--tt-text-secondary);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  justify-content: center
+}
+.btn--icon:hover {
+  background: var(--tt-muted-bg)
+}
+input[type=text],input[type=number] {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid var(--tt-border);
+  border-radius: 6px;
+  background: var(--tt-bg);
+  color: var(--tt-text);
+  outline: none
+}
+input:focus {
+  border-color: var(--tt-primary)
+}
+::-webkit-scrollbar {
+  width: 5px
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tt-border-strong);
+  border-radius: 3px
+}
+.select {
+  padding: 6px 12px;
+  font-size: 12px;
+  border: 1px solid var(--tt-border-strong);
+  border-radius: 6px;
+  background: var(--tt-bg);
+  color: var(--tt-text);
+  cursor: pointer
+}
+
+.calc-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px
+}
+.calc-display {
+  background: var(--tt-bg-secondary);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  text-align: right;
+  font-family: var(--tt-font-mono);
+  font-size: 28px;
+  color: var(--tt-text);
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  word-break: break-all
+}
+.calc-display-prev {
+  font-size: 14px;
+  color: var(--tt-text-muted);
+  min-height: 20px;
+  text-align: right;
+  margin-bottom: 4px
+}
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 6px;
+  flex: 1
+}
+.calc-btn {
+  padding: 16px 0;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .1s;
+  background: var(--tt-bg);
+  color: var(--tt-text);
+  border: 1px solid var(--tt-border)
+}
+.calc-btn:hover {
+  background: var(--tt-bg-secondary)
+}
+.calc-btn:active {
+  transform: scale(.95)
+}
+.calc-btn--op {
+  background: var(--tt-primary);
+  color: #fff;
+  border-color: var(--tt-primary)
+}
+.calc-btn--op:hover {
+  background: var(--tt-primary-hover)
+}
+.calc-btn--eq {
+  background: #4caf50;
+  color: #fff;
+  border-color: var(--tt-success)
+}
+.calc-btn--eq:hover {
+  background: #43a047
+}
+.calc-btn--fn {
+  background: var(--tt-bg-secondary);
+  color: var(--tt-text-secondary)
+}
+
+/* 科学计算面板：独立网格，不参与基础键盘区的 flex 伸展 */
+.calc-sci {
+  margin-bottom: 8px
+}
+
+.calc-grid--sci {
+  grid-template-columns: repeat(4,1fr);
+  gap: 6px;
+  flex: none
+}
+
+.calc-grid--sci .calc-btn {
+  padding: 10px 0;
+  font-size: 13px
+}
+
+.calc-body .calc-grid:not(.calc-grid--sci) {
+  flex: 1
+}

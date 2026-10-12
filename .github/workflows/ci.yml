@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: 校验与测试
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      # 扩展本身零运行时依赖；这里安装的只是开发期工具（web-ext）
+      - name: 安装开发依赖
+        run: npm ci
+
+      - name: 语法校验与单元测试
+        run: npm test
+
+      - name: AMO 官方校验
+        run: npm run lint
+
+      - name: 打包扩展
+        run: npm run build
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: toolbox-zip
+          path: web-ext-artifacts/*.zip
+          if-no-files-found: error
+          retention-days: 14

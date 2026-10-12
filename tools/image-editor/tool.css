@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+html, body {
+  font-family: var(--tt-font);
+  font-size: 14px;
+  color: var(--tt-text);
+  background: var(--tt-bg-tertiary);
+  height: 100%;
+  overflow: hidden
+}
+
+.tool-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--tt-bg)
+}
+
+.tool-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--tt-bg-secondary);
+  border-bottom: 1px solid var(--tt-border);
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--tt-border);
+  margin: 0 2px
+}
+
+.btn {
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px
+}
+
+.btn--primary {
+  background: var(--tt-primary);
+  color: var(--tt-primary-on);
+  border: none
+}
+
+.btn--secondary {
+  background: var(--tt-bg-secondary);
+  color: var(--tt-text);
+  border: 1px solid var(--tt-border)
+}
+
+.btn:hover {
+  transform: translateY(-1px)
+}
+
+label.btn {
+  cursor: pointer
+}
+
+input[type=file] {
+  display: none
+}
+
+.ie-canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background: var(--tt-bg-tertiary);
+  background-image: linear-gradient(45deg,var(--tt-border) 25%,transparent 25%,transparent 75%,var(--tt-border) 75%,var(--tt-border)),linear-gradient(45deg,var(--tt-border) 25%,transparent 25%,transparent 75%,var(--tt-border) 75%,var(--tt-border));
+  background-size: 16px 16px;
+  background-position: 0 0,8px 8px
+}
+
+#ie-canvas {
+  max-width: 100%;
+  max-height: 100%
+}
+
+.ie-placeholder {
+  text-align: center;
+  color: var(--tt-text-muted);
+  font-size: 16px;
+  line-height: 1.6
+}
+
+.ie-filters {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--tt-bg-secondary);
+  border-top: 1px solid var(--tt-border);
+  overflow-x: auto;
+  flex-shrink: 0
+}
+
+.filter-btn {
+  padding: 5px 10px;
+  font-size: 11px;
+  border: 1px solid var(--tt-border);
+  border-radius: 16px;
+  background: var(--tt-bg);
+  color: var(--tt-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s
+}
+
+.filter-btn:hover {
+  border-color: var(--tt-primary);
+  color: var(--tt-primary)
+}
+
+.filter-btn.active {
+  border-color: var(--tt-primary);
+  background: rgba(var(--tt-primary-rgb), .1);
+  color: var(--tt-primary)
+}
+
+.ie-info {
+  padding: 6px 12px;
+  font-size: 11px;
+  color: var(--tt-text-muted);
+  background: var(--tt-bg-secondary);
+  border-top: 1px solid var(--tt-border);
+  text-align: center;
+  flex-shrink: 0
+}

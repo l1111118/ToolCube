@@ -1,0 +1,166 @@
+﻿* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: var(--tt-font);
+  font-size: 14px; color: var(--tt-text); background: var(--tt-bg-tertiary);
+  height: 100%; overflow: hidden;
+}
+.tool-container {
+  display: flex; flex-direction: column;
+  height: 100%; background: var(--tt-bg);
+}
+.tool-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px; background: var(--tt-bg-secondary);
+  border-bottom: 1px solid var(--tt-border); flex-wrap: wrap; gap: 8px;
+}
+.toolbar-group {
+  display: flex; align-items: center; gap: 8px; flex: 1;
+}
+.url-input {
+  flex: 1; padding: 8px 12px; font-size: 13px;
+  border: 1px solid var(--tt-border); border-radius: 6px; outline: none;
+  background: var(--tt-bg); color: var(--tt-text);
+}
+.url-input:focus { border-color: var(--tt-primary); }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; font-size: 13px; font-weight: 500;
+  border: none; border-radius: 6px; cursor: pointer; transition: all .2s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn--primary { background: var(--tt-primary); color: var(--tt-text-inverse); }
+.btn--primary:hover { background: var(--tt-primary-hover); }
+.btn--secondary { background: var(--tt-bg-secondary); color: var(--tt-text); border: 1px solid var(--tt-border); }
+.tool-main {
+  flex: 1; overflow-y: auto; padding: 16px;
+}
+.placeholder {
+  text-align: center; padding: 40px 20px;
+  color: var(--tt-text-secondary); font-size: 14px; line-height: 1.6;
+}
+
+/* Score card */
+.score-card {
+  background: var(--tt-bg-secondary); border-radius: 10px;
+  padding: 20px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 24px;
+}
+.score-grade {
+  font-size: 48px; font-weight: 700; line-height: 1;
+  min-width: 60px; text-align: center;
+}
+.score-grade.grade-a { color: #4caf50; }
+.score-grade.grade-b { color: #8bc34a; }
+.score-grade.grade-c { color: #ff9800; }
+.score-grade.grade-d { color: #ff5722; }
+.score-grade.grade-f { color: #f44336; }
+.score-info { flex: 1; }
+.score-number { font-size: 24px; font-weight: 600; }
+.score-label { font-size: 12px; color: var(--tt-text-secondary); margin-top: 4px; }
+.score-bar {
+  height: 8px; background: var(--tt-bg-tertiary); border-radius: 4px;
+  margin-top: 8px; overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%; border-radius: 4px; transition: width 0.5s ease;
+}
+.score-bar-fill.grade-a { background: #4caf50; }
+.score-bar-fill.grade-b { background: #8bc34a; }
+.score-bar-fill.grade-c { background: #ff9800; }
+.score-bar-fill.grade-d { background: #ff5722; }
+.score-bar-fill.grade-f { background: #f44336; }
+
+/* Summary row */
+.score-summary {
+  display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;
+}
+.summary-item {
+  font-size: 12px; padding: 2px 8px; border-radius: 10px;
+}
+.summary-item.good { background: rgba(76,175,80,.15); color: #4caf50; }
+.summary-item.warn { background: rgba(255,152,0,.15); color: #ff9800; }
+.summary-item.bad { background: rgba(244,67,54,.15); color: #f44336; }
+
+/* Header list */
+.header-card {
+  background: var(--tt-bg-secondary); border-radius: 10px;
+  padding: 14px; margin-bottom: 10px;
+  border-left: 4px solid var(--tt-border);
+}
+.header-card.status-good { border-left-color: #4caf50; }
+.header-card.status-warn { border-left-color: #ff9800; }
+.header-card.status-bad { border-left-color: #f44336; }
+.header-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.header-name {
+  font-size: 14px; font-weight: 600; font-family: var(--tt-font-mono);
+}
+.header-badge {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500;
+}
+.header-badge.good { background: rgba(76,175,80,.15); color: #4caf50; }
+.header-badge.warn { background: rgba(255,152,0,.15); color: #ff9800; }
+.header-badge.bad { background: rgba(244,67,54,.15); color: #f44336; }
+.header-value {
+  margin-top: 6px; font-size: 12px; font-family: var(--tt-font-mono);
+  color: var(--tt-text-secondary); word-break: break-all;
+  background: var(--tt-bg-tertiary); padding: 6px 10px; border-radius: 4px;
+}
+.header-desc {
+  margin-top: 6px; font-size: 12px; color: var(--tt-text-secondary); line-height: 1.5;
+}
+.header-recommend {
+  margin-top: 4px; font-size: 12px; color: var(--tt-text-secondary); line-height: 1.5;
+}
+.header-recommend strong { color: var(--tt-text); }
+
+/* Raw headers */
+.raw-section {
+  background: var(--tt-bg-secondary); border-radius: 10px;
+  padding: 14px; margin-top: 16px;
+}
+.raw-title {
+  font-size: 13px; font-weight: 600; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.raw-title:hover { color: var(--tt-primary); }
+.raw-body {
+  font-family: var(--tt-font-mono); font-size: 12px;
+  color: var(--tt-text-secondary); white-space: pre-wrap; word-break: break-all;
+  max-height: 300px; overflow-y: auto; background: var(--tt-bg-tertiary);
+  padding: 10px; border-radius: 6px; line-height: 1.6;
+}
+.raw-body.collapsed { display: none; }
+
+/* Loading */
+.loading {
+  text-align: center; padding: 40px 20px;
+  color: var(--tt-text-secondary); font-size: 14px;
+}
+
+/* CORS note */
+.cors-note {
+  background: rgba(255,152,0,.1); border: 1px solid rgba(255,152,0,.3);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;
+  font-size: 12px; color: var(--tt-text-secondary); line-height: 1.5;
+}
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px; background: var(--tt-toast-bg); color: var(--tt-text-inverse);
+  border-radius: 8px; opacity: 0; transition: all 0.3s; z-index: 1000;
+}
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+.tool-disclaimer {
+  margin-top: 16px; padding: 10px 14px;
+  background: var(--tt-bg-secondary);
+  border-left: 3px solid var(--tt-warning);
+  border-radius: 4px; font-size: 12px;
+  color: var(--tt-text-secondary, #666); line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--tt-border); border-radius: 3px; }

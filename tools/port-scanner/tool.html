@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>端口扫描</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="ps-header">🔌 端口扫描</div>
+    <div class="ps-input-row">
+      <input type="text" id="ps-host" placeholder="输入域名或IP地址" class="ps-input">
+      <button class="ps-btn" id="ps-scan">扫描</button>
+      <button class="ps-btn" id="ps-export">📋 导出</button>
+      <button class="ps-btn" id="ps-version-detect">🔍 版本检测</button>
+      <label class="ps-server-scan" title="通过外部服务从公网视角扫描，适用于浏览器无法直连的目标">
+        <input type="checkbox" id="ps-server-scan"> 服务端扫描
+      </label>
+    </div>
+    <div class="ps-presets">
+      <button class="ps-preset" data-ports="common">常用端口</button>
+      <button class="ps-preset" data-ports="web">Web服务</button>
+      <button class="ps-preset" data-ports="db">数据库</button>
+      <button class="ps-preset" data-ports="mail">邮件服务</button>
+      <button class="ps-preset" data-ports="remote">远程桌面</button>
+      <button class="ps-preset" data-ports="file">文件服务</button>
+      <button class="ps-preset" data-ports="all">全端口(慢)</button>
+    </div>
+    <div class="ps-note">⚠️ 浏览器无法直接探测端口，结果只能推断：<b>OPEN</b> = 有 HTTP(S) 服务响应；<b>FILTERED</b> = 超时（可能被防火墙丢弃）；<b>UNKNOWN</b> = 连接被拒绝，或端口开放但非 HTTP 服务 —— 浏览器无法区分这两者。结果仅供参考。</div>
+    <div class="ps-progress" id="ps-progress" style="display:none">
+      <div class="ps-progress-bar" id="ps-progress-bar"></div>
+      <span class="ps-progress-text" id="ps-progress-text">0%</span>
+    </div>
+    <div class="ps-results" id="ps-results">
+      <div class="ps-empty">输入目标后点击扫描</div>
+    </div>
+  </div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

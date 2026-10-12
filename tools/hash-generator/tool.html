@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈希生成器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="input-section">
+      <div class="section-header">
+        <span class="section-title">输入文本</span>
+        <div class="actions">
+          <button class="btn btn--text" id="btn-clear">清空</button>
+          <button class="btn btn--text" id="btn-file">📁 文件</button>
+        </div>
+      </div>
+      <textarea class="input-area" id="input-text" placeholder="输入要计算哈希的文本..."></textarea>
+      <input type="file" id="file-input" hidden>
+    </div>
+    
+    <div class="algorithm-section">
+      <span class="label">算法:</span>
+      <label class="radio-label"><input type="radio" name="algo" value="MD5" checked> MD5</label>
+      <label class="radio-label"><input type="radio" name="algo" value="SHA-1"> SHA-1</label>
+      <label class="radio-label"><input type="radio" name="algo" value="SHA-256"> SHA-256</label>
+      <label class="radio-label"><input type="radio" name="algo" value="SHA-512"> SHA-512</label>
+    </div>
+    
+    <button class="btn btn--primary btn--large" id="btn-calculate">🚀 计算哈希</button>
+    
+    <div class="results-section">
+      <div class="result-item">
+        <span class="result-label">大写:</span>
+        <div class="result-value-row">
+          <input type="text" class="result-input" id="result-upper" readonly>
+          <button class="btn btn--icon" data-target="result-upper">📋</button>
+        </div>
+      </div>
+      <div class="result-item">
+        <span class="result-label">小写:</span>
+        <div class="result-value-row">
+          <input type="text" class="result-input" id="result-lower" readonly>
+          <button class="btn btn--icon" data-target="result-lower">📋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

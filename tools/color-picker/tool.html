@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>屏幕取色器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <button class="btn btn--primary" id="btn-pick">🎯 屏幕取色</button>
+    <button class="btn btn--secondary" id="btn-palette">🌈 调色板</button>
+    <button class="btn btn--secondary" id="btn-random">🎲 随机色</button>
+  </div>
+  <div class="cp-image-picker" id="cp-image-picker" style="display:none;">
+    <div class="cp-dropzone" id="cp-dropzone">
+      <div class="cp-dropzone-hint">📷 拖放图片到这里 或 点击选择图片</div>
+      <input type="file" id="cp-image-file" accept="image/*" style="display:none">
+    </div>
+    <div class="cp-pick-tip" id="cp-pick-tip">👆 上传图片后点击任意位置取色（适用于 Firefox 等不支持屏幕取色的浏览器）</div>
+    <canvas id="cp-image-canvas" style="display:none;"></canvas>
+  </div>
+  <div class="cp-content">
+    <div class="cp-display">
+      <div class="cp-swatch" id="cp-swatch"></div>
+      <div class="cp-info" id="cp-info">
+        <div class="cp-format-group">
+          <label>HEX</label><input type="text" id="cp-hex" value="#5b7fff" readonly>
+          <button class="btn btn--secondary btn--sm" data-copy="cp-hex">📋</button>
+        </div>
+        <div class="cp-format-group">
+          <label>RGB</label><input type="text" id="cp-rgb" value="rgb(91,127,255)" readonly>
+          <button class="btn btn--secondary btn--sm" data-copy="cp-rgb">📋</button>
+        </div>
+        <div class="cp-format-group">
+          <label>HSL</label><input type="text" id="cp-hsl" value="hsl(210,60%,57%)" readonly>
+          <button class="btn btn--secondary btn--sm" data-copy="cp-hsl">📋</button>
+        </div>
+      </div>
+    </div>
+    <div class="cp-custom">
+      <label>手动输入颜色</label>
+      <input type="text" class="cp-input" id="cp-custom-input" placeholder="#5b7fff / rgb(91,127,255) / hsl(210,60%,57%)">
+      <button class="btn btn--primary btn--sm" id="btn-apply-custom">应用</button>
+    </div>
+    <div class="cp-history" id="cp-history">
+      <div class="cp-history-title">📜 取色历史</div>
+      <div class="cp-history-grid" id="cp-history-grid"></div>
+    </div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

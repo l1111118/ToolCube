@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML格式化</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><button class="btn btn--primary" id="btn-format">✨ 格式化</button><button class="btn btn--secondary" id="btn-minify">📦 压缩</button><button class="btn btn--secondary" id="btn-validate">🔍 验证</button>
+        </div>
+        <div class="toolbar-group"><select class="select" id="indent-select"><option value="2">缩进2空格</option><option value="4">缩进4空格</option><option value="tab">缩进Tab</option></select><button class="btn btn--icon" id="btn-swap">⇄</button><button class="btn btn--icon" id="btn-copy">📋</button><button class="btn btn--icon" id="btn-clear">🗑️</button>
+        </div>
+      </div>
+      <div class="tool-main">
+        <div class="panel">
+          <div class="panel-header"><span>📥 输入XML</span><button class="btn btn--text" id="btn-paste">📋粘贴</button>
+          </div>
+          <div class="panel-body">
+            <textarea class="code-editor" id="input-area" placeholder="输入XML代码..." spellcheck="false"></textarea>
+          </div>
+          <div class="panel-footer"><span id="input-status">0字符</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span>📤 输出</span>
+          </div>
+          <div class="panel-body">
+            <textarea class="code-editor code-editor--output" id="output-area" placeholder="格式化结果..." readonly></textarea>
+          </div>
+          <div class="panel-footer"><span id="output-status">等待输入</span>
+          </div>
+        </div>
+      </div>
+      <div class="validation-bar"><span id="validation-icon">⏳</span><span id="validation-text">等待输入...</span>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

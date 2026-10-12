@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron解析</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><input type="text" class="cron-input" id="cron-input" placeholder="输入Cron表达式，如: */5 * * * *" value="*/15 * * * *"><button class="btn btn--primary" id="btn-parse">🔍 解析</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--secondary" id="btn-preset">📋 常用预设</button><button class="btn btn--icon" id="btn-copy" title="复制结果">📋</button>
+        </div>
+      </div>
+      <div class="tool-main">
+        <div class="panel">
+          <div class="panel-header"><span>📊 解析结果</span>
+          </div>
+          <div class="panel-body scroll-body" id="result-area">
+            <div class="info-placeholder">输入Cron表达式并点击解析</div>
+          </div>
+        </div>
+      </div>
+      <div class="cron-presets" id="presets-panel" hidden style="padding:10px 16px;background:#f8f9fa;border-top:1px solid #e0e0e0">
+        <div style="display:flex;flex-wrap:wrap;gap:6px"><button class="preset-btn" data-cron="* * * * *">每分钟</button><button class="preset-btn" data-cron="*/5 * * * *">每5分钟</button><button class="preset-btn" data-cron="*/15 * * * *">每15分钟</button><button class="preset-btn" data-cron="0 * * * *">每小时</button><button class="preset-btn" data-cron="0 */2 * * *">每2小时</button><button class="preset-btn" data-cron="0 0 * * *">每天零点</button><button class="preset-btn" data-cron="0 0 * * 0">每周日零点</button><button class="preset-btn" data-cron="0 0 1 * *">每月1号零点</button>
+        </div>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

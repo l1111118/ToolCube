@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>汇率换算</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="cu-header">
+    <div class="cu-title">💱 汇率换算</div>
+    <div class="cu-updated" id="cu-updated">汇率数据仅供参考</div>
+    <button class="btn btn--secondary cu-refresh-btn" id="btn-refresh" title="刷新实时汇率">🔄 刷新汇率</button>
+  </div>
+  <div class="cu-content">
+    <div class="cu-input-group">
+      <input type="number" class="cu-input" id="cu-amount" value="1" min="0" step="any">
+      <select class="cu-select" id="cu-from"></select>
+    </div>
+    <div class="cu-swap">
+      <button class="btn btn--secondary" id="btn-swap">⇅ 互换</button>
+    </div>
+    <div class="cu-input-group">
+      <input type="number" class="cu-input cu-input--result" id="cu-result" readonly value="--">
+      <select class="cu-select" id="cu-to"></select>
+    </div>
+    <div class="cu-rate" id="cu-rate">1 USD = 7.25 CNY</div>
+  </div>
+  <div class="cu-favorites" id="cu-favorites">
+    <div class="cu-fav-title">⭐ 常用货币</div>
+    <div class="cu-fav-grid" id="cu-fav-grid"></div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

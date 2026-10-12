@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Tab 管理器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tm-container">
+  <div class="tm-toolbar">
+    <input type="text" class="tm-input" id="tm-search" placeholder="🔍 搜索 标题/URL (跨所有窗口)">
+    <button class="btn btn--primary" id="btn-refresh">🔄 刷新</button>
+    <label class="tm-check"><input type="checkbox" id="tm-current-window"> 仅当前窗口</label>
+    <label class="tm-check"><input type="checkbox" id="tm-dup-only"> 仅重复</label>
+    <button class="btn btn--secondary" id="btn-group">📁 分组</button>
+    <button class="btn btn--danger" id="btn-close-selected">✗ 关闭选中</button>
+    <button class="btn btn--danger" id="btn-close-dup">🗑 关闭重复</button>
+    <button class="btn btn--secondary" id="btn-close-others">⊘ 关闭其他</button>
+  </div>
+  <div class="tm-stats" id="tm-stats">⏳ 加载中...</div>
+  <div class="tm-list" id="tm-list"></div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

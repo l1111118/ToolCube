@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>图片编辑器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <label class="btn btn--primary">📁 打开图片<input type="file" id="file-input" accept="image/*" hidden></label>
+    <button class="btn btn--secondary" id="btn-download">💾 保存</button>
+    <div class="toolbar-divider"></div>
+    <button class="btn btn--secondary" id="btn-rotate-left">↺</button>
+    <button class="btn btn--secondary" id="btn-rotate-right">↻</button>
+    <button class="btn btn--secondary" id="btn-flip-h">↔ 翻转</button>
+    <button class="btn btn--secondary" id="btn-flip-v">↕ 翻转</button>
+    <button class="btn btn--secondary" id="btn-crop">✂️ 裁剪</button>
+    <button class="btn btn--secondary" id="btn-reset-img">↩ 重置</button>
+  </div>
+  <div class="ie-crop-bar" id="ie-crop-bar" style="display:none">
+    <span style="font-size:12px;color:var(--tt-text-secondary)">拖拽选择裁剪区域</span>
+    <button class="btn btn--primary btn--sm" id="btn-crop-apply">✅ 应用裁剪</button>
+    <button class="btn btn--secondary btn--sm" id="btn-crop-cancel">取消</button>
+  </div>
+  <div class="ie-canvas-wrap">
+    <canvas id="ie-canvas"></canvas>
+    <div class="ie-placeholder" id="ie-placeholder">🖼️<br>点击上方"打开图片"选择图片</div>
+  </div>
+  <div class="ie-filters" id="ie-filters">
+    <button class="filter-btn" data-filter="none">原始</button>
+    <button class="filter-btn" data-filter="grayscale">黑白</button>
+    <button class="filter-btn" data-filter="sepia">复古</button>
+    <button class="filter-btn" data-filter="invert">反相</button>
+    <button class="filter-btn" data-filter="blur">模糊</button>
+    <button class="filter-btn" data-filter="brightness">增亮</button>
+    <button class="filter-btn" data-filter="contrast">高对比</button>
+  </div>
+  <div class="ie-info" id="ie-info"></div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

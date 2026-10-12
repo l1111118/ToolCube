@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网络分析器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <button class="btn btn--primary" id="btn-analyze">🔍 分析当前页面</button>
+      <div class="toolbar-filters">
+        <select id="filter-type">
+          <option value="all">全部类型</option>
+          <option value="document">Document</option>
+          <option value="script">Script</option>
+          <option value="stylesheet">Stylesheet</option>
+          <option value="image">Image</option>
+          <option value="font">Font</option>
+          <option value="xmlhttprequest">XHR</option>
+          <option value="other">Other</option>
+        </select>
+        <select id="sort-by">
+          <option value="default">默认排序</option>
+          <option value="size-desc">大小 ↓</option>
+          <option value="size-asc">大小 ↑</option>
+          <option value="duration-desc">耗时 ↓</option>
+          <option value="duration-asc">耗时 ↑</option>
+        </select>
+        <input type="text" class="filter-domain" id="filter-domain" placeholder="按域名筛选">
+        <input type="text" class="filter-domain" id="filter-search" placeholder="🔍 搜索URL/类型/状态">
+        <select id="filter-size">
+          <option value="all">全部大小</option>
+          <option value="small">&lt;10KB</option>
+          <option value="medium">10KB-1MB</option>
+          <option value="large">&gt;1MB</option>
+        </select>
+      </div>
+      <button class="btn btn--secondary" id="btn-export">📋 导出JSON</button>
+      <button class="btn btn--secondary" id="btn-export-har">📦 导出HAR</button>
+    </div>
+
+    <div class="overview-bar" id="overview-bar" style="display:none;">
+      <div class="overview-item">
+        <span class="overview-label">总请求</span>
+        <span class="overview-value" id="ov-total">0</span>
+      </div>
+      <div class="overview-item">
+        <span class="overview-label">总大小</span>
+        <span class="overview-value" id="ov-size">0 KB</span>
+      </div>
+      <div class="overview-item">
+        <span class="overview-label">总耗时</span>
+        <span class="overview-value" id="ov-time">0ms</span>
+      </div>
+      <div class="overview-item">
+        <span class="overview-label">按类型</span>
+        <span class="overview-value" id="ov-types">--</span>
+      </div>
+    </div>
+
+    <div class="tab-bar" id="tab-bar">
+      <button class="tab active" data-tab="requests">请求列表</button>
+      <button class="tab" data-tab="grouped">按类型分组</button>
+      <button class="tab" data-tab="timeline">时间线</button>
+      <button class="tab" data-tab="slow">慢请求(>1s)</button>
+      <button class="tab" data-tab="large">大请求(>1MB)</button>
+      <button class="tab" data-tab="thirdparty">第三方请求</button>
+      <button class="tab" data-tab="security">安全分析</button>
+    </div>
+
+    <div class="tool-main">
+      <div class="tab-content tab-content--active" id="tab-requests">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="requests-area">
+            <div class="info-placeholder">点击"分析当前页面"开始分析</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-grouped">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="grouped-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-timeline">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="timeline-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-slow">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="slow-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-large">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="large-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-thirdparty">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="thirdparty-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-security">
+        <div class="panel">
+          <div class="panel-body scroll-body" id="security-area">
+            <div class="info-placeholder">无数据</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。网络分析数据来自浏览器Performance API，结果仅供参考。</div>
+  </div>
+  <!-- 请求详情弹窗 -->
+  <div class="modal-overlay" id="detail-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <span id="modal-title">请求详情</span>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

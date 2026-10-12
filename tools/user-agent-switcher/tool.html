@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>UA 切换器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="uas-container">
+  <div class="uas-status" id="uas-status">
+    <div class="uas-current">
+      <span class="uas-label">当前 UA:</span>
+      <span class="uas-value" id="uas-current-value">检测中...</span>
+    </div>
+    <div class="uas-active" id="uas-active">✅ 状态: 默认</div>
+  </div>
+  <div class="uas-toolbar">
+    <input type="text" class="uas-input" id="uas-custom" placeholder="自定义 User-Agent 字符串...">
+    <button class="btn btn--primary" id="uas-apply-custom">应用</button>
+    <button class="btn btn--secondary" id="uas-reset">↻ 恢复默认</button>
+    <button class="btn btn--secondary" id="uas-random">🎲 随机</button>
+    <select id="uas-scope" class="uas-input" style="max-width:120px">
+      <option value="global">全局</option>
+      <option value="tab">仅当前页面</option>
+    </select>
+  </div>
+  <div class="uas-list" id="uas-list"></div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

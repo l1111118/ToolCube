@@ -1,0 +1,62 @@
+﻿/**
+ * 鍥剧墖澶勭悊宸ュ叿鏍峰紡
+ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family:var(--tt-font);
+  font-size: 14px; color: var(--tt-text); background: var(--tt-bg-tertiary);
+  height: 100%; overflow: hidden;
+}
+.tool-container {
+  display: flex; flex-direction: column;
+  height: 100%; background: var(--tt-bg); padding: 16px;
+  overflow: auto;
+}
+.upload-section {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+}
+.drop-zone {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 60px 80px; border: 2px dashed var(--tt-border-strong); border-radius: 12px;
+  cursor: pointer; transition: all 0.3s;
+}
+.drop-zone:hover { border-color: var(--tt-primary); background: rgba(var(--tt-primary-rgb), 0.05); }
+.drop-zone .icon { font-size: 48px; }
+.drop-zone p { color: var(--tt-text-secondary); }
+.btn {
+  padding: 10px 20px; font-size: 14px;
+  border: none; border-radius: 6px; cursor: pointer;
+}
+.btn--primary { background: var(--tt-primary); color: var(--tt-text-inverse); }
+.btn--secondary { background: var(--tt-muted-bg); color: var(--tt-text-secondary); border: 1px solid var(--tt-border-strong); }
+.btn--text { background: transparent; color: var(--tt-text-secondary); }
+.editor-section {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.preview-area {
+  display: flex; justify-content: center; align-items: center;
+  min-height: 300px; background: var(--tt-bg-secondary); border-radius: 8px;
+  overflow: auto;
+}
+#preview-canvas { max-width: 100%; max-height: 400px; }
+.controls {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+}
+.control-group {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.control-group label { font-size: 13px; color: var(--tt-text-secondary); }
+.control-group input[type="range"], .control-group select {
+  padding: 8px; border: 1px solid var(--tt-border); border-radius: 6px;
+}
+.control-actions {
+  grid-column: span 2; display: flex; gap: 12px; justify-content: center;
+  margin-top: 16px;
+}
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 12px 24px; background: var(--tt-toast-bg); color: var(--tt-text-inverse);
+  border-radius: 8px; opacity: 0; transition: all 0.3s; z-index: 1000;
+}
+.toast--show { transform: translateX(-50%) translateY(0); opacity: 1; }

@@ -1,0 +1,379 @@
+﻿/**
+ * 姝ｅ垯琛ㄨ揪寮忔祴璇曞櫒鏍峰紡
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--tt-font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--tt-text);
+  background: var(--tt-bg-tertiary);
+  height: 100%;
+  overflow: hidden;
+}
+
+.tool-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--tt-bg);
+  overflow: auto;
+}
+
+/* 鍖哄潡 */
+.regex-section,
+.test-section,
+.result-section,
+.replace-section,
+.details-section {
+  padding: 16px;
+  border-bottom: 1px solid var(--tt-border);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--tt-text);
+}
+
+.section-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 鎸夐挳 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn--primary {
+  background: var(--tt-primary);
+  color: var(--tt-text-inverse);
+}
+
+.btn--primary:hover {
+  background: var(--tt-primary-hover);
+}
+
+.btn--text {
+  background: transparent;
+  color: var(--tt-primary);
+}
+
+.btn--text:hover {
+  background: rgba(var(--tt-primary-rgb), 0.1);
+}
+
+/* 姝ｅ垯杈撳叆 */
+.regex-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--tt-bg-secondary);
+  border: 1px solid var(--tt-border);
+  border-radius: 8px;
+}
+
+.regex-delimiter {
+  font-size: 18px;
+  color: var(--tt-text-secondary);
+  font-weight: bold;
+}
+
+.regex-input {
+  flex: 1;
+  padding: 8px;
+  font-family: var(--tt-font-mono);
+  font-size: 14px;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.regex-flags-display {
+  padding: 4px 8px;
+  background: var(--tt-muted-bg);
+  border-radius: 4px;
+  font-family: var(--tt-font-mono);
+  font-size: 12px;
+  color: var(--tt-text-secondary);
+}
+
+/* 鏍囧織閫夋嫨 */
+.regex-flags {
+  display: flex;
+  gap: 16px;
+}
+
+.flag-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--tt-text-secondary);
+  cursor: pointer;
+}
+
+.flag-label input {
+  cursor: pointer;
+}
+
+/* 妯℃澘鎸夐挳 */
+.regex-templates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--tt-border);
+}
+
+.templates-label {
+  font-size: 12px;
+  color: var(--tt-text-secondary);
+}
+
+.template-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  background: var(--tt-muted-bg);
+  border: 1px solid var(--tt-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.template-btn:hover {
+  background: var(--tt-primary);
+  color: var(--tt-text-inverse);
+  border-color: var(--tt-primary);
+}
+
+/* 娴嬭瘯鏂囨湰 */
+.test-input {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  border: 1px solid var(--tt-border);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+}
+
+.test-input:focus {
+  border-color: var(--tt-primary);
+}
+
+/* 鍖归厤缁撴灉 */
+.match-count {
+  font-size: 12px;
+  color: var(--tt-primary);
+  font-weight: 500;
+}
+
+.result-display {
+  min-height: 80px;
+  padding: 12px;
+  background: var(--tt-bg-secondary);
+  border: 1px solid var(--tt-border);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.result-placeholder {
+  color: var(--tt-text-muted);
+  text-align: center;
+  padding: 20px;
+}
+
+/* 楂樹寒鍖归厤 */
+.match-highlight {
+  background: var(--tt-warning);
+  color: var(--tt-warning-on);
+  padding: 2px 0;
+  border-radius: 2px;
+}
+
+.match-group {
+  background: var(--tt-success-soft);
+  color: var(--tt-success);
+  padding: 2px 0;
+  border-radius: 2px;
+}
+
+/* 鏇挎崲鍖哄煙 */
+.replace-row {
+  display: flex;
+  gap: 12px;
+}
+
+.replace-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: 1px solid var(--tt-border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.replace-input:focus {
+  border-color: var(--tt-primary);
+}
+
+.replace-result {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--tt-success-bg);
+  border: 1px solid var(--tt-success-border);
+  border-radius: 8px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  min-height: 60px;
+}
+
+/* 璇︽儏鍒楄〃 */
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px;
+  background: var(--tt-bg-secondary);
+  border-radius: 6px;
+}
+
+.detail-index {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tt-primary);
+  color: var(--tt-text-inverse);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.detail-content {
+  flex: 1;
+}
+
+.detail-match {
+  font-family: var(--tt-font-mono);
+  font-size: 13px;
+  color: var(--tt-text);
+  margin-bottom: 4px;
+}
+
+.detail-info {
+  font-size: 11px;
+  color: var(--tt-text-secondary);
+}
+
+.detail-groups {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--tt-border);
+}
+
+.detail-group {
+  font-size: 11px;
+  color: var(--tt-text-secondary);
+  margin: 2px 0;
+}
+
+.detail-group span {
+  color: var(--tt-primary);
+  font-weight: 500;
+}
+
+/* 閿欒鎻愮ず */
+.error-message {
+  padding: 10px;
+  background: var(--tt-danger-bg);
+  border: 1px solid var(--tt-danger-border);
+  border-radius: 6px;
+  color: var(--tt-danger-text);
+  font-size: 12px;
+}
+
+/* 鎻愮ず娑堟伅 */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 10px 20px;
+  background: var(--tt-toast-bg);
+  color: var(--tt-text-inverse);
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toast--show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast--error {
+  background: var(--tt-danger);
+}
+
+/* 婊氬姩鏉?*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tt-border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tt-text-muted);
+}

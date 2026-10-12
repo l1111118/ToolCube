@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片处理</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="upload-section" id="upload-section">
+      <div class="drop-zone" id="drop-zone">
+        <span class="icon">📤</span>
+        <p>拖拽图片到此处，或点击上传</p>
+        <input type="file" id="file-input" accept="image/*" hidden>
+        <button class="btn btn--secondary" id="btn-select-file" type="button">选择图片</button>
+      </div>
+    </div>
+    
+    <div class="editor-section" id="editor-section" hidden>
+      <div class="preview-area">
+        <canvas id="preview-canvas"></canvas>
+      </div>
+      
+      <div class="controls">
+        <div class="control-group">
+          <label>宽度: <span id="width-value">-</span>px</label>
+          <input type="range" id="width-slider" min="10" max="2000">
+        </div>
+        <div class="control-group">
+          <label>高度: <span id="height-value">-</span>px</label>
+          <input type="range" id="height-slider" min="10" max="2000">
+        </div>
+        <div class="control-group">
+          <label>质量: <span id="quality-value">80</span>%</label>
+          <input type="range" id="quality-slider" min="1" max="100" value="80">
+        </div>
+        <div class="control-group">
+          <label>格式</label>
+          <select id="format-select">
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+        <div class="control-actions">
+          <button class="btn btn--primary" id="btn-process">🚀 处理</button>
+          <button class="btn btn--secondary" id="btn-download">💾 下载</button>
+          <button class="btn btn--text" id="btn-reset">🗑️ 重新选择</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

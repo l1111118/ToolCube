@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频解锁</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+
+  <!-- 工具栏 -->
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-scan" title="扫描页面视频">搜索视频</button>
+      <button class="btn btn--secondary" id="btn-refresh" title="刷新状态">刷新状态</button>
+    </div>
+    <div class="toolbar-group">
+      <span class="vu-badge" id="badge-status"></span>
+    </div>
+  </div>
+
+  <div class="vu-content">
+
+    <!-- 主开关 -->
+    <div class="vu-section">
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">启用解锁</span>
+          <span class="vu-switch-desc">主开关，关闭后所有功能停用</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-enabled" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 功能开关组 -->
+    <div class="vu-section">
+      <div class="vu-section-title">功能开关</div>
+
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">控件解锁</span>
+          <span class="vu-switch-desc">强制开启原生控件，允许拖动进度条和画中画</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-controls" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">右键菜单解锁</span>
+          <span class="vu-switch-desc">恢复被网站禁用的右键菜单</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-contextmenu" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">全屏解锁</span>
+          <span class="vu-switch-desc">允许视频全屏播放，突破全屏限制</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-fullscreen" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">画中画强制启用</span>
+          <span class="vu-switch-desc">移除画中画禁用限制，允许弹出画中画窗口</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-pip" checked>
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">🚫 自动跳过广告</span>
+          <span class="vu-switch-desc">检测常见广告容器并隐藏/跳过片头广告</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-skip-ads">
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 跳转 -->
+    <div class="vu-section">
+      <div class="vu-section-title">视频控制</div>
+      <div class="vu-param-row">
+        <div class="vu-param-label">跳转到</div>
+        <div class="vu-param-input-group">
+          <input type="text" class="vu-input" id="input-seek" placeholder="例如 10:30 或 630">
+          <button class="btn btn--secondary btn--sm" id="btn-seek">跳转</button>
+        </div>
+        <div class="vu-param-desc">输入时间（秒）或 HH:MM:SS 格式，跳转到指定位置</div>
+      </div>
+      <div class="vu-action-row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn btn--primary btn--sm" id="btn-force-fullscreen" style="flex:1;min-width:120px">🖥 强制全屏</button>
+        <button class="btn btn--primary btn--sm" id="btn-download-video" style="flex:1;min-width:120px">📥 下载视频</button>
+      </div>
+      <div class="vu-param-desc" style="margin-top:6px">强制全屏: 让第一个视频进入浏览器全屏 | 下载视频: 提取URL并触发下载</div>
+    </div>
+
+    <!-- 视频列表 -->
+    <div class="vu-section">
+      <div class="vu-section-title">检测到的视频</div>
+      <div class="vu-video-list" id="video-list">
+        <div class="vu-info">点击"搜索视频"查找页面中的视频元素</div>
+      </div>
+    </div>
+
+    <!-- 音量增益 -->
+    <div class="vu-section">
+      <div class="vu-section-title">🔊 音量增益</div>
+      <div class="vu-param-row">
+        <div class="vu-param-label">增益倍数</div>
+        <div class="vu-param-input-group">
+          <input type="range" class="vu-slider" id="slider-volume-boost" min="1" max="5" step="0.1" value="1">
+          <span class="vu-param-value" id="val-volume-boost">1.0x</span>
+        </div>
+        <div class="vu-param-desc">超出100%放大音量，可解决部分视频音量过小问题（1.0x=原始）</div>
+      </div>
+    </div>
+
+    <!-- 播放速度微调 -->
+    <div class="vu-section">
+      <div class="vu-section-title">⏱ 播放速度微调</div>
+      <div class="vu-param-row">
+        <div class="vu-param-label">微调速度</div>
+        <div class="vu-param-input-group">
+          <input type="range" class="vu-slider" id="slider-speed-fine" min="0.1" max="3" step="0.1" value="1">
+          <span class="vu-param-value" id="val-speed-fine">1.0x</span>
+        </div>
+        <div class="vu-param-desc">0.1步进精细调节播放速度</div>
+      </div>
+    </div>
+
+    <!-- 下载链接提取 -->
+    <div class="vu-section">
+      <div class="vu-section-title">📥 视频下载链接</div>
+      <div class="vu-param-desc" style="margin-bottom:8px">提取页面中视频/音频元素的资源地址（CORS受限时自动通过后台代理下载）</div>
+      <button class="btn btn--primary btn--sm" id="btn-extract-urls">🔍 提取下载链接</button>
+      <div class="vu-download-list" id="download-list" style="margin-top:8px"></div>
+    </div>
+
+    <!-- 上报拦截（学习平台） -->
+    <div class="vu-section">
+      <div class="vu-section-title">🚫 上报拦截（学习平台）</div>
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">拦截学习进度上报请求</span>
+          <span class="vu-switch-desc">拦截超星/智慧树/MOOC等学习平台的进度上报请求，防止倍速观看被检测</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-block-reports">
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="vu-param-row" style="margin-top:8px">
+        <div class="vu-param-label">额外拦截URL关键词</div>
+        <div class="vu-param-input-group">
+          <textarea class="vu-input" id="input-report-patterns" rows="3" placeholder="每行一个URL关键词，例如:&#10;/api/progress&#10;/multimedia/report" style="resize:vertical;min-height:60px;font-size:12px"></textarea>
+        </div>
+        <div class="vu-param-desc">除内置规则外，额外匹配的URL关键词（包含即拦截）。每行一个。</div>
+      </div>
+      <div class="vu-param-desc" style="margin-top:6px;color:var(--text-tertiary);font-size:12px">
+        内置拦截: 超星(chaoxing)、智慧树(zhihuishu)、学堂在线(xuetangx)、中国MOOC(icourse163)、雨课堂(yuketang) 的进度/心跳/上报接口
+      </div>
+    </div>
+
+    <!-- 进度伪装 -->
+    <div class="vu-section">
+      <div class="vu-section-title">🎭 进度伪装</div>
+      <div class="vu-switch-row">
+        <div class="vu-switch-label">
+          <span class="vu-switch-title">模拟正常1x播放进度</span>
+          <span class="vu-switch-desc">让平台读取的播放进度按1x墙钟时间推进，即使实际倍速播放也不会被检测异常</span>
+        </div>
+        <label class="vu-toggle">
+          <input type="checkbox" id="toggle-spoof-progress">
+          <span class="vu-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="vu-param-desc" style="margin-top:6px;color:var(--text-tertiary);font-size:12px">
+        原理: 劫持 currentTime getter，返回按真实时间1x推进的伪装值。平台轮询进度时看到平滑1x推进，而你可以用倍速快速看完视频。注意：播放器进度条可能显示伪装位置。
+      </div>
+    </div>
+
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

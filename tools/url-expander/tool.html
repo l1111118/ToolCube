@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>短链还原</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="ue-container">
+  <div class="ue-toolbar">
+    <input type="text" class="ue-input" id="ue-url" placeholder="粘贴短链 (支持批量换行或空格分隔)">
+    <button class="btn btn--primary" id="btn-expand">🔍 展开</button>
+    <button class="btn btn--secondary" id="btn-pick">📋 选中文本</button>
+    <button class="btn btn--secondary" id="btn-copy-all">📋 复制全部</button>
+    <button class="btn btn--secondary" id="btn-clear">✗ 清空</button>
+  </div>
+  <div class="ue-list" id="ue-list">
+    <div class="ue-empty">⛓ 短链还原器 · 粘贴 t.cn / bit.ly / tinyurl / goo.gl 等短链展开真实 URL，支持跟随 3xx 跳转链</div>
+  </div>
+  <div class="ue-history-section">
+    <div class="ue-history-title">📜 展开历史</div>
+    <div id="ue-history"><div class="ue-empty-sm">暂无展开历史</div></div>
+  </div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

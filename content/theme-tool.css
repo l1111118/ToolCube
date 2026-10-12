@@ -1,0 +1,218 @@
+/* ToolCube - Tool Page Theme Variables v2 */
+:root {
+  --tt-bg: #fefefe;
+  --tt-bg-secondary: #f7f7f8;
+  --tt-bg-tertiary: #efefef;
+  --tt-bg-hover: rgba(0, 0, 0, 0.04);
+  --tt-bg-active: rgba(91, 127, 255, 0.08);
+  --tt-text: #333333;
+  --tt-text-secondary: #495057;
+  --tt-text-tertiary: #868e96;
+  --tt-text-muted: #999999;
+  --tt-text-inverse: #ffffff;
+  --tt-border: #e0e0e0;
+  --tt-border-strong: #ced4da;
+  --tt-input-bg: #ffffff;
+  --tt-input-border: #d0d0d0;
+  --tt-input-placeholder: #999999;
+  --tt-primary: #5b7fff;
+  --tt-primary-hover: #4a6ae5;
+  --tt-primary-rgb: 91, 127, 255;
+  /* 主色浅底：用于信息提示条等需要"弱化主色"的背景（原先被 screenshot-tool 引用却未定义） */
+  --tt-primary-soft: rgba(91, 127, 255, 0.12);
+  --tt-primary-on: #ffffff;
+  --tt-danger: #dc3545;
+  --tt-danger-rgb: 220, 53, 69;
+  --tt-danger-on: #ffffff;
+  --tt-danger-bg: #f8d7da;
+  --tt-danger-border: #f5c2c7;
+  --tt-danger-text: #842029;
+  --tt-success: #28a745;
+  --tt-success-rgb: 40, 167, 69;
+  --tt-success-on: #ffffff;
+  --tt-success-bg: #d4edda;
+  --tt-success-border: #c3e6cb;
+  --tt-success-text: #155724;
+  --tt-warning: #ff9800;
+  --tt-warning-rgb: 255, 152, 0;
+  --tt-warning-on: #ffffff;
+  --tt-warning-bg: #fff3cd;
+  --tt-warning-border: #ffe69c;
+  --tt-warning-text: #664d03;
+  --tt-info: #3b82f6;
+  --tt-info-bg: #e3f2fd;
+  --tt-info-border: #cfe2f3;
+  --tt-info-text: #0c4a6e;
+  --tt-muted-bg: #e9ecef;
+  --tt-muted-border: #dee2e6;
+  --tt-muted-text: #495057;
+  --tt-overlay: rgba(0, 0, 0, 0.5);
+  --tt-toast-bg: #323232;
+  --tt-toast-text: #ffffff;
+  --tt-gradient-start: #5b7fff;
+  --tt-gradient-end: #7c5cbf;
+  --tt-gradient-on: #ffffff;
+  --tt-code-bg: #f4f4f4;
+  --tt-code-text: #18181b;
+  --tt-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --tt-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --tt-radius-sm: 4px;
+  --tt-radius: 8px;
+  --tt-radius-md: 8px;
+  --tt-radius-lg: 12px;
+  --tt-transition: 0.2s ease;
+  --tt-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --tt-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --tt-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --tt-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.08);
+  --tt-glass-bg: rgba(255, 255, 255, 0.72);
+  --tt-glass-border: rgba(255, 255, 255, 0.3);
+  --tt-glow: 0 0 20px rgba(91, 127, 255, 0.12);
+}
+[data-theme="dark"] {
+  --tt-bg: #18181b;
+  --tt-bg-secondary: #27272a;
+  --tt-bg-tertiary: #303036;
+  --tt-bg-hover: rgba(255, 255, 255, 0.04);
+  --tt-bg-active: rgba(91, 127, 255, 0.12);
+  --tt-text: #fafafa;
+  --tt-text-secondary: #a1a1aa;
+  --tt-text-tertiary: #71717a;
+  --tt-text-muted: #52525b;
+  --tt-text-inverse: #18181b;
+  --tt-border: #3f3f46;
+  --tt-border-strong: #52525b;
+  --tt-input-bg: #27272a;
+  --tt-input-border: #3f3f46;
+  --tt-input-placeholder: #52525b;
+  --tt-primary: #7b9fff;
+  --tt-primary-hover: #6a8ef5;
+  --tt-primary-rgb: 123, 159, 255;
+  --tt-primary-soft: rgba(123, 159, 255, 0.18);
+  --tt-primary-on: #ffffff;
+  --tt-danger: #f44336;
+  --tt-danger-rgb: 244, 67, 54;
+  --tt-danger-on: #ffffff;
+  --tt-danger-bg: #4a1f23;
+  --tt-danger-border: #6c2a30;
+  --tt-danger-text: #f8b4b8;
+  --tt-success: #66bb6a;
+  --tt-success-rgb: 102, 187, 106;
+  --tt-success-on: #ffffff;
+  --tt-success-bg: #1d3a23;
+  --tt-success-border: #2d5733;
+  --tt-success-text: #a3d9a5;
+  --tt-warning: #ffa726;
+  --tt-warning-rgb: 255, 167, 38;
+  --tt-warning-on: #18181b;
+  --tt-warning-bg: #3a2e15;
+  --tt-warning-border: #5a4824;
+  --tt-warning-text: #ffd180;
+  --tt-info: #5a9fd9;
+  --tt-info-bg: #1c2a3a;
+  --tt-info-border: #2d4055;
+  --tt-info-text: #a8c8e8;
+  --tt-info-soft: rgba(90, 159, 217, 0.18);
+  --tt-purple-soft: rgba(186, 104, 200, 0.18);
+  --tt-success-soft: rgba(102, 187, 106, 0.18);
+  --tt-danger-soft: rgba(244, 67, 54, 0.18);
+  --tt-warning-soft: rgba(255, 167, 38, 0.18);
+  --tt-muted-bg: #27272a;
+  --tt-muted-border: #3f3f46;
+  --tt-muted-text: #b0b0b0;
+  --tt-overlay: rgba(0, 0, 0, 0.7);
+  --tt-toast-bg: #e0e0e0;
+  --tt-toast-text: #18181b;
+  --tt-gradient-start: #5b7fff;
+  --tt-gradient-end: #7c5cbf;
+  --tt-gradient-on: #ffffff;
+  --tt-code-bg: #303036;
+  --tt-code-text: #d4d4d4;
+  --tt-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --tt-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --tt-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --tt-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --tt-glass-bg: rgba(30, 30, 30, 0.72);
+  --tt-glass-border: rgba(255, 255, 255, 0.06);
+  --tt-glow: 0 0 20px rgba(123, 159, 255, 0.12);
+}
+
+/* Firefox 平滑滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* 主题切换过渡 */
+body,
+.toolbox-btn,
+.tool-item,
+.tt-btn {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* 键盘焦点指示器 */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--tt-primary);
+  outline-offset: 2px;
+}
+
+/* 按钮全局 :active 触觉反馈 */
+button:active:not(:disabled),
+.tt-btn:active:not(:disabled),
+[role="button"]:active:not(:disabled) {
+  transform: scale(0.97);
+  transition: transform 0.06s ease;
+}
+
+/* 平滑过渡（默认） */
+button,
+.tt-btn {
+  transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.15s ease,
+              border-color 0.15s ease,
+              box-shadow 0.2s ease,
+              transform 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 平滑滚动（性能优化：使用 will-change 提示浏览器） */
+.tool-container {
+  scroll-behavior: smooth;
+}
+/* 渲染性能优化 */
+.tool-container * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Firefox 滚动条样式 */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tt-border) transparent;
+  color-scheme: light dark;
+}
+
+/* 无障碍：尊重用户的减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

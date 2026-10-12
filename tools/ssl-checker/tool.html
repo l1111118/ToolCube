@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSL证书检查</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <div class="toolbar-group">
+        <input type="text" class="domain-input" id="domain-input" placeholder="输入域名，如 example.com 或 https://example.com">
+        <button class="btn btn--secondary" id="btn-current">📍 检查当前页面</button>
+        <button class="btn btn--primary" id="btn-check">🔍 检查</button>
+      </div>
+      <div class="toolbar-group">
+        <label style="font-size:11px;color:var(--tt-text-secondary);white-space:nowrap">到期提醒阈值:</label>
+        <input type="number" id="reminder-threshold" value="30" min="1" max="365" style="width:60px;padding:4px 6px;font-size:12px;border:1px solid var(--tt-border);border-radius:4px;background:var(--tt-bg);color:var(--tt-text)">
+        <span style="font-size:11px;color:var(--tt-text-tertiary)">天</span>
+        <button class="btn btn--secondary" id="btn-save-threshold" style="padding:4px 10px;font-size:11px">保存</button>
+        <button class="btn btn--secondary" id="btn-view-reminders" style="padding:4px 10px;font-size:11px">📋 提醒列表</button>
+      </div>
+    </div>
+    <div class="tool-main">
+      <div class="panel">
+        <div class="panel-header">
+          <span>🔒 SSL/TLS 证书信息</span>
+        </div>
+        <div class="panel-body scroll-body" id="result-area">
+          <div class="info-placeholder">输入域名并点击检查，查看SSL证书详细信息</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-disclaimer">⚠️ 注意：此工具通过公开CT日志和HTTPS连接检测获取证书信息，仅供参考。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

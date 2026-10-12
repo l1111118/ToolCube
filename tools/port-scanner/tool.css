@@ -1,0 +1,34 @@
+﻿.tool-container{display:flex;flex-direction:column;height:100%;padding:16px;background:var(--tt-bg);gap:12px;overflow:hidden}
+.ps-header{font-size:16px;font-weight:700;color:var(--tt-text)}
+.ps-input-row{display:flex;gap:8px}
+.ps-input{flex:1;padding:8px 12px;border:1px solid var(--tt-border);border-radius:8px;background:var(--tt-bg-secondary);color:var(--tt-text);font-size:13px;outline:none}
+.ps-input:focus{border-color:var(--tt-primary,#5b7fff)}
+.ps-btn{padding:8px 16px;border:none;border-radius:8px;background:var(--tt-primary,#5b7fff);color:#fff;font-size:13px;cursor:pointer;white-space:nowrap}
+.ps-btn:disabled{opacity:.5;cursor:not-allowed}
+.ps-presets{display:flex;gap:6px;flex-wrap:wrap}
+.ps-preset{padding:4px 10px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg-secondary);color:var(--tt-text-secondary);font-size:11px;cursor:pointer}
+.ps-preset:hover{border-color:var(--tt-primary,#5b7fff)}
+.ps-preset.active{background:var(--tt-primary,#5b7fff);color:#fff;border-color:var(--tt-primary,#5b7fff)}
+.ps-progress{position:relative;height:20px;background:var(--tt-bg-secondary);border-radius:10px;overflow:hidden}
+.ps-progress-bar{height:100%;background:var(--tt-primary,#5b7fff);border-radius:10px;transition:width .3s;width:0}
+.ps-progress-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--tt-text);font-weight:600}
+.ps-results{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+.ps-empty{padding:24px;text-align:center;color:var(--tt-text-secondary);font-size:12px}
+.ps-port{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:6px;background:var(--tt-bg-secondary);font-size:12px}
+.ps-port--open{border-left:3px solid #22c55e}
+.ps-port--closed{border-left:3px solid var(--tt-border)}
+.ps-port-num{font-weight:600;color:var(--tt-text);font-family:var(--tt-font-mono)}
+.ps-port-service{color:var(--tt-text-secondary)}
+.ps-port-status{font-size:11px;font-weight:600}
+.ps-port-status--open{color:#22c55e}
+.ps-port-status--closed{color:var(--tt-text-secondary)}
+.ps-port-time{font-size:10px;color:var(--tt-text-secondary);font-family:var(--tt-font-mono)}
+
+/* 端口状态：unknown 表示浏览器无法判定（连接被拒绝 / 非 HTTP 服务），用警示色与"关闭"区分开 */
+.ps-port--unknown{border-left:3px solid var(--tt-warning)}
+.ps-port-status--unknown{color:var(--tt-warning)}
+
+/* 探测原理说明：浏览器无法直接探测端口，需向用户说明各状态的推断含义 */
+.ps-note{margin:10px 0;padding:8px 10px;border-radius:6px;font-size:12px;line-height:1.6;
+  color:var(--tt-text-secondary);background:var(--tt-bg-secondary);border:1px solid var(--tt-border)}
+.ps-note b{color:var(--tt-text)}

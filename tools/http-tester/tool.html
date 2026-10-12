@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP测试</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="request-section">
+      <div class="url-row">
+        <select class="method-select" id="method-select">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="DELETE">DELETE</option>
+          <option value="PATCH">PATCH</option>
+          <option value="OPTIONS">OPTIONS</option>
+        </select>
+        <input type="text" class="url-input" id="url-input" placeholder="https://api.example.com/data 或 {{baseUrl}}/data">
+        <button class="btn btn--primary" id="btn-send">发送</button>
+        <button class="btn btn--secondary" id="btn-curl" title="复制为cURL命令">📋 cURL</button>
+        <button class="btn btn--secondary" id="btn-env" title="环境变量管理">⚙️ 变量</button>
+      </div>
+      <div class="url-row" style="margin-top:6px">
+        <label class="ht-proxy-toggle" title="请求由代理服务的出口 IP 发出，适用于目标站点按 IP 限制的场景；仅支持 GET">
+          <input type="checkbox" id="ht-use-proxy"> 通过转发代理发送（仅 GET）
+        </label>
+      </div>
+
+      <div class="quick-headers" id="quick-headers">
+        <button class="quick-header-btn" data-header="Content-Type" data-value="application/json">Content-Type: JSON</button>
+        <button class="quick-header-btn" data-header="Content-Type" data-value="application/x-www-form-urlencoded">Content-Type: Form</button>
+        <button class="quick-header-btn" data-header="Authorization" data-value="Bearer ">Authorization</button>
+        <button class="quick-header-btn" data-header="Accept" data-value="application/json">Accept: JSON</button>
+        <span class="env-vars-tip" id="env-vars-tip" style="display:none;"></span>
+      </div>
+
+      <div class="tabs">
+        <button class="tab tab--active" data-tab="headers">Headers</button>
+        <button class="tab" data-tab="body">Body</button>
+        <button class="tab" data-tab="env">环境变量</button>
+      </div>
+
+      <div class="tab-content tab-content--active" id="headers-tab">
+        <textarea class="code-editor" id="headers-input" placeholder='{"Content-Type": "application/json"}'></textarea>
+      </div>
+
+      <div class="tab-content" id="body-tab">
+        <textarea class="code-editor" id="body-input" placeholder='{"key": "value"}'></textarea>
+      </div>
+
+      <div class="tab-content" id="env-tab">
+        <div class="env-section">
+          <div class="env-header">
+            <span>环境变量 (URL/Headers/Body 中可用 <code>{{varName}}</code>)</span>
+            <button class="btn btn--secondary btn--sm" id="btn-add-env">+ 新增变量</button>
+          </div>
+          <div class="env-list" id="env-list"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="response-section">
+      <div class="response-header">
+        <span class="response-status" id="response-status">等待请求...</span>
+        <span class="response-time" id="response-time"></span>
+        <span class="response-size" id="response-size"></span>
+      </div>
+      <div class="response-tabs" id="response-tabs">
+        <button class="resp-tab resp-tab--active" data-resp-tab="body">响应体</button>
+        <button class="resp-tab" data-resp-tab="resp-headers">响应头</button>
+        <button class="resp-tab" data-resp-tab="req-headers">请求头</button>
+        <span class="resp-tab-actions">
+          <button class="btn btn--text btn--sm" id="btn-format-json" title="JSON格式化">JSON</button>
+          <button class="btn btn--text btn--sm" id="btn-format-html" title="HTML预览">HTML</button>
+          <button class="btn btn--text btn--sm" id="btn-format-text" title="纯文本">Text</button>
+          <button class="btn btn--text btn--sm" id="btn-copy-body" title="复制响应体">📋</button>
+        </span>
+      </div>
+      <div class="resp-tab-content resp-tab-content--active" id="resp-tab-body">
+        <pre class="response-body" id="response-body">响应内容将显示在这里</pre>
+      </div>
+      <div class="resp-tab-content" id="resp-tab-resp-headers">
+        <pre class="response-body" id="response-headers">响应头将显示在这里</pre>
+      </div>
+      <div class="resp-tab-content" id="resp-tab-req-headers">
+        <pre class="response-body" id="request-headers-display">请求头将显示在这里</pre>
+      </div>
+    </div>
+    <div class="history-section">
+      <div class="history-section-header">
+        <span>📜 请求历史 (最近20条)</span>
+        <button class="btn btn--text btn--sm" id="btn-clear-history">清空历史</button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

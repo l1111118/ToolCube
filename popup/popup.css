@@ -1,0 +1,232 @@
+/* ToolCube - Popup Styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --popup-bg: #fefefe;
+  --popup-bg-secondary: #f7f7f8;
+  --popup-bg-hover: #efefef;
+  --popup-text: #212121;
+  --popup-text-secondary: #666666;
+  --popup-text-tertiary: #999999;
+  --popup-border: #e0e0e0;
+  --popup-primary: #5b7fff;
+  --popup-danger: #dc3545;
+}
+
+[data-theme="dark"] {
+  --popup-bg: #18181b;
+  --popup-bg-secondary: #27272a;
+  --popup-bg-hover: #303036;
+  --popup-text: #fafafa;
+  --popup-text-secondary: #a1a1aa;
+  --popup-text-tertiary: #71717a;
+  --popup-border: #3f3f46;
+  --popup-primary: #7b9fff;
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px; color: var(--popup-text);
+  width: 360px; min-height: 480px; max-height: 600px;
+  background: var(--popup-bg);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.popup-container {
+  display: flex; flex-direction: column;
+  background: var(--popup-bg);
+  min-height: 480px;
+}
+
+.popup-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; background: linear-gradient(135deg, #5b7fff 0%, #7c5cbf 100%);
+  color: white; flex-shrink: 0;
+}
+
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo-icon { font-size: 20px; }
+.logo-text { font-weight: 700; font-size: 15px; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.version { font-size: 11px; opacity: 0.85; }
+
+.theme-toggle {
+  background: rgba(255,255,255,0.2); border: none;
+  color: white; width: 28px; height: 28px; border-radius: 50%;
+  cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.35); }
+
+/* 搜索栏 */
+.popup-search { padding: 10px 14px; border-bottom: 1px solid var(--popup-border); flex-shrink: 0; }
+.search-box {
+  display: flex; align-items: center;
+  background: var(--popup-bg-secondary); border: 1px solid var(--popup-border);
+  border-radius: 8px; padding: 6px 10px; gap: 8px; transition: border-color 0.2s;
+}
+.search-box:focus-within {
+  border-color: var(--popup-primary);
+  box-shadow: 0 0 0 3px rgba(91, 127, 255, 0.1), 0 0 12px rgba(91, 127, 255, 0.08);
+}
+.search-icon { color: var(--popup-text-tertiary); flex-shrink: 0; }
+.search-box input {
+  flex: 1; border: none; background: transparent; font-size: 13px;
+  color: var(--popup-text); outline: none;
+}
+.search-box input::placeholder { color: var(--popup-text-tertiary); }
+.search-clear {
+  background: none; border: none; color: var(--popup-text-tertiary);
+  cursor: pointer; font-size: 12px; padding: 2px 4px; line-height: 1;
+}
+.search-clear:hover { color: var(--popup-text); }
+
+/* 快速操作 */
+.quick-actions {
+  display: flex; flex-direction: column;
+  padding: 10px 14px; border-bottom: 1px solid var(--popup-border); flex-shrink: 0;
+}
+
+/* 全局开关行 */
+.master-switch-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: var(--popup-bg-secondary);
+  border: 1px solid var(--popup-border); border-radius: 8px;
+  margin-bottom: 6px;
+}
+.master-switch__info {
+  display: flex; align-items: center; gap: 8px;
+}
+.master-switch__icon { font-size: 16px; }
+.master-switch__label { font-size: 13px; font-weight: 600; color: var(--popup-text); }
+.master-switch__toggle {
+  position: relative; display: inline-block; width: 40px; height: 22px; cursor: pointer;
+}
+.master-switch__toggle input { opacity: 0; width: 0; height: 0; }
+.master-switch__slider {
+  position: absolute; inset: 0;
+  background: #ccc; border-radius: 22px; transition: 0.3s;
+}
+.master-switch__slider::before {
+  content: ''; position: absolute; width: 16px; height: 16px;
+  left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.3s;
+}
+.master-switch__toggle input:checked + .master-switch__slider {
+  background: var(--popup-primary);
+}
+.master-switch__toggle input:checked + .master-switch__slider::before {
+  transform: translateX(18px);
+}
+[data-theme="dark"] .master-switch__slider { background: #555; }
+[data-theme="dark"] .master-switch__slider::before { background: #ddd; }
+
+.action-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; background: var(--popup-bg-secondary);
+  border: 1px solid var(--popup-border); border-radius: 8px;
+  cursor: pointer; transition: all 0.2s;
+  margin-bottom: 6px;
+}
+.action-btn:last-child { margin-bottom: 0; }
+.action-btn:hover {
+  background: var(--popup-bg-hover);
+  border-color: rgba(91, 127, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 1px rgba(91, 127, 255, 0.06);
+}
+.action-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.action-icon { font-size: 18px; }
+.action-text { flex: 1; font-size: 13px; text-align: left; color: var(--popup-text); }
+.shortcut {
+  font-size: 10px; color: var(--popup-text-tertiary);
+  background: var(--popup-bg); padding: 2px 6px;
+  border-radius: 4px; border: 1px solid var(--popup-border);
+}
+
+/* 工具列表区域 */
+.all-tools-section { padding: 10px 14px; border-bottom: 1px solid var(--popup-border); flex-shrink: 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.tool-count { font-size: 11px; color: var(--popup-text-tertiary); }
+.recent-tools, .favorite-tools { padding: 10px 14px; border-bottom: 1px solid var(--popup-border); }
+
+.section-title {
+  font-size: 11px; font-weight: 600;
+  color: var(--popup-text-secondary); text-transform: uppercase;
+  margin-bottom: 8px; letter-spacing: 0.5px;
+}
+
+.tools-list { display: flex; flex-direction: column; gap: 2px; max-height: 250px; overflow-y: auto; }
+
+.tool-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 10px; border-radius: 6px;
+  cursor: pointer; transition: background 0.15s; color: var(--popup-text);
+}
+.tool-item:hover { background: var(--popup-bg-hover); }
+.tool-item:active { background: var(--popup-bg-secondary); }
+.tool-item.favorite .tool-icon::after {
+  content: '⭐'; font-size: 8px; position: absolute; top: -4px; right: -6px;
+}
+.tool-icon { position: relative; font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.tool-name { flex: 1; font-size: 13px; }
+.tool-desc { font-size: 11px; color: var(--popup-text-tertiary); margin-left: 4px; }
+.empty-state {
+  padding: 16px; text-align: center;
+  color: var(--popup-text-tertiary); font-size: 12px;
+}
+.no-results {
+  padding: 20px; text-align: center;
+  color: var(--popup-text-tertiary); font-size: 13px;
+}
+
+/* 底部 */
+.popup-footer {
+  display: flex; padding: 10px 14px; gap: 8px;
+  background: var(--popup-bg-secondary); border-top: 1px solid var(--popup-border);
+}
+.footer-btn {
+  flex: 1; padding: 8px;
+  background: var(--popup-bg); border: 1px solid var(--popup-border);
+  border-radius: 6px; font-size: 12px; cursor: pointer;
+  transition: background 0.2s; color: var(--popup-text);
+}
+.footer-btn:hover { background: var(--popup-bg-hover); }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--popup-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--popup-text-tertiary); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: 8px 16px;
+  background: rgba(50, 50, 50, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1000;
+  font-size: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast--show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.toast--error { background: var(--popup-danger); }
+.toast--success { background: #28a745; }

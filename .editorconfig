@@ -1,0 +1,22 @@
+root = true
+
+# 项目统一使用 UTF-8 + LF + 2 空格缩进
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Markdown 中行尾双空格表示换行，不能自动去除
+[*.md]
+trim_trailing_whitespace = false
+
+# 图片等二进制文件不参与文本规则
+[*.{png,jpg,jpeg,gif,ico,webp}]
+insert_final_newline = false
+
+# YAML 与 JSON 保持 2 空格
+[*.{yml,yaml,json}]
+indent_size = 2

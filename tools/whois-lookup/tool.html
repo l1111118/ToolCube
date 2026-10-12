@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WHOIS查询</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <div class="toolbar-group toolbar-group--input">
+        <input type="text" class="domain-input" id="domain-input" placeholder="输入域名，如 example.com">
+      </div>
+      <div class="toolbar-group">
+        <button class="btn btn--primary" id="btn-query">🔍 查询</button>
+        <button class="btn btn--secondary" id="btn-current-domain">📍 检查当前页面域名</button>
+        <button class="btn btn--secondary" id="btn-reminders">⏰ 到期提醒</button>
+      </div>
+    </div>
+
+    <div class="availability-bar" id="availability-bar" style="display:none;">
+      <span id="availability-text"></span>
+    </div>
+
+    <div class="tool-main">
+      <div class="panel">
+        <div class="panel-body scroll-body" id="result-area">
+          <div class="info-placeholder">输入域名并点击查询</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。WHOIS数据来自第三方API，结果仅供参考。</div>
+
+    <div class="reminder-modal" id="reminder-modal" style="display:none;">
+      <div class="reminder-modal-content">
+        <div class="reminder-modal-header">
+          <h3>⏰ 域名到期提醒</h3>
+          <button class="reminder-close" id="reminder-close">✕</button>
+        </div>
+        <div class="reminder-modal-body" id="reminder-list">
+          <div class="info-placeholder">暂无提醒</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页安全扫描</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="ss-toolbar">
+      <button class="btn btn--primary" id="btn-scan">🛡️ 扫描当前页面</button>
+      <span class="ss-url" id="ss-url">点击按钮开始扫描</span>
+    </div>
+    <div class="ss-score-section" id="ss-score-section" style="display:none;">
+      <div class="ss-score-ring">
+        <svg viewBox="0 0 100 100">
+          <circle class="ss-ring-bg" cx="50" cy="50" r="42"/>
+          <circle class="ss-ring-fill" id="ss-ring-fill" cx="50" cy="50" r="42"/>
+        </svg>
+        <div class="ss-score-num" id="ss-score-num">—</div>
+      </div>
+      <div class="ss-score-label" id="ss-score-label">安全评分</div>
+    </div>
+    <div class="ss-list" id="ss-list">
+      <div class="ss-empty">🛡️ 扫描当前页面以查看安全状态</div>
+    </div>
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

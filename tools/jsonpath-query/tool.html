@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>JSONPath 查询</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="jp-container">
+  <div class="jp-toolbar">
+    <input type="text" class="jp-input" id="jp-path" placeholder="$.store.book[0].title">
+    <button class="btn btn--primary" id="btn-query">▶ 查询</button>
+    <button class="btn btn--secondary" id="btn-batch">⚡ 批量查询</button>
+    <button class="btn btn--secondary" id="btn-pick">📋 当前页 JSON</button>
+    <label class="jp-check"><input type="checkbox" id="jp-recursive" checked> 递归展开</label>
+    <label class="jp-check"><input type="checkbox" id="jp-highlight-path" checked> 路径高亮</label>
+    <button class="btn btn--secondary" id="btn-format">✨ 格式化输入</button>
+    <button class="btn btn--secondary" id="btn-minify">📦 压缩</button>
+    <button class="btn btn--secondary" id="btn-validate">✅ 验证</button>
+    <button class="btn btn--secondary" id="btn-tree">🌳 树形</button>
+    <button class="btn btn--secondary" id="btn-export">💾 导出结果</button>
+    <button class="btn btn--secondary" id="btn-syntax">📖 语法</button>
+    <button class="btn btn--secondary" id="btn-clear-history">🗑️ 清空历史</button>
+  </div>
+  <div class="jp-presets">
+    <span class="jp-preset-label">示例:</span>
+    <button class="jp-preset" data-path="$">$ (全部)</button>
+    <button class="jp-preset" data-path="$..price">$..price</button>
+    <button class="jp-preset" data-path="$.store.book[*].title">$.store.book[*].title</button>
+    <button class="jp-preset" data-path="$.store.book[?(@.price<10)]">$.store.book[?(@.price<10)]</button>
+    <button class="jp-preset" data-path="$..author">$..author</button>
+  </div>
+  <div class="jp-presets">
+    <span class="jp-preset-label">模板:</span>
+    <button class="jp-template" data-path="$.*">所有键</button>
+    <button class="jp-template" data-path="$[0]">第一个元素</button>
+    <button class="jp-template" data-path="$[-1]">最后元素</button>
+    <button class="jp-template" data-path="$[:5]">前N个</button>
+    <button class="jp-template" data-path="$[?(@.price>10)]">过滤查询</button>
+    <button class="jp-template" data-path="$..name">获取所有name</button>
+    <button class="jp-template" data-path="$[*]">键值对</button>
+    <button class="jp-template" data-path="$[::2]">奇偶索引</button>
+  </div>
+  <!-- 批量查询输入区（默认隐藏） -->
+  <div class="jp-batch" id="jp-batch-panel" style="display:none">
+    <div class="jp-pane-head">⚡ 批量查询（每行一个 JSONPath 表达式）</div>
+    <textarea class="jp-batch-area" id="jp-batch-input" placeholder="$.store.book[*].title&#10;$.store.bicycle.color&#10;$..price"></textarea>
+    <button class="btn btn--primary" id="btn-run-batch">▶ 执行批量查询</button>
+  </div>
+
+  <!-- JSONPath 语法提示（默认隐藏） -->
+  <div class="jp-syntax" id="jp-syntax-panel" style="display:none">
+    <div class="jp-syntax-title">📖 JSONPath 语法参考</div>
+    <table class="jp-syntax-table">
+      <thead><tr><th>语法</th><th>说明</th><th>示例</th></tr></thead>
+      <tbody>
+        <tr><td><code>$</code></td><td>根对象</td><td><code>$</code></td></tr>
+        <tr><td><code>.name</code></td><td>点号访问子节点</td><td><code>$.store</code></td></tr>
+        <tr><td><code>['name']</code></td><td>括号访问（含特殊字符）</td><td><code>$['store']</code></td></tr>
+        <tr><td><code>[n]</code></td><td>数组下标（支持负数）</td><td><code>$[0]</code> / <code>$[-1]</code></td></tr>
+        <tr><td><code>[*]</code></td><td>通配符（所有元素）</td><td><code>$.store.book[*]</code></td></tr>
+        <tr><td><code>[start:end:step]</code></td><td>数组切片</td><td><code>$[:5]</code> / <code>$[::2]</code></td></tr>
+        <tr><td><code>..name</code></td><td>递归搜索</td><td><code>$..author</code></td></tr>
+        <tr><td><code>[?(expr)]</code></td><td>过滤表达式</td><td><code>$[?(@.price&lt;10)]</code></td></tr>
+        <tr><td><code>@</code></td><td>当前节点（过滤中）</td><td><code>[?(@.price&gt;10)]</code></td></tr>
+        <tr><td><code>&amp;&amp; / ||</code></td><td>逻辑运算</td><td><code>[?(@.a&gt;1 &amp;&amp; @.b&lt;5)]</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="jp-main">
+    <div class="jp-pane">
+      <div class="jp-pane-head">📥 输入 JSON</div>
+      <textarea class="jp-textarea" id="jp-input" placeholder="在此粘贴 JSON 字符串，或点击'当前页 JSON'自动获取..."></textarea>
+    </div>
+    <div class="jp-pane">
+      <div class="jp-pane-head">📤 查询结果 <span class="jp-pane-meta" id="jp-result-meta"></span></div>
+      <pre class="jp-result" id="jp-result">在左侧输入 JSON，右侧输入 JSONPath 表达式后点击"查询"</pre>
+    </div>
+  </div>
+  <div class="jp-error" id="jp-error"></div>
+
+  <!-- 查询历史记录 -->
+  <div class="jp-history" id="jp-history-panel">
+    <div class="jp-pane-head">
+      <span>🕐 查询历史</span>
+      <span class="jp-pane-meta">点击历史项重新查询</span>
+    </div>
+    <div class="jp-history-list" id="jp-history-list">
+      <div class="jp-history-empty">暂无查询历史</div>
+    </div>
+  </div>
+
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

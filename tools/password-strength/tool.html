@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>密码强度检测</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-generate" title="生成 32 位高强度密码">🎲 生成强密码</button>
+    </div>
+    <div class="toolbar-group">
+      <span class="ps-strength-badge" id="strength-badge">未评估</span>
+    </div>
+  </div>
+
+  <div class="ps-content">
+
+    <!-- 密码输入 -->
+    <div class="ps-section">
+      <div class="ps-section-title">输入密码</div>
+      <div class="ps-input-row">
+        <input type="text" id="pwd-input" class="ps-input" placeholder="输入或粘贴要检测的密码" autocomplete="off" spellcheck="false">
+        <button class="btn btn--icon" id="btn-toggle" title="隐藏/显示">👁</button>
+        <button class="btn btn--icon" id="btn-copy" title="复制">📋</button>
+      </div>
+      <div class="ps-meter">
+        <div class="ps-meter__fill" id="meter-fill"></div>
+      </div>
+      <div class="ps-meta">
+        <span>长度: <b id="meta-len">0</b></span>
+        <span>字符种类: <b id="meta-charset">0</b>/4</span>
+        <span>熵: <b id="meta-entropy">0.00</b> bits</span>
+      </div>
+    </div>
+
+    <!-- 强度评估 -->
+    <div class="ps-section">
+      <div class="ps-section-title">破解时间估算</div>
+      <div class="ps-grid">
+        <div class="ps-card">
+          <div class="ps-card__label">在线慢速(100/H)</div>
+          <div class="ps-card__value" id="time-online-slow">-</div>
+        </div>
+        <div class="ps-card">
+          <div class="ps-card__label">在线快速(10/s)</div>
+          <div class="ps-card__value" id="time-online-fast">-</div>
+        </div>
+        <div class="ps-card">
+          <div class="ps-card__label">离线慢哈希(1e10/s)</div>
+          <div class="ps-card__value" id="time-offline-slow">-</div>
+        </div>
+        <div class="ps-card">
+          <div class="ps-card__label">离线快哈希(1e11/s)</div>
+          <div class="ps-card__value" id="time-offline-fast">-</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 字符组成 -->
+    <div class="ps-section">
+      <div class="ps-section-title">字符组成</div>
+      <div class="ps-charset" id="charset-list">
+        <div class="ps-charset__item"><span class="ps-tag">a-z</span><span id="cs-lower">0</span></div>
+        <div class="ps-charset__item"><span class="ps-tag">A-Z</span><span id="cs-upper">0</span></div>
+        <div class="ps-charset__item"><span class="ps-tag">0-9</span><span id="cs-digit">0</span></div>
+        <div class="ps-charset__item"><span class="ps-tag">!@#</span><span id="cs-symbol">0</span></div>
+        <div class="ps-charset__item"><span class="ps-tag">中文</span><span id="cs-cjk">0</span></div>
+        <div class="ps-charset__item"><span class="ps-tag">其他</span><span id="cs-other">0</span></div>
+      </div>
+    </div>
+
+    <!-- 视觉熵图表 -->
+    <div class="ps-section">
+      <div class="ps-section-title">视觉熵图表</div>
+      <canvas id="entropy-chart" width="500" height="160" style="width:100%;max-width:500px;height:160px;background:var(--tt-bg-secondary);border-radius:6px"></canvas>
+      <div class="ps-entropy-legend">
+        <span class="ps-legend-item"><span class="ps-legend-dot" style="background:#ef4444"></span>极弱(&lt;40)</span>
+        <span class="ps-legend-item"><span class="ps-legend-dot" style="background:#f59e0b"></span>中等(40-60)</span>
+        <span class="ps-legend-item"><span class="ps-legend-dot" style="background:#3b82f6"></span>良好(60-80)</span>
+        <span class="ps-legend-item"><span class="ps-legend-dot" style="background:#22c55e"></span>极强(&ge;80)</span>
+      </div>
+    </div>
+
+    <!-- 改进建议 -->
+    <div class="ps-section">
+      <div class="ps-section-title">改进建议</div>
+      <ul class="ps-tips" id="tips-list">
+        <li class="ps-tip ps-tip--info">开始输入密码以获取分析</li>
+      </ul>
+    </div>
+
+    <!-- 强密码生成器 -->
+    <div class="ps-section">
+      <div class="ps-section-title">强密码生成器</div>
+      <div class="ps-gen-row">
+        <label class="ps-gen-item"><input type="checkbox" id="gen-lower" checked> a-z</label>
+        <label class="ps-gen-item"><input type="checkbox" id="gen-upper" checked> A-Z</label>
+        <label class="ps-gen-item"><input type="checkbox" id="gen-digit" checked> 0-9</label>
+        <label class="ps-gen-item"><input type="checkbox" id="gen-symbol" checked> !@#</label>
+        <label class="ps-gen-item">长度 <input type="number" id="gen-len" value="20" min="6" max="64" class="ps-input--num"></label>
+        <label class="ps-gen-item"><input type="checkbox" id="gen-no-ambiguous"> 去歧义</label>
+      </div>
+      <div class="ps-gen-output-row">
+        <input type="text" id="gen-output" class="ps-input" readonly placeholder="点击「生成强密码」或上方按钮生成">
+        <button class="btn btn--primary" id="btn-do-generate">生成</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具完全在本地运行，密码不会上传到任何服务器，但请勿在他人设备上检测真实密码。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

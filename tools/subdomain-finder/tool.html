@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子域名发现</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="tool-toolbar">
+      <div class="toolbar-group toolbar-group--input">
+        <input type="text" class="domain-input" id="domain-input" placeholder="输入域名，如 example.com">
+      </div>
+      <div class="toolbar-group">
+        <button class="btn btn--primary" id="btn-query">🔍 查询</button>
+        <button class="btn btn--secondary" id="btn-export">📋 导出</button>
+        <button class="btn btn--secondary" id="btn-check-alive">💚 存活检测</button>
+      </div>
+    </div>
+
+    <div class="method-bar">
+      <span class="method-label">搜索方式：</span>
+      <label class="method-checkbox"><input type="checkbox" id="method-ct" value="ct" checked> crt.sh</label>
+      <label class="method-checkbox"><input type="checkbox" id="method-certspotter" value="certspotter"> CertSpotter</label>
+      <label class="method-checkbox"><input type="checkbox" id="method-hackertarget" value="hackertarget"> HackerTarget</label>
+      <label class="method-checkbox"><input type="checkbox" id="method-dns" value="dns"> DNS暴力枚举</label>
+    </div>
+
+    <div class="progress-bar-container" id="progress-container" style="display:none;">
+      <div class="progress-bar" id="progress-bar"></div>
+      <span class="progress-text" id="progress-text">准备中...</span>
+    </div>
+
+    <div class="stats-bar" id="stats-bar" style="display:none;">
+      <span class="stat-item">总计: <strong id="stat-total">0</strong></span>
+      <span class="stat-item">唯一: <strong id="stat-unique">0</strong></span>
+    </div>
+
+    <div class="tool-main">
+      <div class="panel">
+        <div class="panel-header">
+          <span>查询结果</span>
+        </div>
+        <div class="panel-body scroll-body" id="result-area">
+          <div class="info-placeholder">输入域名并选择搜索方式，点击查询</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途。子域名发现通过公开服务进行，结果仅供参考。</div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

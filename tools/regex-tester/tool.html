@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正则表达式测试器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <!-- 正则输入区 -->
+    <div class="regex-section">
+      <div class="section-header">
+        <span class="section-title">🔍 正则表达式</span>
+        <div class="regex-flags">
+          <label class="flag-label"><input type="checkbox" id="flag-g" checked> g (全局)</label>
+          <label class="flag-label"><input type="checkbox" id="flag-i"> i (忽略大小写)</label>
+          <label class="flag-label"><input type="checkbox" id="flag-m"> m (多行)</label>
+          <label class="flag-label"><input type="checkbox" id="flag-s"> s (点匹配换行)</label>
+        </div>
+      </div>
+      <div class="regex-input-wrapper">
+        <span class="regex-delimiter">/</span>
+        <input type="text" class="regex-input" id="regex-pattern" placeholder="输入正则表达式...">
+        <span class="regex-delimiter">/</span>
+        <span class="regex-flags-display" id="flags-display">g</span>
+      </div>
+      <div class="regex-templates">
+        <span class="templates-label">常用模板:</span>
+        <button class="template-btn" data-pattern="^\d+$" title="纯数字">数字</button>
+        <button class="template-btn" data-pattern="^[a-zA-Z]+$" title="纯字母">字母</button>
+        <button class="template-btn" data-pattern="^[一-龥]+$" title="纯中文">中文</button>
+        <button class="template-btn" data-pattern="^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" title="邮箱">邮箱</button>
+        <button class="template-btn" data-pattern="^1[3-9]\d{9}$" title="手机号">手机号</button>
+        <button class="template-btn" data-pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$" title="URL">URL</button>
+        <button class="template-btn" data-pattern="^(\d{18}|\d{17}[\dXx])$" title="身份证号">身份证</button>
+        <button class="template-btn" data-pattern="\d{4}-\d{2}-\d{2}" title="日期">日期</button>
+      </div>
+    </div>
+
+    <!-- 测试文本区 -->
+    <div class="test-section">
+      <div class="section-header">
+        <span class="section-title">📝 测试文本</span>
+        <div class="section-actions">
+          <button class="btn btn--text" id="btn-clear-test">🗑️ 清空</button>
+          <button class="btn btn--text" id="btn-sample">📋 示例文本</button>
+        </div>
+      </div>
+      <textarea class="test-input" id="test-text" placeholder="在此输入要测试的文本..."></textarea>
+    </div>
+
+    <!-- 匹配结果 -->
+    <div class="result-section">
+      <div class="section-header">
+        <span class="section-title">✅ 匹配结果</span>
+        <span class="match-count" id="match-count">0 个匹配</span>
+      </div>
+      <div class="result-display" id="result-display">
+        <div class="result-placeholder">输入正则表达式和测试文本后，匹配结果将显示在这里</div>
+      </div>
+    </div>
+
+    <!-- 替换功能 -->
+    <div class="replace-section">
+      <div class="section-header">
+        <span class="section-title">🔄 替换测试</span>
+      </div>
+      <div class="replace-row">
+        <input type="text" class="replace-input" id="replace-pattern" placeholder="替换为 (支持 $1, $2 等引用)">
+        <button class="btn btn--primary" id="btn-replace">替换</button>
+      </div>
+      <div class="replace-result" id="replace-result"></div>
+    </div>
+
+    <!-- 匹配详情 -->
+    <div class="details-section" id="details-section" hidden>
+      <div class="section-header">
+        <span class="section-title">📊 匹配详情</span>
+      </div>
+      <div class="details-list" id="details-list"></div>
+    </div>
+  </div>
+
+  <!-- 提示消息 -->
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64编解码</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <!-- 模式切换 -->
+    <div class="mode-tabs">
+      <button class="mode-tab mode-tab--active" data-mode="text">📝 文本</button>
+      <button class="mode-tab" data-mode="image">🖼️ 图片</button>
+      <button class="mode-tab" data-mode="file">📁 文件</button>
+    </div>
+
+    <!-- 文本模式 -->
+    <div class="mode-content mode-content--active" id="text-mode">
+      <div class="converter-layout">
+        <!-- 输入区 -->
+        <div class="converter-panel">
+          <div class="panel-header">
+            <span class="panel-title">输入</span>
+            <div class="panel-actions">
+              <button class="btn btn--text" id="text-paste">📋 粘贴</button>
+              <button class="btn btn--text" id="text-clear">🗑️ 清空</button>
+            </div>
+          </div>
+          <textarea class="converter-input" id="text-input" placeholder="输入要编码或解码的文本..."></textarea>
+          <div class="panel-footer">
+            <span id="text-input-stats">0 字符</span>
+          </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="converter-actions">
+          <button class="btn btn--primary btn--large" id="btn-encode">
+            <span>🔒</span> 编码
+          </button>
+          <button class="btn btn--secondary btn--large" id="btn-decode">
+            <span>🔓</span> 解码
+          </button>
+          <button class="btn btn--icon" id="btn-swap" title="交换">
+            <span>⇄</span>
+          </button>
+        </div>
+
+        <!-- 输出区 -->
+        <div class="converter-panel">
+          <div class="panel-header">
+            <span class="panel-title">输出</span>
+            <div class="panel-actions">
+              <button class="btn btn--text" id="text-copy">📋 复制</button>
+              <button class="btn btn--text" id="text-download">💾 下载</button>
+            </div>
+          </div>
+          <textarea class="converter-input converter-input--output" id="text-output" placeholder="结果将显示在这里..." readonly></textarea>
+          <div class="panel-footer">
+            <span id="text-output-stats">0 字符</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图片模式 -->
+    <div class="mode-content" id="image-mode">
+      <div class="image-layout">
+        <!-- 图片转Base64 -->
+        <div class="image-section">
+          <h3 class="section-title">🖼️ 图片转Base64</h3>
+          <div class="drop-zone" id="image-drop-zone">
+            <div class="drop-zone__content">
+              <span class="drop-zone__icon">📤</span>
+              <p>拖拽图片到此处，或点击上传</p>
+              <!-- 点击事件由 #image-drop-zone 的监听器统一处理（按钮在其内部，事件会冒泡上去）。
+                   不要在此写内联 onclick：扩展页 CSP 为 script-src 'self'，内联处理器会被拒绝执行。 -->
+              <input type="file" id="image-input" accept="image/*" hidden>
+              <button class="btn btn--secondary">选择图片</button>
+            </div>
+          </div>
+          <div class="preview-area" id="image-preview-area" hidden>
+            <img id="image-preview" alt="预览">
+            <div class="preview-actions">
+              <button class="btn btn--primary" id="btn-convert-image">🔒 转换为Base64</button>
+              <button class="btn btn--text" id="btn-clear-image">🗑️ 清除</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Base64转图片 -->
+        <div class="image-section">
+          <h3 class="section-title">🔤 Base64转图片</h3>
+          <textarea class="base64-input" id="base64-input" placeholder="粘贴Base64编码的图片数据..."></textarea>
+          <div class="base64-actions">
+            <button class="btn btn--primary" id="btn-convert-base64">🖼️ 转换为图片</button>
+            <button class="btn btn--text" id="btn-paste-base64">📋 粘贴</button>
+          </div>
+          <div class="result-area" id="image-result-area" hidden>
+            <img id="image-result" alt="转换结果">
+            <div class="result-actions">
+              <button class="btn btn--secondary" id="btn-download-image">💾 下载图片</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 文件模式 -->
+    <div class="mode-content" id="file-mode">
+      <div class="file-layout">
+        <div class="file-section">
+          <h3 class="section-title">📁 文件转Base64</h3>
+          <div class="drop-zone drop-zone--large" id="file-drop-zone">
+            <div class="drop-zone__content">
+              <span class="drop-zone__icon">📂</span>
+              <p>拖拽文件到此处，或点击上传</p>
+              <!-- 同图片区：点击由 #file-drop-zone 的监听器处理，此处不使用内联 onclick（CSP 限制） -->
+              <input type="file" id="file-input" hidden>
+              <button class="btn btn--secondary">选择文件</button>
+            </div>
+          </div>
+          <div class="file-info" id="file-info" hidden>
+            <div class="file-info__item">
+              <span class="file-info__label">文件名:</span>
+              <span class="file-info__value" id="file-name">-</span>
+            </div>
+            <div class="file-info__item">
+              <span class="file-info__label">大小:</span>
+              <span class="file-info__value" id="file-size">-</span>
+            </div>
+            <div class="file-info__item">
+              <span class="file-info__label">类型:</span>
+              <span class="file-info__value" id="file-type">-</span>
+            </div>
+          </div>
+          <div class="file-result" id="file-result" hidden>
+            <textarea class="file-output" id="file-output" readonly></textarea>
+            <div class="file-actions">
+              <button class="btn btn--primary" id="btn-copy-file">📋 复制</button>
+              <button class="btn btn--secondary" id="btn-download-file">💾 下载为文本文件</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 提示消息 -->
+    <div class="toast" id="toast"></div>
+  </div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

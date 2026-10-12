@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色对比度</title>
+    <link rel="stylesheet" href="../../content/theme-tool.css">
+    <link rel="stylesheet" href="tool.css">
+  </head>
+  <body>
+    <div class="tool-container">
+      <div class="tool-toolbar">
+        <div class="toolbar-group"><button class="btn btn--primary" id="btn-swap">⇄ 交换颜色</button><button class="btn btn--secondary" id="btn-random">🎲 随机</button>
+        </div>
+        <div class="toolbar-group"><button class="btn btn--icon" id="btn-copy-result">📋</button>
+        </div>
+      </div>
+      <div class="cc-content">
+        <div class="cc-display">
+          <div class="cc-preview" id="preview-bg" style="flex:1">
+          </div>
+          <div class="cc-preview" id="preview-text" style="flex:1">
+          </div>
+        </div>
+        <div class="cc-controls">
+          <div class="cc-control"><label>背景色</label>
+            <div style="display:flex;gap:8px;align-items:center"><input type="color" id="bg-color" value="#ffffff"><input type="text" id="bg-hex" value="#FFFFFF" style="flex:1">
+            </div>
+          </div>
+          <div class="cc-control"><label>文字色</label>
+            <div style="display:flex;gap:8px;align-items:center"><input type="color" id="text-color" value="#000000"><input type="text" id="text-hex" value="#000000" style="flex:1">
+            </div>
+          </div>
+        </div>
+        <div class="cc-result">
+          <div class="cc-score" id="cc-score">21.00</div>
+          <div class="cc-level" id="cc-level">对比度</div>
+          <div class="cc-ratio" id="cc-ratio">
+          </div>
+          <div class="cc-samples" id="cc-samples">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../common/tool-i18n-dict.js"></script>
+    <script src="../../common/tool-i18n.js"></script>
+    <script src="../../common/tool-runtime.js"></script>
+    <script src="tool.js"></script>
+  </body>
+</html>

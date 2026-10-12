@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>进制转换器</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="converter-grid">
+      <div class="base-item">
+        <label class="base-label">二进制 (Binary)</label>
+        <div class="base-input-row">
+          <input type="text" class="base-input" id="bin-input" placeholder="0-1" data-base="2">
+          <button class="btn btn--icon" data-target="bin-input">📋</button>
+        </div>
+      </div>
+      <div class="base-item">
+        <label class="base-label">八进制 (Octal)</label>
+        <div class="base-input-row">
+          <input type="text" class="base-input" id="oct-input" placeholder="0-7" data-base="8">
+          <button class="btn btn--icon" data-target="oct-input">📋</button>
+        </div>
+      </div>
+      <div class="base-item">
+        <label class="base-label">十进制 (Decimal)</label>
+        <div class="base-input-row">
+          <input type="text" class="base-input" id="dec-input" placeholder="0-9" data-base="10">
+          <button class="btn btn--icon" data-target="dec-input">📋</button>
+        </div>
+      </div>
+      <div class="base-item">
+        <label class="base-label">十六进制 (Hex)</label>
+        <div class="base-input-row">
+          <input type="text" class="base-input" id="hex-input" placeholder="0-9, A-F" data-base="16">
+          <button class="btn btn--icon" data-target="hex-input">📋</button>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn--secondary" id="btn-clear">🗑️ 清空全部</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

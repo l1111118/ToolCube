@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>自定义请求头</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="ch-container">
+  <div class="ch-header">
+    <div class="ch-header-left">
+      <span class="ch-title">📝 自定义请求头</span>
+      <span class="ch-status" id="ch-status">未启用</span>
+    </div>
+    <label class="ch-toggle"><input type="checkbox" id="ch-master"><span class="ch-toggle-slider"></span></label>
+  </div>
+
+  <div class="ch-section">
+    <div class="ch-section-title">预设规则</div>
+    <div class="ch-presets" id="ch-presets">
+      <div class="ch-preset-item">
+        <div class="ch-preset-info"><span class="ch-preset-name">DNT</span><span class="ch-preset-value">1 (Do Not Track)</span></div>
+        <button class="ch-preset-btn" data-name="DNT" data-value="1" data-op="set" data-apply="all" data-pattern="">应用预设</button>
+      </div>
+      <div class="ch-preset-item">
+        <div class="ch-preset-info"><span class="ch-preset-name">X-Do-Not-Track</span><span class="ch-preset-value">1</span></div>
+        <button class="ch-preset-btn" data-name="X-Do-Not-Track" data-value="1" data-op="set" data-apply="all" data-pattern="">应用预设</button>
+      </div>
+      <div class="ch-preset-item">
+        <div class="ch-preset-info"><span class="ch-preset-name">Sec-GPC</span><span class="ch-preset-value">1 (Global Privacy Control)</span></div>
+        <button class="ch-preset-btn" data-name="Sec-GPC" data-value="1" data-op="set" data-apply="all" data-pattern="">应用预设</button>
+      </div>
+      <div class="ch-preset-item">
+        <div class="ch-preset-info"><span class="ch-preset-name">Accept-Language</span><span class="ch-preset-value">en-US,en;q=0.9</span></div>
+        <button class="ch-preset-btn" data-name="Accept-Language" data-value="en-US,en;q=0.9" data-op="set" data-apply="all" data-pattern="">应用预设</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-section">
+    <div class="ch-section-head">
+      <span class="ch-section-title">自定义规则</span>
+      <button class="ch-btn ch-btn--primary ch-btn--sm" id="ch-add-rule">+ 添加规则</button>
+    </div>
+    <div class="ch-rules" id="ch-rules"></div>
+  </div>
+
+  <div class="ch-warning">⚠️ 启用后将持续修改请求头，关闭工具页面后仍生效</div>
+</div>
+<div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

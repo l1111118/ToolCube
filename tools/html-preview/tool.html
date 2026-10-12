@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>HTML预览</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="hp-container">
+  <div class="hp-toolbar">
+    <button class="btn btn--primary" id="btn-run">▶ 运行</button>
+    <button class="btn btn--secondary" id="btn-clear">清空</button>
+    <select class="btn btn--secondary" id="hp-template-select" title="选择一个模板">
+      <option value="">📄 选择模板…</option>
+      <option value="card">居中卡片</option>
+      <option value="form">登录表单</option>
+      <option value="grid">响应式卡片网格</option>
+      <option value="flex">Flex 布局</option>
+      <option value="animation">CSS 动画</option>
+      <option value="table">数据表格</option>
+    </select>
+  </div>
+  <div class="hp-panels">
+    <div class="hp-panel"><div class="hp-panel-title">📝 HTML / CSS</div><textarea id="hp-code" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  .card { background: #5b7fff; color: white; padding: 20px; border-radius: 10px; text-align: center; }
+  .btn { background: white; color: #5b7fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello World!</h1>
+    <p>这是一个HTML可视化预览工具</p>
+    <button class="btn" onclick="this.textContent='已点击!'">点击我</button>
+  </div>
+</body>
+</html></textarea></div>
+    <div class="hp-panel"><div class="hp-panel-title">👁 预览</div><iframe id="hp-preview" class="hp-iframe" sandbox="allow-scripts"></iframe></div>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

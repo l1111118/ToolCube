@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HTML实体编解码</title><link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-encode">🔒 HTML实体编码</button>
+      <button class="btn btn--secondary" id="btn-decode">🔓 HTML实体解码</button>
+    </div>
+    <div class="toolbar-group">
+      <select class="select" id="encode-mode"><option value="all">编码所有特殊字符</option><option value="named">使用命名实体</option><option value="numeric">使用数字实体</option></select>
+      <button class="btn btn--icon" id="btn-swap" title="交换输入输出">⇄</button>
+      <button class="btn btn--icon" id="btn-copy" title="复制结果">📋</button>
+      <button class="btn btn--icon" id="btn-clear" title="清空">🗑️</button>
+    </div>
+  </div>
+  <div class="tool-main">
+    <div class="panel panel--input"><div class="panel-header"><span class="panel-title">📥 输入</span></div>
+      <div class="panel-body"><textarea class="code-editor" id="input-area" placeholder="输入要编码/解码的文本..." spellcheck="false"></textarea></div>
+      <div class="panel-footer"><span id="input-status">0 字符</span></div></div>
+    <div class="panel panel--output"><div class="panel-header"><span class="panel-title">📤 输出</span></div>
+      <div class="panel-body"><textarea class="code-editor code-editor--output" id="output-area" placeholder="结果将显示在这里..." readonly></textarea></div>
+      <div class="panel-footer"><span id="output-status">等待输入</span></div></div>
+  </div>
+  <div class="validation-bar"><span class="validation-icon">💡</span><span class="validation-text">常用实体: &amp;amp; &amp;lt; &amp;gt; &amp;quot; &amp;apos; &amp;nbsp;</span></div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

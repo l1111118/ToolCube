@@ -1,0 +1,25 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:13px;color:var(--tt-text);background:var(--tt-bg);height:100%;overflow:hidden}
+.hp-container{height:100%;display:flex;flex-direction:column}
+.hp-toolbar{display:flex;gap:6px;padding:6px 12px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.btn{padding:6px 12px;font-size:12px;font-weight:500;border:none;border-radius:6px;cursor:pointer}
+.btn--primary{background:var(--tt-primary);color:var(--tt-primary-on);border:none}
+.btn--secondary{background:var(--tt-bg);color:var(--tt-text);border:1px solid var(--tt-border)}
+.hp-panels{display:flex;gap:4px;flex:1;min-height:0;padding:4px}
+.hp-panel{flex:1;display:flex;flex-direction:column;min-width:0}
+.hp-panel-title{font-size:10px;color:var(--tt-text-muted);margin-bottom:2px;text-transform:uppercase}
+.hp-panel textarea{flex:1;padding:8px;font-family: var(--tt-font-mono);font-size:12px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg-secondary);color:var(--tt-text);resize:none;outline:none;width:100%}
+.hp-panel textarea:focus{border-color:var(--tt-primary)}
+.hp-iframe{flex:1;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);min-height:0}
+.hp-console{flex-shrink:0;max-height:120px;display:flex;flex-direction:column;border-top:1px solid var(--tt-border);margin-top:2px}
+.hp-console-title{display:flex;justify-content:space-between;align-items:center;padding:2px 6px;font-size:10px;color:var(--tt-text-muted);background:var(--tt-bg-secondary);text-transform:uppercase}
+.hp-console-clear{background:none;border:1px solid var(--tt-border);color:var(--tt-text-muted);font-size:10px;padding:1px 6px;border-radius:3px;cursor:pointer}
+.hp-console-clear:hover{background:var(--tt-bg-hover)}
+.hp-console-log{flex:1;overflow-y:auto;font-family:var(--tt-font-mono);font-size:11px;padding:2px 6px;background:var(--tt-bg)}
+.hp-console-line{padding:1px 0;border-bottom:1px solid var(--tt-border);word-break:break-all}
+.hp-console-log{color:var(--tt-text)}
+.hp-console-error{color:#e74c3c}
+.hp-console-warn{color:#f39c12}
+.hp-console-info{color:#3498db}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:2px}

@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>CSS阴影生成器</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head><body>
+<div class="cs-container">
+  <h3>🖼️ CSS Box-Shadow 生成器</h3>
+  <div class="cs-preview">
+    <div class="cs-preview-box" id="cs-preview">预览</div>
+  </div>
+  <div class="cs-controls">
+    <div class="cs-ctrl"><label>X偏移</label><input type="range" id="cs-x" min="-50" max="50" value="5"><span id="cs-x-val">5</span></div>
+    <div class="cs-ctrl"><label>Y偏移</label><input type="range" id="cs-y" min="-50" max="50" value="10"><span id="cs-y-val">10</span></div>
+    <div class="cs-ctrl"><label>模糊</label><input type="range" id="cs-blur" min="0" max="60" value="15"><span id="cs-blur-val">15</span></div>
+    <div class="cs-ctrl"><label>扩展</label><input type="range" id="cs-spread" min="-20" max="30" value="0"><span id="cs-spread-val">0</span></div>
+    <div class="cs-ctrl"><label>颜色</label><input type="color" id="cs-color" value="#000000"><span id="cs-color-val">#000</span></div>
+    <div class="cs-ctrl"><label>透明度</label><input type="range" id="cs-opacity" min="0" max="100" value="30"><span id="cs-opacity-val">30%</span></div>
+    <div class="cs-ctrl"><label>内阴影</label><input type="checkbox" id="cs-inset"></div>
+  </div>
+  <div class="cs-output">
+    <div class="cs-code" id="cs-code">box-shadow: 5px 10px 15px 0px rgba(0,0,0,0.3);</div>
+    <button class="btn btn--primary" id="cs-copy">📋 复制CSS</button>
+  </div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script></body></html>

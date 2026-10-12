@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>LocalStorage 管理</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="ls-container">
+  <div class="ls-toolbar">
+    <div class="ls-tabs" id="ls-tabs">
+      <button class="ls-tab ls-tab--active" data-kind="local">LocalStorage</button>
+      <button class="ls-tab" data-kind="session">SessionStorage</button>
+    </div>
+    <input type="text" class="ls-input" id="ls-search" placeholder="🔍 搜索 key / value">
+    <button class="btn btn--secondary" id="btn-refresh">🔄 刷新</button>
+    <button class="btn btn--danger" id="btn-clear">🗑️ 清空</button>
+    <button class="btn btn--secondary" id="btn-export">📤 导出 JSON</button>
+    <button class="btn btn--secondary" id="btn-import">📥 导入</button>
+    <button class="btn btn--secondary" id="btn-select-all">☑ 全选</button>
+    <button class="btn btn--danger" id="btn-delete-selected">🗑️ 批量删除</button>
+    <input type="file" id="ls-file" accept="application/json" style="display:none">
+  </div>
+  <div class="ls-stats" id="ls-stats">点击"刷新"加载存储</div>
+  <div class="ls-add">
+    <input type="text" id="ls-add-key" placeholder="key">
+    <input type="text" id="ls-add-value" placeholder="value">
+    <button class="btn btn--primary" id="btn-add">+ 设置</button>
+  </div>
+  <div class="ls-list" id="ls-list">
+    <div class="ls-empty">📦 暂无数据</div>
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

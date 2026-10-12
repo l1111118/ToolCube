@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CURL 命令生成器</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <select id="method-select" class="cg-select">
+        <option value="GET">GET</option>
+        <option value="POST" selected>POST</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+        <option value="PATCH">PATCH</option>
+        <option value="HEAD">HEAD</option>
+        <option value="OPTIONS">OPTIONS</option>
+      </select>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-copy" title="复制生成的 CURL 命令">📋 复制</button>
+      <button class="btn btn--secondary" id="btn-reset" title="重置">🔄 重置</button>
+    </div>
+  </div>
+
+  <div class="cg-content">
+
+    <!-- URL -->
+    <div class="cg-section">
+      <div class="cg-section-title">请求地址</div>
+      <input type="text" id="url-input" class="cg-input cg-input--full" placeholder="https://api.example.com/v1/users">
+    </div>
+
+    <!-- 导入 cURL -->
+    <div class="cg-section">
+      <div class="cg-section-title">从 cURL 命令导入</div>
+      <textarea id="curl-import-area" class="cg-textarea" placeholder="粘贴 cURL 命令，如：curl 'https://example.com/api' -H 'Cookie: ...'" rows="3"></textarea>
+      <button class="btn btn--secondary" id="btn-import-curl" style="margin-top:4px">📥 导入 cURL</button>
+    </div>
+
+    <!-- Headers -->
+    <div class="cg-section">
+      <div class="cg-section-title">
+        <span>请求头 (Headers)</span>
+        <button class="btn btn--icon btn--xs" id="btn-add-header">+ 添加</button>
+      </div>
+      <div class="cg-headers" id="headers-list"></div>
+    </div>
+
+    <!-- 认证 -->
+    <div class="cg-section">
+      <div class="cg-section-title">认证 (Authentication)</div>
+      <div class="cg-auth-row">
+        <select id="auth-type" class="cg-select">
+          <option value="none">无认证</option>
+          <option value="bearer">Bearer Token</option>
+          <option value="basic">Basic Auth</option>
+          <option value="apikey-header">API Key (Header)</option>
+          <option value="apikey-query">API Key (Query)</option>
+          <option value="oauth">OAuth 2.0</option>
+        </select>
+        <input type="text" id="auth-key" class="cg-input" placeholder="Token / 用户名 / API Key" style="flex:1">
+        <input type="text" id="auth-secret" class="cg-input" placeholder="密码 / Header名 / Token端点" style="flex:1;display:none">
+      </div>
+      <button class="btn btn--secondary btn--xs" id="btn-apply-auth">应用认证</button>
+      <p class="cg-hint">选择认证类型并填写凭据，点击"应用认证"自动添加到请求头/URL。</p>
+    </div>
+
+    <!-- Body -->
+    <div class="cg-section" id="body-section">
+      <div class="cg-section-title">请求体 (Body)</div>
+      <div class="cg-body-tabs">
+        <button class="cg-tab cg-tab--active" data-type="none">无</button>
+        <button class="cg-tab" data-type="json">JSON</button>
+        <button class="cg-tab" data-type="form">Form</button>
+        <button class="cg-tab" data-type="urlencoded">x-www-form-urlencoded</button>
+        <button class="cg-tab" data-type="raw">Raw</button>
+      </div>
+      <div class="cg-body-content">
+        <div class="cg-body-pane cg-body-pane--active" data-pane="none">
+          <p class="cg-hint">无请求体</p>
+        </div>
+        <div class="cg-body-pane" data-pane="json">
+          <textarea id="body-json" class="cg-textarea" placeholder='{"name": "value"}'></textarea>
+        </div>
+        <div class="cg-body-pane" data-pane="form">
+          <div id="form-fields" class="cg-form-list"></div>
+          <button class="btn btn--icon btn--xs" id="btn-add-form">+ 添加字段</button>
+        </div>
+        <div class="cg-body-pane" data-pane="urlencoded">
+          <div id="url-fields" class="cg-form-list"></div>
+          <button class="btn btn--icon btn--xs" id="btn-add-url">+ 添加字段</button>
+        </div>
+        <div class="cg-body-pane" data-pane="raw">
+          <textarea id="body-raw" class="cg-textarea" placeholder="原始请求体"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 选项 -->
+    <div class="cg-section">
+      <div class="cg-section-title">高级选项</div>
+      <div class="cg-opts">
+        <label class="cg-opt"><input type="checkbox" id="opt-follow"> -L 跟随重定向</label>
+        <label class="cg-opt"><input type="checkbox" id="opt-insecure" checked> -k 跳过 SSL 验证</label>
+        <label class="cg-opt"><input type="checkbox" id="opt-verbose"> -v 详细输出</label>
+        <label class="cg-opt"><input type="checkbox" id="opt-show-error"> --show-error</label>
+        <label class="cg-opt"><input type="checkbox" id="opt-compressed"> --compressed</label>
+        <label class="cg-opt">超时 <input type="number" id="opt-timeout" value="30" min="0" max="600" class="cg-input--num"> 秒</label>
+      </div>
+    </div>
+
+    <!-- 生成的 CURL -->
+    <div class="cg-section">
+      <div class="cg-section-title">生成的 cURL 命令</div>
+      <pre id="curl-output" class="cg-output">curl -X GET &quot;&quot;</pre>
+    </div>
+
+    <!-- 执行测试 -->
+    <div class="cg-section">
+      <div class="cg-section-title">执行测试 (Chrome 115+ 支持 fetch / 注: 浏览器 CORS 可能限制)</div>
+      <div class="cg-row">
+        <button class="btn btn--primary" id="btn-execute">▶ 执行</button>
+        <span class="cg-status" id="exec-status">就绪</span>
+      </div>
+      <pre id="exec-result" class="cg-output cg-output--result"></pre>
+    </div>
+
+    <!-- 代码生成 -->
+    <div class="cg-section">
+      <div class="cg-section-title">代码生成</div>
+      <div class="cg-row">
+        <button class="btn btn--secondary" id="btn-gen-python">🐍 Python</button>
+        <button class="btn btn--secondary" id="btn-gen-js">📜 JavaScript</button>
+        <button class="btn btn--secondary" id="btn-gen-node">🟢 Node.js</button>
+        <button class="btn btn--secondary" id="btn-gen-php">🐘 PHP</button>
+        <button class="btn btn--secondary" id="btn-gen-go">🔷 Go</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途或未授权测试，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>网页剪报</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="wc-container">
+  <div class="wc-toolbar">
+    <button class="btn btn--primary" id="btn-capture">📥 抓取当前页</button>
+    <select class="wc-select" id="wc-mode">
+      <option value="full">全文</option>
+      <option value="selection">选择区域</option>
+      <option value="article">仅正文</option>
+    </select>
+    <select class="wc-select" id="wc-format">
+      <option value="markdown">Markdown 格式</option>
+      <option value="html">HTML 格式（含样式）</option>
+      <option value="text">纯文本</option>
+    </select>
+    <label class="wc-checkbox-label"><input type="checkbox" id="wc-images"> 下载图片</label>
+    <label class="wc-checkbox-label"><input type="checkbox" id="wc-autocopy"> 自动复制</label>
+    <button class="btn btn--secondary" id="btn-copy">📋 复制</button>
+    <button class="btn btn--secondary" id="btn-download">⬇️ 下载</button>
+    <button class="btn btn--secondary" id="btn-pdf">📄 保存PDF</button>
+  </div>
+  <div class="wc-toolbar">
+    <input type="text" class="wc-select" id="wc-server-url" placeholder="https://example.com/article（任意 URL，服务端提取正文）" spellcheck="false">
+    <button class="btn btn--secondary" id="btn-server-extract">🌐 服务端提取正文</button>
+    <button class="btn btn--secondary" id="btn-archive" title="查询该 URL 在互联网档案馆中的历史快照">🗂️ 历史快照</button>
+  </div>
+  <div class="wc-info" id="wc-info">
+    <span>📄 抓取后将显示页面内容</span>
+  </div>
+  <div class="wc-preview" id="wc-preview">
+    <div class="wc-empty">📋 等待抓取</div>
+  </div>
+  <div class="wc-history" id="wc-history"></div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

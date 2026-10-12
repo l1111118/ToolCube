@@ -1,0 +1,51 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{font-family:var(--tt-font);font-size:13px;color:var(--tt-text);background:var(--tt-bg);height:100%;overflow:hidden}
+.af-container{height:100%;display:flex;flex-direction:column;overflow-y:auto}
+.af-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--tt-bg-secondary);border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.af-header-left{display:flex;align-items:center;gap:10px}
+.af-title{font-size:14px;font-weight:700}
+.af-status{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;background:var(--tt-bg-tertiary);color:var(--tt-text-secondary)}
+.af-status--active{background:rgba(76,175,80,.15);color:#4caf50}
+
+.af-toggle{position:relative;display:inline-block;width:40px;height:22px}
+.af-toggle input{opacity:0;width:0;height:0}
+.af-toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--tt-bg-tertiary);border:1px solid var(--tt-border);border-radius:22px;transition:.3s}
+.af-toggle-slider::before{content:"";position:absolute;height:16px;width:16px;left:2px;bottom:2px;background:var(--tt-text-secondary);border-radius:50%;transition:.3s}
+.af-toggle input:checked+.af-toggle-slider{background:var(--tt-primary);border-color:var(--tt-primary)}
+.af-toggle input:checked+.af-toggle-slider::before{transform:translateX(18px);background:var(--tt-text-inverse)}
+
+.af-stats{display:flex;gap:20px;padding:10px 12px;background:var(--tt-bg-tertiary);border-bottom:1px solid var(--tt-border);flex-shrink:0}
+.af-stat-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.af-stat-indicator{font-size:20px}
+.af-stat-num{font-size:20px;font-weight:700;color:var(--tt-primary)}
+.af-stat-label{font-size:10px;color:var(--tt-text-secondary)}
+
+.af-section{padding:10px 12px;border-bottom:1px solid var(--tt-border)}
+.af-section-title{font-size:12px;font-weight:600;color:var(--tt-text-secondary);margin-bottom:8px}
+
+.af-level-group{display:flex;flex-direction:column;gap:6px}
+.af-level-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--tt-bg-secondary);border-radius:6px;border:1px solid var(--tt-border);cursor:pointer}
+.af-level-item input[type="radio"]{margin-top:2px;accent-color:var(--tt-primary);cursor:pointer}
+.af-level-name{font-size:12px;font-weight:600;display:block}
+.af-level-desc{font-size:10px;color:var(--tt-text-secondary);display:block;margin-top:2px}
+
+.af-protections{display:flex;flex-direction:column;gap:6px}
+.af-prot-item{padding:8px 10px;background:var(--tt-bg-secondary);border-radius:6px;border:1px solid var(--tt-border)}
+.af-prot-label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.af-prot-check{accent-color:var(--tt-primary);width:15px;height:15px;cursor:pointer}
+.af-prot-name{font-size:12px;font-weight:500}
+.af-prot-desc{font-size:10px;color:var(--tt-text-secondary);margin-top:3px;padding-left:23px}
+
+.af-warning{margin:10px 12px;padding:10px 14px;background:var(--tt-bg-secondary);border-left:3px solid #ff9800;border-radius:4px;font-size:11px;color:var(--tt-text-secondary);line-height:1.6;flex-shrink:0}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);padding:12px 24px;background:var(--tt-toast-bg);color:var(--tt-text-inverse);border-radius:8px;opacity:0;transition:all .3s;z-index:1000;font-size:13px;white-space:nowrap}
+.toast--show{transform:translateX(-50%) translateY(0);opacity:1}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--tt-border);border-radius:3px}
+
+/* ==================== 下拉选择与提示 ==================== */
+.af-select{width:100%;padding:7px 10px;font-size:12px;border:1px solid var(--tt-border);border-radius:6px;background:var(--tt-bg);color:var(--tt-text);cursor:pointer;outline:none;transition:border-color .15s}
+.af-select:focus{border-color:var(--tt-primary)}
+.af-select:hover{border-color:var(--tt-primary)}
+.af-hint{margin-top:6px;font-size:11px;color:var(--tt-text-secondary);line-height:1.5}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>二维码读取</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="tool-container">
+  <div class="tool-toolbar">
+    <button class="btn btn--primary" id="btn-select">📁 选择图片</button>
+    <button class="btn btn--secondary" id="btn-paste">📋 从剪贴板</button>
+    <button class="btn btn--secondary" id="btn-camera">📷 拍照扫描</button>
+    <button class="btn btn--icon" id="btn-clear">🗑️</button>
+  </div>
+  <div class="qr-compat-notice" id="qr-compat-notice" style="display:none;">
+    ⚠️ 当前浏览器不支持 BarcodeDetector API（如 Firefox）。图片识别功能可能受限，建议使用 Chrome/Edge 浏览器获得最佳体验。
+  </div>
+  <div class="qr-content">
+    <div class="qr-dropzone" id="qr-dropzone">
+      <div class="qr-dropzone-text">📷 选择含二维码的图片</div>
+      <div class="qr-dropzone-sub">支持 PNG/JPG · 也支持从剪贴板粘贴</div>
+      <input type="file" id="qr-file" accept="image/*" style="display:none">
+    </div>
+    <video id="qr-camera" class="qr-camera" style="display:none" autoplay playsinline></video>
+    <img id="qr-preview" class="qr-preview" style="display:none">
+    <div class="qr-loading" id="qr-loading" style="display:none">⏳ 正在识别...</div>
+    <div class="qr-result-box" id="qr-result" style="display:none">
+      <h4>📋 识别结果</h4>
+      <span class="qr-result-type" id="qr-type"></span>
+      <div class="qr-result-text" id="qr-text"></div>
+      <div class="qr-result-actions">
+        <button class="btn btn--secondary" id="btn-open">🔗 打开链接</button>
+        <button class="btn btn--secondary" id="btn-copy-result">📋 复制</button>
+        <button class="btn btn--secondary" id="btn-new-scan">🔄 再次扫描</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- jsQR：纯 JavaScript 二维码解码器（Apache-2.0），作为 BarcodeDetector 的跨浏览器回退。
+     Firefox 至今未实现 BarcodeDetector，没有该回退时本工具在 Firefox 上完全不可用。 -->
+<script src="../../libs/jsQR.js"></script>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

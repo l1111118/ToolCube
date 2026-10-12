@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>剪贴板历史</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="ch-container">
+  <div class="ch-toolbar">
+    <button class="btn btn--primary" id="btn-start">▶️ 开始监听</button>
+    <button class="btn btn--secondary" id="btn-stop">⏸️ 停止</button>
+    <input type="text" class="ch-input" id="ch-search" placeholder="🔍 搜索">
+    <select class="ch-select" id="ch-type">
+      <option value="all">全部</option>
+      <option value="text">文本</option>
+      <option value="url">URL</option>
+      <option value="code">代码</option>
+      <option value="email">邮箱</option>
+    </select>
+    <button class="btn btn--secondary" id="btn-export">📤 导出</button>
+    <button class="btn btn--danger" id="btn-clear">🗑️ 清空</button>
+  </div>
+  <div class="ch-stats" id="ch-stats">⏸ 未监听 · 点击"开始监听"获取剪贴板权限</div>
+  <div class="ch-list" id="ch-list">
+    <div class="ch-empty">📋 剪贴板历史为空</div>
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习研究，请勿用于非法用途，使用造成一切问题由使用者承担。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

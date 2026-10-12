@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浏览器指纹检测</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+  <link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <div class="fp-header">
+      <h3>🔍 浏览器指纹检测</h3>
+      <p>检测你的浏览器泄露了哪些可追踪的指纹信息</p>
+    </div>
+
+    <button class="btn btn--primary btn--large" id="btn-detect">🚀 开始检测</button>
+
+    <div class="fp-score-section" id="score-section" style="display:none">
+      <div class="fp-score-card">
+        <div class="fp-score-label">可追踪性风险评分（启发式）</div>
+        <div class="fp-score-value" id="fp-score">—</div>
+        <div class="fp-score-bar"><div class="fp-score-bar-fill" id="fp-score-bar"></div></div>
+        <div class="fp-score-desc" id="fp-score-desc">—</div>
+      </div>
+      <div class="fp-hash-card">
+        <div class="fp-hash-label">总体指纹哈希 (SHA-256)</div>
+        <div class="fp-hash-value" id="fp-hash">—</div>
+        <button class="btn btn--text" id="btn-copy-hash">📋 复制</button>
+      </div>
+    </div>
+
+    <div class="fp-sections" id="fp-sections"></div>
+
+    <div class="fp-recommendations" id="fp-recommendations" style="display:none">
+      <div class="fp-rec-title">🛡️ 降低可追踪性建议</div>
+      <div class="fp-rec-list" id="fp-rec-list"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

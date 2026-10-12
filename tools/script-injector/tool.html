@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>自定义脚本注入</title><link rel="stylesheet" href="../../content/theme-tool.css"><link rel="stylesheet" href="tool.css"></head>
+<body>
+<div class="si-container">
+  <div class="si-header">
+    <div class="si-header-left">
+      <span class="si-title">💉 自定义脚本注入</span>
+      <span class="si-status" id="si-status">未启用</span>
+    </div>
+    <label class="si-toggle"><input type="checkbox" id="si-master"><span class="si-toggle-slider"></span></label>
+  </div>
+
+  <div class="si-section">
+    <div class="si-section-title">预设脚本</div>
+    <div class="si-presets" id="si-presets">
+      <div class="si-preset-group">页面增强</div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">🌙 暗黑模式强制</span><span class="si-preset-desc">CSS - 强制任何页面使用暗黑模式</span></div>
+        <button class="si-preset-btn" data-preset="darkmode">应用预设</button>
+      </div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">📖 阅读模式样式</span><span class="si-preset-desc">CSS - 隐藏侧边栏，优化阅读体验</span></div>
+        <button class="si-preset-btn" data-preset="readability">应用预设</button>
+      </div>
+      <div class="si-preset-group">限制解除</div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">🔓 禁用右键限制</span><span class="si-preset-desc">JS - 移除 contextmenu 事件拦截</span></div>
+        <button class="si-preset-btn" data-preset="contextmenu">应用预设</button>
+      </div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">📋 禁用选择限制</span><span class="si-preset-desc">JS - 移除 selectstart/copy 事件拦截</span></div>
+        <button class="si-preset-btn" data-preset="select">应用预设</button>
+      </div>
+      <div class="si-preset-group">脚本库注入</div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name"> jQuery 3.x</span><span class="si-preset-desc">JS - 注入 jQuery 3.7.1（SRI 校验）</span></div>
+        <button class="si-preset-btn" data-preset="jquery">应用预设</button>
+      </div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name"> Lodash 4.x</span><span class="si-preset-desc">JS - 注入 Lodash 4.17.21 工具库</span></div>
+        <button class="si-preset-btn" data-preset="lodash">应用预设</button>
+      </div>
+      <div class="si-preset-group">开发工具</div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">⚡ 性能监控工具</span><span class="si-preset-desc">JS - 提供 PerfMonitor API（耗时/FPS/内存）</span></div>
+        <button class="si-preset-btn" data-preset="perf_monitor">应用预设</button>
+      </div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">🔧 DOM 助手工具</span><span class="si-preset-desc">JS - 提供 DomHelper API（选择/创建/委托）</span></div>
+        <button class="si-preset-btn" data-preset="dom_helper">应用预设</button>
+      </div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">🐛 调试日志增强</span><span class="si-preset-desc">JS - 拦截 console 日志，可导出调试记录</span></div>
+        <button class="si-preset-btn" data-preset="debug_console">应用预设</button>
+      </div>
+      <div class="si-preset-group">隐私拦截</div>
+      <div class="si-preset-item">
+        <div class="si-preset-info"><span class="si-preset-name">🚫 阻止 Google Analytics</span><span class="si-preset-desc">JS - 拦截 ga/gtag 脚本加载与调用</span></div>
+        <button class="si-preset-btn" data-preset="analytics_blocker">应用预设</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="si-section">
+    <div class="si-section-head">
+      <span class="si-section-title">自定义规则</span>
+      <button class="si-btn si-btn--primary si-btn--sm" id="si-add-rule">+ 添加规则</button>
+    </div>
+    <div class="si-rules" id="si-rules"></div>
+  </div>
+
+  <div class="si-warning">⚠️ 注入的自定义脚本可能影响网页正常运行，请谨慎使用</div>
+  <div class="si-warning2">⚠️ 启用后将持续注入，关闭工具页面后仍生效</div>
+</div>
+<div class="toast" id="toast"></div>
+<!-- acorn：真实 JavaScript 解析器，用于规则代码的语法校验。
+     扩展页 CSP 为 script-src 'self'（不含 unsafe-eval），new Function/eval 会被浏览器拒绝，
+     无法用其做语法检查；acorn 是纯解析器、不执行代码，既满足 CSP 又能给出精确的错误位置。
+     必须在本脚本之前同步加载，tool.js 中的 checkSyntax 会直接使用 window.acorn。 -->
+<script src="../../libs/acorn.js"></script>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body></html>

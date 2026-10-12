@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON格式化与验证</title>
+  <link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+  <div class="tool-container">
+    <!-- 工具栏 -->
+    <div class="tool-toolbar">
+      <div class="toolbar-group">
+        <button class="btn btn--primary" id="btn-format">
+          <span>✨</span> 格式化
+        </button>
+        <button class="btn btn--secondary" id="btn-minify">
+          <span>🗜️</span> 压缩
+        </button>
+      </div>
+      <div class="toolbar-group">
+        <button class="btn btn--icon" id="btn-escape" title="转义">
+          <span>🔒</span>
+        </button>
+        <button class="btn btn--icon" id="btn-unescape" title="反转义">
+          <span>🔓</span>
+        </button>
+        <div class="toolbar-divider"></div>
+        <button class="btn btn--icon" id="btn-copy" title="复制结果">
+          <span>📋</span>
+        </button>
+        <button class="btn btn--icon" id="btn-download" title="下载">
+          <span>💾</span>
+        </button>
+        <button class="btn btn--icon" id="btn-clear" title="清空">
+          <span>🗑️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="tool-main">
+      <!-- 输入区 -->
+      <div class="panel panel--input">
+        <div class="panel-header">
+          <span class="panel-title">📥 输入 JSON</span>
+          <div class="panel-actions">
+            <label class="file-input-label">
+              <input type="file" id="file-input" accept=".json,.txt" hidden>
+              <span class="btn btn--text">📁 打开文件</span>
+            </label>
+            <button class="btn btn--text" id="btn-paste">📋 粘贴</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <textarea 
+            class="code-editor" 
+            id="input-area" 
+            placeholder="在此粘贴JSON数据..."
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <div class="panel-footer">
+          <span class="status-text" id="input-status">0 字符</span>
+        </div>
+      </div>
+
+      <!-- 分隔条 -->
+      <div class="resizer" id="resizer"></div>
+
+      <!-- 输出区 -->
+      <div class="panel panel--output">
+        <div class="panel-header">
+          <span class="panel-title">📤 输出结果</span>
+          <div class="panel-actions">
+            <select class="select" id="indent-select">
+              <option value="2">2空格缩进</option>
+              <option value="4" selected>4空格缩进</option>
+              <option value="8">8空格缩进</option>
+              <option value="\t">Tab缩进</option>
+            </select>
+            <label class="switch">
+              <input type="checkbox" id="toggle-tree">
+              <span class="switch-slider"></span>
+              <span class="switch-label">树形视图</span>
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <textarea 
+            class="code-editor code-editor--output" 
+            id="output-area" 
+            placeholder="格式化后的JSON将显示在这里..."
+            spellcheck="false"
+            readonly
+          ></textarea>
+          <div class="tree-view" id="tree-view" hidden></div>
+        </div>
+        <div class="panel-footer">
+          <span class="status-text" id="output-status">等待输入</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 验证结果 -->
+    <div class="validation-bar" id="validation-bar">
+      <span class="validation-icon" id="validation-icon">⏳</span>
+      <span class="validation-text" id="validation-text">等待输入...</span>
+    </div>
+  </div>
+
+  <!-- 错误提示 -->
+  <div class="error-toast" id="error-toast">
+    <span class="error-icon">❌</span>
+    <span class="error-message" id="error-message"></span>
+    <button class="error-close" id="error-close">✕</button>
+  </div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>

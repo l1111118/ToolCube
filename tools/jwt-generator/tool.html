@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JWT 生成与签名</title>
+<link rel="stylesheet" href="../../content/theme-tool.css">
+<link rel="stylesheet" href="tool.css">
+</head>
+<body>
+<div class="tool-container">
+
+  <div class="tool-toolbar">
+    <div class="toolbar-group">
+      <select id="algo-select" class="jg-select">
+        <option value="HS256" selected>HS256 (HMAC-SHA256)</option>
+        <option value="HS384">HS384 (HMAC-SHA384)</option>
+        <option value="HS512">HS512 (HMAC-SHA512)</option>
+        <option value="RS256">RS256 (RSA-SHA256)</option>
+        <option value="ES256">ES256 (ECDSA-SHA256)</option>
+      </select>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn--primary" id="btn-generate">🔐 生成 Token</button>
+      <button class="btn btn--icon" id="btn-copy" title="复制 Token">📋</button>
+      <button class="btn btn--icon" id="btn-clear" title="清空">🗑️</button>
+    </div>
+  </div>
+
+  <div class="jg-content">
+
+    <!-- Header -->
+    <div class="jg-section">
+      <div class="jg-section-title">
+        <span>Header (头部)</span>
+        <button class="btn btn--icon btn--xs" id="btn-format-header">格式化</button>
+      </div>
+      <textarea id="header-input" class="jg-textarea" spellcheck="false">{
+  "alg": "HS256",
+  "typ": "JWT"
+}</textarea>
+    </div>
+
+    <!-- Payload -->
+    <div class="jg-section">
+      <div class="jg-section-title">
+        <span>Payload (载荷)</span>
+        <div class="jg-quick-claims">
+          <button class="jg-claim" data-claim="iss">iss</button>
+          <button class="jg-claim" data-claim="sub">sub</button>
+          <button class="jg-claim" data-claim="aud">aud</button>
+          <button class="jg-claim" data-claim="exp">exp</button>
+          <button class="jg-claim" data-claim="iat">iat</button>
+          <button class="jg-claim" data-claim="nbf">nbf</button>
+          <button class="jg-claim" data-claim="jti">jti</button>
+        </div>
+      </div>
+      <textarea id="payload-input" class="jg-textarea" spellcheck="false">{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1700000000,
+  "exp": 1800000000
+}</textarea>
+    </div>
+
+    <!-- Secret -->
+    <div class="jg-section">
+      <div class="jg-section-title">
+        <span>Secret / 密钥 (HS) 或 私钥 (RS/ES)</span>
+        <button class="btn btn--icon btn--xs" id="btn-gen-secret">🎲 生成共享密钥</button>
+        <button class="btn btn--icon btn--xs" id="btn-gen-keypair">🔑 生成密钥对</button>
+      </div>
+      <div class="jg-secret-row">
+        <input type="text" id="secret-input" class="jg-input" value="your-256-bit-secret" autocomplete="off">
+        <label class="jg-opt"><input type="checkbox" id="show-secret"> 显示</label>
+      </div>
+      <p class="jg-hint">HS256/384/512 使用共享密钥（HMAC）。RS256/ES256 使用 PEM 格式私钥（PKCS#8）。密钥长度建议 ≥ 32 字符。</p>
+      <!-- 公钥显示区（RS/ES 时使用） -->
+      <div id="keypair-output" style="display:none;margin-top:8px">
+        <div class="jg-section-title" style="margin:0 0 4px">🔑 公钥（用于验证）</div>
+        <textarea id="public-key-input" class="jg-textarea" style="min-height:80px" spellcheck="false" placeholder="点击「生成密钥对」生成 RSA/ECDSA 密钥对..."></textarea>
+      </div>
+    </div>
+
+    <!-- Payload 模板 -->
+    <div class="jg-section">
+      <div class="jg-section-title">Payload 模板</div>
+      <div class="jg-tpl-row">
+        <button class="jg-tpl" data-tpl="auth">认证令牌</button>
+        <button class="jg-tpl" data-tpl="api">API 访问</button>
+        <button class="jg-tpl" data-tpl="admin">管理员</button>
+        <button class="jg-tpl" data-tpl="refresh">刷新令牌</button>
+        <button class="jg-tpl" data-tpl="empty">空模板</button>
+      </div>
+    </div>
+
+    <!-- 生成结果 -->
+    <div class="jg-section">
+      <div class="jg-section-title">生成的 JWT Token</div>
+      <div class="jg-token-box" id="token-output">点击「生成 Token」按钮生成</div>
+      <div class="jg-token-colors">
+        <span class="jg-color-tag jg-color-tag--header">Header</span>
+        <span class="jg-color-tag jg-color-tag--payload">Payload</span>
+        <span class="jg-color-tag jg-color-tag--sig">Signature</span>
+      </div>
+    </div>
+
+    <!-- 时间辅助 -->
+    <div class="jg-section">
+      <div class="jg-section-title">时间戳辅助</div>
+      <div class="jg-time-row">
+        <span class="jg-time-label">当前 Unix 时间戳:</span>
+        <span class="jg-time-val" id="cur-ts">-</span>
+        <button class="btn btn--xs" id="btn-insert-iat" title="插入 iat 字段">插入 iat</button>
+        <button class="btn btn--xs" id="btn-insert-exp" title="插入 exp = iat + 1h">插入 exp (+1h)</button>
+        <button class="btn btn--xs" id="btn-insert-exp7" title="插入 exp = iat + 7d">插入 exp (+7d)</button>
+      </div>
+      <p class="jg-hint">JWT 规范时间戳使用秒（10 位 Unix 时间）。exp 字段为到期时间，nbf 字段为生效时间。</p>
+    </div>
+
+    <!-- 标准声明参考 -->
+    <div class="jg-section">
+      <div class="jg-section-title">标准声明 (Registered Claims) 参考</div>
+      <table class="jg-claims-table">
+        <thead><tr><th>字段</th><th>全称</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>iss</code></td><td>Issuer</td><td>签发者</td></tr>
+          <tr><td><code>sub</code></td><td>Subject</td><td>主题（用户 ID）</td></tr>
+          <tr><td><code>aud</code></td><td>Audience</td><td>受众（接收方）</td></tr>
+          <tr><td><code>exp</code></td><td>Expiration Time</td><td>过期时间（Unix 秒）</td></tr>
+          <tr><td><code>nbf</code></td><td>Not Before</td><td>生效时间</td></tr>
+          <tr><td><code>iat</code></td><td>Issued At</td><td>签发时间</td></tr>
+          <tr><td><code>jti</code></td><td>JWT ID</td><td>唯一标识</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JWT 解码 -->
+    <div class="jg-section">
+      <div class="jg-section-title">JWT 解码</div>
+      <textarea id="jwt-decode-input" class="jg-textarea" placeholder="粘贴 JWT Token 进行解码..." rows="2"></textarea>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button class="btn btn--primary" id="btn-decode">🔓 解码</button>
+        <button class="btn btn--secondary" id="btn-validate">🔐 验证签名</button>
+      </div>
+      <div id="decode-result" style="margin-top:8px"></div>
+      <div id="validate-result" style="margin-top:8px"></div>
+    </div>
+
+    <!-- 安全检查 -->
+    <div class="jg-section">
+      <div class="jg-section-title">安全检查</div>
+      <div id="security-result"></div>
+    </div>
+
+  </div>
+  <div class="tool-disclaimer">⚠️ 注意：此工具仅用于学习和测试 JWT 工作原理，请勿用于伪造他人身份令牌或绕过授权验证。</div>
+</div>
+  <script src="../../common/tool-i18n-dict.js"></script>
+  <script src="../../common/tool-i18n.js"></script>
+<script src="../../common/tool-runtime.js"></script>
+<script src="tool.js"></script>
+</body>
+</html>
